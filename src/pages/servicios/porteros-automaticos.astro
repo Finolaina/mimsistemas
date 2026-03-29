@@ -1,0 +1,726 @@
+---
+/**
+ * Service Landing Page: Porteros Automáticos y Videoporteros
+ * Design System: V2 "Trust Shield Deluxe"
+ * SEO: Service + BreadcrumbList + FAQPage + HowTo schemas
+ */
+import LayoutV2 from '../../layouts/LayoutV2.astro';
+import HeaderV2 from '../../components/v2/HeaderV2.astro';
+import FooterV2 from '../../components/v2/FooterV2.astro';
+import FloatingV2 from '../../components/v2/FloatingV2.astro';
+import WorkShowcaseV2 from '../../components/v2/WorkShowcaseV2.astro';
+import { Image } from 'astro:assets';
+import whatsappIcon from '../../assets/images/whatsapp-cta-icon.png';
+import heroImg from '../../assets/images/portero-automatico-videoportero.png';
+import showcaseImg from '../../assets/images/trabajo-portero-automatico.png';
+import '../../styles/v2.css';
+
+/* ── Service Data (easy to replicate for other services) ── */
+
+const service = {
+  title: "Porteros Automáticos y Videoporteros en Madrid",
+  metaTitle: "Porteros Automáticos y Videoporteros en Madrid | MIM Sistemas",
+  metaDescription: "Instalación y reparación de porteros automáticos y videoporteros para comunidades en Madrid. Sistemas IP, pantalla táctil, apertura remota. Presupuesto gratis. 912 000 002",
+  slug: "porteros-automaticos",
+  icon: "dialpad",
+  badge: "Comunicación · Porteros Automáticos",
+};
+
+const painPoints = [
+  { icon: "hearing_disabled", title: "Telefonillo antiguo con ruido", desc: "El portero automático apenas se escucha, tiene interferencias constantes y es imposible mantener una conversación con quien llama al portal." },
+  { icon: "visibility_off", title: "No ver quién llama", desc: "Sin videoportero es imposible identificar a la persona que llama antes de abrir. Abres a ciegas sin saber si es un vecino, un repartidor o un desconocido." },
+  { icon: "cable", title: "Cables deteriorados", desc: "El cableado del portero tiene décadas de antigüedad, está oxidado o dañado, provocando fallos intermitentes y cortes de comunicación constantes." },
+  { icon: "phonelink_erase", title: "Sin apertura remota", desc: "No puedes abrir el portal desde el móvil cuando no estás en casa. Los repartidores, familiares o servicios de limpieza quedan fuera sin poder acceder." },
+];
+
+const solutions = [
+  { icon: "video_camera_front", title: "Videoporteros IP", desc: "Sistemas de videoportero de última generación con pantalla a color, comunicación bidireccional HD y conexión a internet para acceso remoto desde cualquier dispositivo.", featured: true },
+  { icon: "camera_outdoor", title: "Placas de calle HD", desc: "Placas exteriores con cámara gran angular de alta definición, iluminación LED integrada y diseño antivandálico. Resistentes a la intemperie y preparadas para cualquier condición.", featured: true },
+  { icon: "touch_app", title: "Monitores táctiles", desc: "Monitores interiores con pantalla táctil de 7 o 10 pulgadas, interfaz intuitiva y posibilidad de capturar imágenes de las visitas.", featured: false },
+  { icon: "smartphone", title: "Apertura desde móvil", desc: "Abre el portal desde tu smartphone estés donde estés. Ideal para recibir paquetes, dejar pasar a familiares o dar acceso a servicios.", featured: false },
+  { icon: "home", title: "Integración con domótica", desc: "Conecta el videoportero con tu sistema domótico: asistentes de voz, cerraduras inteligentes, luces automáticas al abrir.", featured: false },
+  { icon: "build", title: "Reparación de porteros", desc: "Reparamos porteros automáticos de todas las marcas. Diagnóstico rápido, repuestos originales y reparación en el día en la mayoría de casos.", featured: false },
+];
+
+const benefits = [
+  { icon: "visibility", title: "Ver quién llama", desc: "Identifica a cada visitante antes de abrir la puerta gracias a la cámara de alta definición del videoportero.", color: "accent" },
+  { icon: "phone_iphone", title: "Apertura remota", desc: "Abre el portal desde tu móvil estés donde estés. No pierdas ninguna entrega ni dejes fuera a nadie.", color: "cta" },
+  { icon: "photo_camera", title: "Grabación de visitas", desc: "Captura automática de imagen cuando alguien llama. Revisa quién ha visitado tu portal en cualquier momento.", color: "success" },
+  { icon: "graphic_eq", title: "Comunicación clara HD", desc: "Audio y vídeo en alta definición. Conversaciones nítidas sin ruidos, interferencias ni cortes.", color: "accent-light" },
+  { icon: "devices", title: "Compatible con smartphones", desc: "Recibe las llamadas del portero directamente en tu móvil o tablet, como si fuera una videollamada.", color: "accent" },
+  { icon: "construction", title: "Sin obras con retrofit", desc: "En la mayoría de casos aprovechamos el cableado existente. Instalación limpia, rápida y sin obras molestas.", color: "cta" },
+];
+
+const steps = [
+  { num: "01", title: "Consulta gratuita", desc: "Nos cuentas qué problemas tienes con el portero actual. Evaluamos el tipo de instalación existente y tus necesidades.", icon: "call" },
+  { num: "02", title: "Proyecto y presupuesto", desc: "Un técnico visita la comunidad, evalúa el cableado existente, propone la mejor solución y entrega un presupuesto cerrado.", icon: "assignment" },
+  { num: "03", title: "Instalación profesional", desc: "Instalamos el nuevo sistema aprovechando el cableado existente siempre que sea posible. Mínima molestia para los vecinos.", icon: "construction" },
+  { num: "04", title: "Formación y soporte", desc: "Enseñamos a cada vecino a usar el videoportero y la app móvil. Soporte técnico y mantenimiento incluido.", icon: "support_agent" },
+];
+
+const testimonials = [
+  {
+    quote: "Teníamos un telefonillo de los años 80 que no se escuchaba. MIM nos instaló videoporteros con pantalla y ahora vemos quién llama. Además abrimos desde el móvil, una maravilla.",
+    name: "Pilar Hernández",
+    role: "Presidenta Comunidad, Alcorcón",
+    initials: "PH"
+  },
+  {
+    quote: "Gestiono varias comunidades y siempre recomiendo MIM para los porteros. Son rápidos, profesionales y el resultado es impecable. Los vecinos quedan encantados con la calidad de imagen.",
+    name: "Javier López",
+    role: "Administrador de Fincas",
+    initials: "JL"
+  },
+  {
+    quote: "Se nos averiaba el portero cada dos meses. MIM vino, hizo un diagnóstico completo y nos propuso cambiar a videoportero IP. Llevamos un año sin una sola incidencia.",
+    name: "Elena Moreno",
+    role: "Presidenta Comunidad, Fuenlabrada",
+    initials: "EM"
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Cuánto cuesta cambiar el portero automático de una comunidad?",
+    a: "El precio varía según el número de viviendas, el tipo de sistema elegido y el estado del cableado existente. Un sistema de videoportero IP para una comunidad de 20 viviendas puede empezar desde 2.500 €. Realizamos un estudio gratuito y presentamos presupuesto cerrado sin compromiso."
+  },
+  {
+    q: "¿Se puede instalar un videoportero sin hacer obra en el edificio?",
+    a: "Sí, en la gran mayoría de casos reutilizamos el cableado del portero antiguo gracias a la tecnología de 2 hilos. Esto permite instalar videoporteros modernos sin necesidad de abrir rozas ni tender nuevo cableado. Nuestro técnico evalúa la viabilidad en la visita gratuita."
+  },
+  {
+    q: "¿Se puede abrir el portal desde el móvil cuando no estoy en casa?",
+    a: "Sí, los videoporteros IP permiten recibir la llamada del portal directamente en tu smartphone, ver quién llama por vídeo y abrir la puerta desde cualquier lugar con conexión a internet. Funciona tanto en iPhone como en Android."
+  },
+  {
+    q: "¿Reparáis porteros automáticos de cualquier marca?",
+    a: "Sí, reparamos porteros automáticos y videoporteros de todas las marcas del mercado: Fermax, Tegui, Golmar, ABB, Comelit, Hikvision, entre otras. Disponemos de repuestos originales y compatibles para ofrecer una reparación rápida y garantizada."
+  },
+  {
+    q: "¿Cuánto tiempo tarda la instalación de un videoportero nuevo?",
+    a: "La instalación de un sistema completo de videoportero para una comunidad media (20-30 viviendas) suele completarse en 2-3 días laborables. Para viviendas unifamiliares, la instalación se realiza en unas pocas horas. Siempre coordinamos con la comunidad para minimizar las molestias."
+  },
+  {
+    q: "¿El videoportero funciona si se corta la luz o internet?",
+    a: "Los videoporteros están diseñados para funcionar sin conexión a internet para la comunicación básica entre placa y monitor. La apertura remota desde el móvil requiere internet. Además, incluimos protección contra cortes de luz con batería de respaldo para garantizar el funcionamiento básico."
+  },
+];
+
+const relatedServices = [
+  { icon: "lock_open", title: "Control de Accesos", slug: "/servicios/control-de-accesos", desc: "Complementa el videoportero con control total de accesos." },
+  { icon: "videocam", title: "Videovigilancia", slug: "/servicios/videovigilancia", desc: "Añade cámaras de seguridad para una protección completa." },
+  { icon: "key", title: "Cerrajería", slug: "/servicios/cerrajeria", desc: "Cerraduras y bombillos de seguridad para tu comunidad." },
+];
+
+/* ── Color mapping for benefits ── */
+const colorMap: Record<string, { iconBg: string; border: string }> = {
+  accent: { iconBg: "bg-accent/10 group-hover:bg-accent/20", border: "border-accent/20 group-hover:border-accent/40" },
+  cta: { iconBg: "bg-cta/10 group-hover:bg-cta/20", border: "border-cta/20 group-hover:border-cta/40" },
+  success: { iconBg: "bg-success/10 group-hover:bg-success/20", border: "border-success/20 group-hover:border-success/40" },
+  "accent-light": { iconBg: "bg-accent-light/10 group-hover:bg-accent-light/20", border: "border-accent-light/20 group-hover:border-accent-light/40" },
+};
+
+/* ── JSON-LD Schemas ── */
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://mimsistemas.com" },
+    { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://mimsistemas.com/#servicios" },
+    { "@type": "ListItem", "position": 3, "name": "Porteros Automáticos", "item": `https://mimsistemas.com/servicios/${service.slug}` },
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Porteros Automáticos y Videoporteros para Comunidades",
+  "description": service.metaDescription,
+  "url": `https://mimsistemas.com/servicios/${service.slug}`,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "MIM Sistemas",
+    "telephone": "+34912000002",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Porto Lagos 9-11 posterior",
+      "addressLocality": "Alcorcón",
+      "addressRegion": "Madrid",
+      "postalCode": "28924",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": "40.3456", "longitude": "-3.8259" }
+  },
+  "areaServed": { "@type": "State", "name": "Comunidad de Madrid" },
+  "serviceType": "Porteros Automáticos y Videoporteros",
+  "category": "Comunicación",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Sistemas de Porteros Automáticos y Videoporteros",
+    "itemListElement": solutions.map(s => ({
+      "@type": "Offer",
+      "itemOffered": { "@type": "Service", "name": s.title, "description": s.desc }
+    }))
+  }
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Cómo instalar un videoportero en tu comunidad",
+  "step": steps.map(s => ({
+    "@type": "HowToStep",
+    "position": parseInt(s.num),
+    "name": s.title,
+    "text": s.desc
+  }))
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<LayoutV2
+  title={service.metaTitle}
+  description={service.metaDescription}
+  robots="index, follow"
+  canonicalUrl={`https://mimsistemas.com/servicios/${service.slug}`}
+>
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <HeaderV2 />
+
+  <main id="main-content">
+    {/* ═══════════════════════════════════════════
+        HERO — Service-specific with breadcrumbs
+    ═══════════════════════════════════════════ */}
+    <section class="relative min-h-[85vh] flex items-center overflow-hidden">
+      <!-- Background Image with gradient overlay -->
+      <div class="absolute inset-0">
+        <Image
+          src={heroImg}
+          alt="Videoportero moderno con pantalla táctil instalado en portal de comunidad en Madrid"
+          class="w-full h-full object-cover"
+          widths={[640, 1024, 1440, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary-light/90 to-primary/70"></div>
+      </div>
+
+      <!-- Floating shapes -->
+      <div class="v2-float-shape v2-float-1 top-[15%] right-[10%] w-20 h-20 border border-white/10 rounded-2xl rotate-12" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-2 top-[60%] right-[5%] w-16 h-16 border border-cta/20 rounded-full" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-3 top-[30%] left-[5%] w-12 h-12 bg-accent/10 rounded-xl rotate-45" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-1 bottom-[20%] left-[8%] w-24 h-24 border border-accent/10 rounded-full" aria-hidden="true"></div>
+
+      <!-- Blobs -->
+      <div class="v2-blob w-[400px] h-[400px] bg-accent/15 top-[-10%] right-[-5%]" aria-hidden="true"></div>
+      <div class="v2-blob w-[300px] h-[300px] bg-cta/10 bottom-[-5%] left-[-5%]" style="animation-delay: -4s;" aria-hidden="true"></div>
+
+      <!-- Dot grid -->
+      <div class="absolute inset-0 v2-dot-pattern-light opacity-25" aria-hidden="true"></div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-16 lg:pt-32 lg:pb-20">
+        <!-- Breadcrumbs -->
+        <nav class="mb-8 v2-hero-entrance" aria-label="Migas de pan">
+          <ol class="flex items-center gap-2 text-sm text-white/50">
+            <li><a href="/mimsistemas/" class="hover:text-white/80 transition-colors">Inicio</a></li>
+            <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+            <li><a href="/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
+            <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+            <li class="text-white/80 font-medium">Porteros Automáticos</li>
+          </ol>
+        </nav>
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-7 text-white v2-hero-entrance">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8">
+              <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{service.icon}</span>
+              <span class="text-sm font-medium text-white/90 tracking-wide">{service.badge}</span>
+            </div>
+
+            <!-- H1 -->
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.1] mb-6">
+              <span class="v2-gradient-text">Porteros Automáticos</span> y Videoporteros en Madrid
+            </h1>
+
+            <!-- SEO paragraph (keyword in first 100 words) -->
+            <p class="text-lg lg:text-xl text-white/75 leading-relaxed max-w-xl mb-10">
+              Instalación y reparación de porteros automáticos y videoporteros para comunidades de propietarios en Madrid. Sistemas IP con pantalla táctil, apertura remota desde el móvil y comunicación en alta definición. Más de 20 años modernizando portales en la Comunidad de Madrid.
+            </p>
+
+            <!-- Trust badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+              {[
+                { icon: "engineering", text: "Técnicos Propios" },
+                { icon: "schedule", text: "Urgencias 24h" },
+                { icon: "request_quote", text: "Presupuesto Cerrado" },
+                { icon: "workspace_premium", text: "Garantía Escrita" }
+              ].map(badge => (
+                <div class="flex items-center gap-2.5 bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5">
+                  <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{badge.icon}</span>
+                  <span class="text-xs font-medium text-white/85 leading-tight">{badge.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap gap-4">
+              <a href="#presupuesto" class="v2-btn-cta text-base">
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">description</span>
+                Solicitar Presupuesto Gratis
+              </a>
+              <a href="tel:912000002" class="v2-btn-outline !border-white/30 !text-white hover:!bg-white/15 hover:!text-white text-base backdrop-blur-sm">
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
+                912 000 002
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Lead Form -->
+          <div class="lg:col-span-5" id="presupuesto">
+            <div class="v2-form-card p-6 sm:p-8">
+              <h2 class="font-heading text-xl font-bold text-primary mb-1">Presupuesto gratuito</h2>
+              <p class="text-sm text-text-muted mb-6">Te contactamos en menos de 1 hora con un presupuesto a medida.</p>
+
+              <form class="flex flex-col gap-4 opnform" data-opnform-slug="contacto-mim-sistemas-qxnrgn" method="POST">
+                <input type="hidden" name="servicio" value="porteros-automaticos" />
+                <input type="hidden" name="origen" value="servicio-porteros-automaticos" />
+                <!-- Honeypot anti-spam -->
+                <div class="!absolute !w-px !h-px !overflow-hidden !whitespace-nowrap" style="clip: rect(0,0,0,0); border: 0;" aria-hidden="true">
+                  <input type="text" name="botcheck" tabindex="-1" autocomplete="off" />
+                </div>
+                <div>
+                  <label for="svc-name" class="block text-sm font-medium text-text mb-1.5">Nombre</label>
+                  <input type="text" id="svc-name" name="nombre" placeholder="Ej: Juan García" autocomplete="name"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+                </div>
+                <div>
+                  <label for="svc-phone" class="block text-sm font-medium text-text mb-1.5">Teléfono</label>
+                  <input type="tel" id="svc-phone" name="telefono" placeholder="600 000 000" autocomplete="tel"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+                </div>
+                <div>
+                  <label for="svc-email" class="block text-sm font-medium text-text mb-1.5">Email <span class="text-text-muted font-normal">(opcional)</span></label>
+                  <input type="email" id="svc-email" name="email" placeholder="email@ejemplo.com" autocomplete="email"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" />
+                </div>
+                <div>
+                  <label for="svc-message" class="block text-sm font-medium text-text mb-1.5">¿Qué necesitas?</label>
+                  <textarea id="svc-message" name="mensaje" rows="3" placeholder="Ej: El portero automático no funciona bien, queremos cambiar a videoportero..."
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all resize-none"></textarea>
+                </div>
+                <!-- RGPD consent -->
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="checkbox" name="rgpd" required
+                    class="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/30 cursor-pointer" />
+                  <span class="text-xs text-text-muted leading-relaxed">
+                    Acepto la <a href="/mimsistemas/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
+                  </span>
+                </label>
+                <button type="submit" class="v2-btn-cta w-full justify-center text-base mt-1">
+                  <span class="material-symbols-outlined text-xl btn-icon" aria-hidden="true">send</span>
+                  <span class="btn-text">Solicitar Presupuesto</span>
+                </button>
+                <!-- Success/error messages -->
+                <div class="form-success hidden rounded-xl bg-green-50 border border-green-200 p-4 text-center">
+                  <span class="material-symbols-outlined text-green-600 text-2xl mb-1" aria-hidden="true">check_circle</span>
+                  <p class="text-sm font-medium text-green-800">¡Solicitud enviada! Te contactaremos en menos de 1 hora.</p>
+                </div>
+                <div class="form-error hidden rounded-xl bg-red-50 border border-red-200 p-4 text-center">
+                  <span class="material-symbols-outlined text-red-600 text-2xl mb-1" aria-hidden="true">error</span>
+                  <p class="text-sm font-medium text-red-800">Error al enviar. Llámanos al <a href="tel:912000002" class="underline">912 000 002</a>.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        PAIN POINTS — Why you need a new intercom
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-30" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">El Problema</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            ¿Tu comunidad tiene
+            <span class="v2-gradient-text">estos problemas</span>?
+          </h2>
+          <p class="text-text-muted max-w-2xl mx-auto text-lg">
+            Miles de comunidades en Madrid siguen con telefonillos obsoletos de los años 80 y 90 que generan problemas diarios a los vecinos.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 v2-stagger">
+          {painPoints.map(p => (
+            <div class="v2-card-glow p-7 group cursor-default border border-red-200/30 group-hover:border-red-300/50 transition-all">
+              <div class="w-14 h-14 bg-red-50 group-hover:bg-red-100 rounded-2xl flex items-center justify-center mb-5 transition-all">
+                <span class="material-symbols-outlined text-2xl text-red-500 group-hover:scale-110 transition-transform" aria-hidden="true">{p.icon}</span>
+              </div>
+              <h3 class="font-heading font-semibold text-primary text-lg mb-2">{p.title}</h3>
+              <p class="text-text-muted text-sm leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        SOLUTIONS — Types of intercoms
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-40" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Nuestras Soluciones</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            Porteros y Videoporteros
+            <span class="v2-gradient-text-blue">a Medida</span>
+          </h2>
+          <p class="text-text-muted max-w-2xl mx-auto text-lg">
+            Desde videoporteros IP de última generación hasta la reparación de tu portero actual. Siempre la mejor solución para tu comunidad.
+          </p>
+        </div>
+
+        <div class="v2-bento v2-stagger">
+          {solutions.map((s, i) => (
+            <div class={`v2-card-glow p-6 flex flex-col cursor-pointer group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
+              <div class={`v2-icon-box rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${i < 2 ? 'w-16 h-16 bg-accent/10 group-hover:bg-accent/20' : 'w-12 h-12 bg-surface-alt group-hover:bg-accent/10'}`}>
+                <span class={`material-symbols-outlined ${i < 2 ? 'text-3xl' : 'text-2xl'} text-accent transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">{s.icon}</span>
+              </div>
+              <h3 class={`font-heading font-semibold text-primary mb-2 transition-colors group-hover:text-accent ${i < 2 ? 'text-xl' : 'text-base'}`}>{s.title}</h3>
+              <p class={`text-text-muted leading-relaxed ${i < 2 ? 'text-base' : 'text-sm'}`}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        BENEFITS — Why choose our intercoms
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0V40C360 60 720 20 1080 40C1260 50 1380 45 1440 40V0H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+      <div class="v2-float-shape v2-float-2 top-[10%] right-[5%] w-16 h-16 border border-accent/10 rounded-2xl rotate-12 hidden lg:block" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-3 bottom-[15%] left-[3%] w-12 h-12 bg-cta/8 rounded-full hidden lg:block" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Beneficios</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            ¿Por qué cambiar tu
+            <span class="v2-gradient-text">portero automático</span>?
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 v2-stagger">
+          {benefits.map(b => {
+            const c = colorMap[b.color];
+            return (
+              <div class={`v2-card-glow p-7 cursor-default group border ${c.border} transition-all`}>
+                <div class={`v2-icon-box w-14 h-14 ${c.iconBg} rounded-2xl flex items-center justify-center mb-5 transition-all duration-300`}>
+                  <span class="material-symbols-outlined text-2xl text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" aria-hidden="true">{b.icon}</span>
+                </div>
+                <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{b.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed">{b.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        WORK SHOWCASE — Real project example
+    ═══════════════════════════════════════════ */}
+    <WorkShowcaseV2
+      sectionLabel="Nuestro Trabajo en Acción"
+      title="Renovación Completa de Portero Automático"
+      titleHighlight="Portero Automático"
+      description="Sustitución del portero analógico por un sistema de videoportero IP en un edificio de 40 viviendas en Leganés. Placa de calle HD, monitores táctiles y apertura remota."
+      image={showcaseImg}
+      imageAlt="Videoportero IP instalado por MIM Sistemas en edificio residencial en Leganés"
+      stats={[
+        { value: "40", label: "Viviendas" },
+        { value: "1 día", label: "Instalación" },
+      ]}
+      checkpoints={[
+        "Placa de calle HD con gran angular",
+        "Monitores táctiles 7\" en cada vivienda",
+        "Apertura remota desde smartphone",
+        "Compatible con el cableado existente",
+      ]}
+      ctaText="Solicitar Presupuesto"
+      ctaHref="#contacto-servicio"
+    />
+
+
+    {/* ═══════════════════════════════════════════
+        PROCESS — How it works (4 steps)
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-40" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Cómo Trabajamos</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+            Instalación en
+            <span class="v2-gradient-text">4 Pasos</span>
+          </h2>
+        </div>
+
+        <!-- Desktop timeline -->
+        <div class="hidden md:block v2-reveal">
+          <div class="relative">
+            <svg class="absolute top-7 left-[12%] right-[12%] h-2 w-[76%]" viewBox="0 0 800 2" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="0" y1="1" x2="800" y2="1" stroke="url(#tl-grad)" stroke-width="2" class="v2-dashed-line"/>
+              <defs><linearGradient id="tl-grad" x1="0" y1="0" x2="800" y2="0">
+                <stop offset="0%" stop-color="#0369A1"/><stop offset="50%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#0EA5E9"/>
+              </linearGradient></defs>
+            </svg>
+            <div class="grid grid-cols-4 gap-6">
+              {steps.map(step => (
+                <div class="flex flex-col items-center text-center group cursor-default">
+                  <div class="relative mb-8">
+                    <div class="v2-timeline-dot group-hover:scale-110 transition-transform duration-300">
+                      <span class="material-symbols-outlined text-xl text-white" aria-hidden="true">{step.icon}</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-full border-2 border-accent opacity-0 group-hover:animate-ping pointer-events-none" aria-hidden="true"></div>
+                  </div>
+                  <div class="bg-white rounded-2xl p-5 shadow-sm border border-border group-hover:shadow-lg group-hover:border-accent/20 transition-all duration-300">
+                    <div class="text-xs font-heading font-bold text-accent/50 mb-1">PASO {step.num}</div>
+                    <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
+                    <p class="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile timeline -->
+        <div class="md:hidden flex flex-col gap-0 v2-stagger">
+          {steps.map((step, i) => (
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="v2-timeline-dot flex-shrink-0">
+                  <span class="material-symbols-outlined text-lg text-white" aria-hidden="true">{step.icon}</span>
+                </div>
+                {i < 3 && <div class="w-0.5 flex-1 mt-2 bg-gradient-to-b from-accent/30 to-accent/10"></div>}
+              </div>
+              <div class="pb-8">
+                <div class="text-xs font-heading font-bold text-accent/50 mb-0.5">PASO {step.num}</div>
+                <h3 class="font-heading font-semibold text-primary text-lg mb-1">{step.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        TESTIMONIALS — Social proof
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60V20C360 45 720 5 1080 25C1260 35 1380 30 1440 25V60H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+      <div class="v2-blob w-[350px] h-[350px] bg-accent/8 top-[5%] left-[-8%]" aria-hidden="true"></div>
+      <div class="v2-blob w-[250px] h-[250px] bg-cta/6 bottom-[10%] right-[-5%]" style="animation-delay: -6s;" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Testimonios</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            Comunidades que ya
+            <span class="v2-gradient-text">disfrutan su videoportero</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8 v2-stagger">
+          {testimonials.map((t, i) => (
+            <div class={`v2-card-glow p-8 flex flex-col group cursor-default ${i === 1 ? 'md:-translate-y-4' : ''}`}>
+              <div class="flex gap-1 mb-6">
+                {[1,2,3,4,5].map(() => (
+                  <span class="material-symbols-outlined text-cta text-xl drop-shadow-[0_0_4px_rgba(245,158,11,0.3)]" aria-hidden="true" style="font-variation-settings: 'FILL' 1">star</span>
+                ))}
+              </div>
+              <blockquote class="relative flex-1">
+                <div class="v2-quote relative pl-0">
+                  <p class="text-text leading-relaxed text-[15px] pt-8 group-hover:text-primary transition-colors">{t.quote}</p>
+                </div>
+              </blockquote>
+              <div class="flex items-center gap-4 mt-8 pt-6 border-t border-border/60">
+                <div class="relative">
+                  <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent-light rounded-full flex items-center justify-center">
+                    <span class="font-heading font-bold text-white text-sm">{t.initials}</span>
+                  </div>
+                  <div class="absolute -inset-1 rounded-full border border-accent/20" aria-hidden="true"></div>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-primary text-sm">{t.name}</div>
+                  <div class="text-text-muted text-xs">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MIM Sistemas",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "3" },
+      "review": testimonials.map(t => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": t.name },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": t.quote
+      }))
+    })} />
+
+
+    {/* ═══════════════════════════════════════════
+        FAQ — Service-specific questions
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern" aria-hidden="true"></div>
+      <div class="v2-blob w-[300px] h-[300px] bg-accent/5 bottom-[0%] right-[-5%]" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 v2-reveal">
+          <span class="v2-section-label">FAQ</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+            Preguntas sobre
+            <span class="v2-gradient-text-blue">Porteros Automáticos</span>
+          </h2>
+        </div>
+
+        <div class="v2-faq flex flex-col gap-3 v2-stagger">
+          {faqs.map(faq => (
+            <details>
+              <summary>{faq.q}</summary>
+              <div class="faq-answer">{faq.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        CTA BANNER — Final conversion push
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-24 bg-gradient-to-br from-cta via-[#FBBF24] to-cta-hover overflow-hidden" aria-label="Contacto directo">
+      <div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -translate-y-1/3 translate-x-1/3 v2-float-1" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-56 h-56 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/3 v2-float-2" aria-hidden="true"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/10 rounded-full v2-float-3" aria-hidden="true"></div>
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(15,23,42,0.15) 1px, transparent 1px); background-size: 20px 20px;" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center v2-reveal">
+        <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-5 py-2 mb-6">
+          <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">dialpad</span>
+          <span class="text-sm font-heading font-semibold text-primary/80">Sin compromiso</span>
+        </div>
+
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
+          Moderniza tu portero automático
+        </h2>
+        <p class="text-primary/60 text-lg mb-10 max-w-xl mx-auto">
+          Solicita un presupuesto gratuito para tu comunidad. Te presentamos la mejor solución en 48 horas.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="tel:912000002" class="v2-btn-outline !border-primary/80 !text-primary hover:!bg-primary hover:!text-white text-lg w-full sm:w-auto justify-center !py-4 !px-8">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
+            912 000 002
+          </a>
+          <a href="https://wa.me/34912000002?text=Hola%2C%20me%20interesa%20un%20presupuesto%20de%20porteros%20automaticos" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 bg-primary text-white font-heading font-semibold px-8 py-4 rounded-xl text-lg hover:bg-primary-light transition-all cursor-pointer w-full sm:w-auto justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            <Image src={whatsappIcon} alt="" width={24} height={24} class="w-6 h-6" aria-hidden="true" />
+            Enviar WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        RELATED SERVICES — Internal linking
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 v2-reveal">
+          <span class="v2-section-label">Servicios Relacionados</span>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mt-3">
+            Complementa tu sistema de
+            <span class="v2-gradient-text-blue">comunicación</span>
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6 v2-stagger">
+          {relatedServices.map(rs => (
+            <a href={rs.slug} class="v2-card-glow p-7 group cursor-pointer block transition-all hover:-translate-y-1">
+              <div class="w-14 h-14 bg-accent/10 group-hover:bg-accent/20 rounded-2xl flex items-center justify-center mb-5 transition-all">
+                <span class="material-symbols-outlined text-2xl text-accent group-hover:scale-110 transition-transform" aria-hidden="true">{rs.icon}</span>
+              </div>
+              <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{rs.title}</h3>
+              <p class="text-text-muted text-sm leading-relaxed mb-4">{rs.desc}</p>
+              <span class="inline-flex items-center gap-1 text-accent text-sm font-medium">
+                Ver servicio
+                <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <FooterV2 />
+  <FloatingV2 />
+</LayoutV2>

@@ -1,0 +1,238 @@
+---
+interface Props {
+  title?: string;
+  description?: string;
+  robots?: string;
+  canonicalUrl?: string;
+  ogImage?: string;
+}
+const {
+  title = "MIM Sistemas · Servicios Técnicos Integrales para Comunidades en Madrid",
+  description = "Instalación, reparación y mantenimiento multitécnico para comunidades de propietarios y empresas en Madrid. Más de 20 años de experiencia. Presupuesto gratis.",
+  robots = "noindex, nofollow",
+  canonicalUrl,
+  ogImage = "https://mimsistemas.com/og-image.jpg",
+} = Astro.props;
+---
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>{title}</title>
+  <meta name="description" content={description} />
+  <meta name="robots" content={robots} />
+  <meta name="author" content="MIM Sistemas" />
+  <meta name="theme-color" content="#0F172A" />
+  {canonicalUrl && <link rel="canonical" href={canonicalUrl} />}
+
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:site_name" content="MIM Sistemas" />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={ogImage} />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+  {canonicalUrl && <meta property="og:url" content={canonicalUrl} />}
+  <meta property="og:locale" content="es_ES" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content={title} />
+  <meta name="twitter:description" content={description} />
+  <meta name="twitter:image" content={ogImage} />
+
+  <!-- Favicon set -->
+  <link rel="icon" href="/favicon-32.png" sizes="32x32" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+  <link rel="manifest" href="/manifest.webmanifest" />
+
+  <!-- Fonts: Lexend + Source Sans 3 + Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@400;500;600;700&family=Source+Sans+3:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0&display=swap" rel="stylesheet" />
+
+  <!-- Schema.org -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ElectricalContractor",
+    "name": "MIM Sistemas",
+    "url": "https://mimsistemas.com",
+    "telephone": "+34912000002",
+    "email": "info@mimsistemas.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Porto Lagos 9-11 posterior",
+      "addressLocality": "Alcorcón",
+      "addressRegion": "Madrid",
+      "postalCode": "28924",
+      "addressCountry": "ES"
+    },
+    "areaServed": "Comunidad de Madrid",
+    "foundingDate": "2003",
+    "priceRange": "$$",
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+      "opens": "08:00",
+      "closes": "18:00"
+    }
+  })} />
+
+  <!-- JSON-LD: WebSite -->
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "MIM Sistemas",
+    "url": "https://mimsistemas.com",
+    "description": "Servicios técnicos integrales para comunidades de propietarios y empresas en Madrid."
+  })} />
+
+  <!-- Analytics: Plausible (cookie-free, GDPR compliant) -->
+  <script defer data-domain="mimsistemas.com" src="https://plausible.io/js/script.js"></script>
+</head>
+<body class="antialiased">
+  <!-- Skip to content (accessibility) -->
+  <a
+    href="#main-content"
+    class="sr-only focus:not-sr-only focus:fixed focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:outline-none"
+  >Saltar al contenido principal</a>
+  <slot />
+
+  <!-- Scroll Reveal Observer -->
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+
+    document.querySelectorAll('.v2-reveal, .v2-reveal-left, .v2-reveal-right, .v2-stagger').forEach(el => {
+      observer.observe(el);
+    });
+
+    // Number counter animation
+    document.querySelectorAll('.v2-counter[data-target]').forEach(counter => {
+      const target = counter.getAttribute('data-target') || '';
+      const prefix = counter.getAttribute('data-prefix') || '';
+      const suffix = counter.getAttribute('data-suffix') || '';
+      const numericTarget = parseInt(target.replace(/[^\d]/g, '')) || 0;
+
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            let current = 0;
+            const step = Math.max(1, Math.floor(numericTarget / 40));
+            const timer = setInterval(() => {
+              current += step;
+              if (current >= numericTarget) {
+                current = numericTarget;
+                clearInterval(timer);
+              }
+              (entry.target as HTMLElement).textContent = prefix + current.toLocaleString('es-ES') + suffix;
+            }, 30);
+            counterObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.3 });
+      counterObserver.observe(counter);
+    });
+
+    // Mobile menu toggle
+    const menuBtn = document.getElementById('v2-menu-btn');
+    const mobileMenu = document.getElementById('v2-mobile-menu');
+    menuBtn?.addEventListener('click', () => {
+      mobileMenu?.classList.toggle('hidden');
+      const icon = menuBtn.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.textContent = mobileMenu?.classList.contains('hidden') ? 'menu' : 'close';
+      }
+    });
+
+    // Close mobile menu on link click
+    mobileMenu?.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', () => mobileMenu?.classList.add('hidden'));
+    });
+
+    // OpnForm AJAX submission
+    const OPNFORM_API = 'https://forms.optihost.pro/api';
+    const OPNFORM_FIELD_MAP: Record<string, string> = {
+      nombre: 'mim-nombre',
+      telefono: 'mim-telefono',
+      email: 'mim-email',
+      servicio: 'mim-servicio',
+      comunidad: 'mim-comunidad',
+      mensaje: 'mim-mensaje',
+      origen: 'mim-origen',
+    };
+
+    document.querySelectorAll('.opnform').forEach(form => {
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const f = e.target as HTMLFormElement;
+        const btn = f.querySelector('button[type="submit"]') as HTMLButtonElement;
+        const btnText = btn.querySelector('.btn-text');
+        const btnIcon = btn.querySelector('.btn-icon');
+        const successEl = f.querySelector('.form-success') as HTMLElement;
+        const errorEl = f.querySelector('.form-error') as HTMLElement;
+        const slug = f.dataset.opnformSlug;
+
+        // Honeypot check
+        const honeypot = f.querySelector<HTMLInputElement>('[name="botcheck"]');
+        if (honeypot?.value) return;
+
+        // Loading state
+        btn.disabled = true;
+        if (btnText) btnText.textContent = 'Enviando...';
+        if (btnIcon) (btnIcon as HTMLElement).textContent = 'hourglass_empty';
+        successEl?.classList.add('hidden');
+        errorEl?.classList.add('hidden');
+
+        // Build payload with OpnForm field UUIDs
+        const fd = new FormData(f);
+        const payload: Record<string, string> = {};
+        for (const [name, value] of fd.entries()) {
+          const fieldId = OPNFORM_FIELD_MAP[name];
+          if (fieldId && typeof value === 'string' && value.trim()) {
+            let v = value.trim();
+            // Normalize Spanish phone numbers to E.164
+            if (name === 'telefono') {
+              const digits = v.replace(/[\s\-().]/g, '');
+              if (/^[67]\d{8}$/.test(digits)) v = '+34' + digits;
+              else if (/^34[67]\d{8}$/.test(digits)) v = '+' + digits;
+            }
+            payload[fieldId] = v;
+          }
+        }
+
+        try {
+          const res = await fetch(`${OPNFORM_API}/forms/${slug}/answer`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json', 'Accept': 'application/json' },
+            body: JSON.stringify(payload),
+          });
+          const data = await res.json();
+          if (res.ok && data.type === 'success') {
+            successEl?.classList.remove('hidden');
+            f.reset();
+          } else {
+            errorEl?.classList.remove('hidden');
+          }
+        } catch {
+          errorEl?.classList.remove('hidden');
+        } finally {
+          btn.disabled = false;
+          if (btnText) btnText.textContent = f.querySelector<HTMLInputElement>('[name="servicio"][type="hidden"]') ? 'Solicitar Presupuesto' : 'Enviar Solicitud';
+          if (btnIcon) (btnIcon as HTMLElement).textContent = 'send';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

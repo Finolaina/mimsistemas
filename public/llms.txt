@@ -1,0 +1,31 @@
+# MIM Sistemas — Servicios Técnicos Integrales
+
+> MIM Sistemas (Mimtel Soluciones Globales S.L.) es una empresa española de servicios técnicos integrales para comunidades de propietarios y empresas en la Comunidad de Madrid. Fundada en 2003, ofrece soluciones de seguridad, automatismos, energía solar, electricidad y mantenimiento.
+
+## Páginas principales
+
+- [Inicio](https://mimsistemas.com/): Landing page con todos los servicios, proceso de trabajo, testimonios y formulario de contacto.
+- [Control de Accesos](https://mimsistemas.com/servicios/control-de-accesos): Instalación de videoporteros IP, lectores biométricos, tarjetas RFID y acceso móvil para comunidades.
+- [Aviso Legal](https://mimsistemas.com/aviso-legal): Información legal de Mimtel Soluciones Globales S.L. (CIF B87897302).
+- [Política de Privacidad](https://mimsistemas.com/politica-privacidad): Tratamiento de datos personales conforme al RGPD.
+
+## Datos de contacto
+
+- Teléfono: 912 000 002
+- Email: info@mimsistemas.com
+- Dirección: Calle Porto Lagos, 9-11 posterior, 28924 Alcorcón (Madrid)
+- Horario: Lunes a Viernes 08:00-18:00
+
+## Servicios
+
+- Control de Accesos (videoporteros, biométricos, tarjetas)
+- CCTV y Videovigilancia (cámaras 4K, grabación, visión remota)
+- Porteros Automáticos
+- Automatismos y Puertas de Garaje
+- Energía Solar (autoconsumo comunitario)
+- Puntos de Carga para Vehículos Eléctricos
+- Electricidad e Iluminación LED
+- Antenización TDT y Satélite
+- Cerrajería
+- Megafonía
+- Albañilería y Pintura de zonas comunes

@@ -1,0 +1,149 @@
+---
+/**
+ * HeaderV2.astro — Floating glass navbar with services dropdown
+ * Works on both main page (anchor links) and subpages (absolute links)
+ */
+import { Image } from 'astro:assets';
+import logoHorizontal from '../../assets/images/logo-mim-horizontal.png';
+
+const isSubpage = Astro.url.pathname !== '/' && Astro.url.pathname !== '/index.html';
+const baseUrl = isSubpage ? '/mimsistemas/' : '';
+---
+
+<!-- Floating Glass Navbar -->
+<header class="fixed top-0 left-0 right-0 z-50 md:top-4 md:left-6 md:right-6">
+  <nav class="v2-nav md:rounded-2xl max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between" aria-label="Navegación principal">
+    <!-- Logo -->
+    <a href="/mimsistemas/" class="flex items-center group" aria-label="MIM Sistemas - Inicio">
+      <Image src={logoHorizontal} alt="MIM Sistemas" width={160} height={40} class="h-9 w-auto" loading="eager" />
+    </a>
+
+    <!-- Desktop Nav -->
+    <div class="hidden md:flex items-center gap-8">
+      <a href={`${baseUrl}#inicio`} class="text-sm font-medium text-text-muted hover:text-primary transition-colors">Inicio</a>
+
+      <!-- Servicios dropdown -->
+      <div class="relative group/dropdown">
+        <a href={`${baseUrl}#servicios`} class="text-sm font-medium text-text-muted hover:text-primary transition-colors inline-flex items-center gap-1">
+          Servicios
+          <span class="material-symbols-outlined text-sm transition-transform group-hover/dropdown:rotate-180" aria-hidden="true">expand_more</span>
+        </a>
+        <div class="absolute top-full left-1/2 -translate-x-1/2 pt-3 opacity-0 invisible group-hover/dropdown:opacity-100 group-hover/dropdown:visible transition-all duration-200">
+          <div class="bg-white rounded-2xl shadow-xl border border-border/50 p-4 w-[360px]">
+            <p class="text-xs font-heading font-bold text-accent uppercase tracking-wider mb-3 px-2">Nuestros Servicios</p>
+            <div class="flex flex-col gap-0.5 max-h-[400px] overflow-y-auto">
+              <a href="/mimsistemas/servicios/control-de-accesos" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">lock_open</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Control de Accesos</span>
+              </a>
+              <a href="/mimsistemas/servicios/videovigilancia" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">videocam</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Videovigilancia CCTV</span>
+              </a>
+              <a href="/mimsistemas/servicios/porteros-automaticos" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">dialpad</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Porteros Automáticos</span>
+              </a>
+              <a href="/mimsistemas/servicios/automatismos" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">sensor_door</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Automatismos</span>
+              </a>
+              <a href="/mimsistemas/servicios/energia-solar" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">solar_power</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Energía Solar</span>
+              </a>
+              <a href="/mimsistemas/servicios/puntos-de-carga" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">ev_station</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Puntos de Carga EV</span>
+              </a>
+              <a href="/mimsistemas/servicios/electricidad" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">electrical_services</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Electricidad y LED</span>
+              </a>
+              <a href="/mimsistemas/servicios/antenizacion" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">settings_input_antenna</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Antenización TDT</span>
+              </a>
+              <a href="/mimsistemas/servicios/cerrajeria" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">lock</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Cerrajería</span>
+              </a>
+              <a href="/mimsistemas/servicios/megafonia" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">campaign</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Megafonía</span>
+              </a>
+              <a href="/mimsistemas/servicios/albanileria-pintura" class="flex items-center gap-3 px-3 py-2 rounded-xl hover:bg-surface-alt transition-colors group/item">
+                <span class="material-symbols-outlined text-accent text-lg" aria-hidden="true">format_paint</span>
+                <span class="text-sm font-medium text-primary group-hover/item:text-accent transition-colors">Albañilería y Pintura</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <a href={`${baseUrl}#nosotros`} class="text-sm font-medium text-text-muted hover:text-primary transition-colors">Nosotros</a>
+      <a href="/mimsistemas/contacto" class="text-sm font-medium text-text-muted hover:text-primary transition-colors">Contacto</a>
+    </div>
+
+    <!-- Desktop CTA -->
+    <div class="hidden md:flex items-center gap-4">
+      <a href="tel:912000002" class="flex items-center gap-2 text-sm font-semibold text-primary hover:text-accent transition-colors">
+        <span class="material-symbols-outlined text-lg" aria-hidden="true">call</span>
+        912 000 002
+      </a>
+      <a href="/mimsistemas/contacto" class="v2-btn-cta text-sm !py-2.5 !px-5">
+        Pedir Presupuesto
+      </a>
+    </div>
+
+    <!-- Mobile Menu Button -->
+    <button id="v2-menu-btn" class="md:hidden p-2 -mr-2 text-primary cursor-pointer" aria-label="Abrir menú" aria-expanded="false" aria-controls="v2-mobile-menu">
+      <span class="material-symbols-outlined text-2xl">menu</span>
+    </button>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div id="v2-mobile-menu" class="hidden md:hidden bg-white border-t border-border mx-0 md:mx-6 md:rounded-b-2xl shadow-lg" role="menu">
+    <div class="px-4 py-4 flex flex-col gap-1">
+      <a href={`${baseUrl}#inicio`} class="py-3 px-4 text-sm font-medium text-text rounded-lg hover:bg-surface-alt transition-colors" role="menuitem">Inicio</a>
+      <a href={`${baseUrl}#servicios`} class="py-3 px-4 text-sm font-medium text-text rounded-lg hover:bg-surface-alt transition-colors" role="menuitem">Servicios</a>
+
+      <!-- Mobile service links -->
+      <div class="pl-4 flex flex-col gap-0.5">
+        <a href="/mimsistemas/servicios/control-de-accesos" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">lock_open</span>Control de Accesos</a>
+        <a href="/mimsistemas/servicios/videovigilancia" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">videocam</span>Videovigilancia</a>
+        <a href="/mimsistemas/servicios/porteros-automaticos" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">dialpad</span>Porteros Automáticos</a>
+        <a href="/mimsistemas/servicios/automatismos" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">sensor_door</span>Automatismos</a>
+        <a href="/mimsistemas/servicios/energia-solar" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">solar_power</span>Energía Solar</a>
+        <a href="/mimsistemas/servicios/puntos-de-carga" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">ev_station</span>Puntos de Carga</a>
+        <a href="/mimsistemas/servicios/electricidad" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">electrical_services</span>Electricidad</a>
+        <a href="/mimsistemas/servicios/cerrajeria" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">lock</span>Cerrajería</a>
+        <a href="/mimsistemas/servicios/antenizacion" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">settings_input_antenna</span>Antenización TDT</a>
+        <a href="/mimsistemas/servicios/megafonia" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">campaign</span>Megafonía</a>
+        <a href="/mimsistemas/servicios/albanileria-pintura" class="py-2 px-4 text-sm text-text-muted rounded-lg hover:bg-surface-alt hover:text-accent transition-colors flex items-center gap-2" role="menuitem">
+          <span class="material-symbols-outlined text-base text-accent" aria-hidden="true">format_paint</span>Albañilería y Pintura</a>
+      </div>
+
+      <a href={`${baseUrl}#nosotros`} class="py-3 px-4 text-sm font-medium text-text rounded-lg hover:bg-surface-alt transition-colors" role="menuitem">Nosotros</a>
+      <a href="/mimsistemas/contacto" class="py-3 px-4 text-sm font-medium text-text rounded-lg hover:bg-surface-alt transition-colors" role="menuitem">Contacto</a>
+      <hr class="my-2 border-border" />
+      <a href="tel:912000002" class="py-3 px-4 flex items-center gap-2 text-sm font-semibold text-primary" role="menuitem">
+        <span class="material-symbols-outlined text-lg" aria-hidden="true">call</span>
+        912 000 002
+      </a>
+      <a href="/mimsistemas/contacto" class="v2-btn-cta text-sm text-center !py-3 mt-1" role="menuitem">
+        Pedir Presupuesto Gratis
+      </a>
+    </div>
+  </div>
+</header>

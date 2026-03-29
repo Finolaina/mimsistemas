@@ -1,0 +1,32 @@
+---
+import Layout from '../layouts/Layout.astro';
+---
+
+<Layout title="Página no encontrada | MIM Sistemas" description="La página que buscas no existe o ha sido movida.">
+  <div class="min-h-screen flex items-center justify-center bg-surface px-6">
+    <div class="text-center max-w-lg">
+      <span class="material-symbols-outlined text-8xl text-secondary/30 mb-6 block" aria-hidden="true">search_off</span>
+      <h1 class="text-6xl font-bold text-primary mb-4">404</h1>
+      <p class="text-xl text-on-surface-variant mb-2 font-medium">Página no encontrada</p>
+      <p class="text-on-surface-variant mb-8">
+        La página que buscas no existe o ha sido movida. Pero no te preocupes, podemos ayudarte.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <a
+          href="/mimsistemas/"
+          class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-container text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all"
+        >
+          <span class="material-symbols-outlined text-xl" aria-hidden="true">home</span>
+          Volver al inicio
+        </a>
+        <a
+          href="tel:912000002"
+          class="inline-flex items-center justify-center gap-2 border-2 border-primary/20 text-primary px-6 py-3 rounded-xl font-medium hover:bg-primary/5 transition-all"
+        >
+          <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
+          912 000 002
+        </a>
+      </div>
+    </div>
+  </div>
+</Layout>

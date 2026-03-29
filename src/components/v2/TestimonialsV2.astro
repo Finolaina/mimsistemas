@@ -1,0 +1,95 @@
+---
+const testimonials = [
+  {
+    quote: "Como administrador, valoro la tranquilidad de tener un solo teléfono para todo. Siempre responden y son muy profesionales.",
+    name: "Fede Alonso",
+    role: "Administrador de Fincas",
+    initials: "FA"
+  },
+  {
+    quote: "Instalamos las placas solares con ellos y el ahorro ha sido increíble desde el primer mes. Gran equipo de instaladores.",
+    name: "María Galán",
+    role: "Presidenta Comunidad",
+    initials: "MG"
+  },
+  {
+    quote: "Llevamos 10 años trabajando con ellos en más de 20 comunidades. No fallan nunca, especialmente en urgencias.",
+    name: "Carlos Ruiz",
+    role: "Administrador de Fincas",
+    initials: "CR"
+  }
+];
+---
+<!-- Testimonials: Gradient-border glow cards with large quotes -->
+<div class="relative -mb-1">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 60V20C360 45 720 5 1080 25C1260 35 1380 30 1440 25V60H0Z" fill="white"/>
+  </svg>
+</div>
+
+<section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+  <!-- Blobs -->
+  <div class="v2-blob w-[350px] h-[350px] bg-accent/8 top-[5%] left-[-8%]" aria-hidden="true"></div>
+  <div class="v2-blob w-[250px] h-[250px] bg-cta/6 bottom-[10%] right-[-5%]" style="animation-delay: -6s;" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-16 v2-reveal">
+      <span class="v2-section-label">Testimonios</span>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+        Lo que dicen
+        <span class="v2-gradient-text">nuestros clientes</span>
+      </h2>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6 lg:gap-8 v2-stagger">
+      {testimonials.map((t, i) => (
+        <div class={`v2-card-glow p-8 flex flex-col group cursor-default ${i === 1 ? 'md:-translate-y-4' : ''}`}>
+          <!-- Stars with glow -->
+          <div class="flex gap-1 mb-6">
+            {[1,2,3,4,5].map(() => (
+              <span class="material-symbols-outlined text-cta text-xl drop-shadow-[0_0_4px_rgba(245,158,11,0.3)]" aria-hidden="true" style="font-variation-settings: 'FILL' 1">star</span>
+            ))}
+          </div>
+
+          <!-- Quote -->
+          <blockquote class="relative flex-1">
+            <div class="v2-quote relative pl-0">
+              <p class="text-text leading-relaxed text-[15px] pt-8 group-hover:text-primary transition-colors">
+                {t.quote}
+              </p>
+            </div>
+          </blockquote>
+
+          <!-- Author with avatar gradient ring -->
+          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-border/60">
+            <div class="relative">
+              <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent-light rounded-full flex items-center justify-center">
+                <span class="font-heading font-bold text-white text-sm">{t.initials}</span>
+              </div>
+              <!-- Subtle ring -->
+              <div class="absolute -inset-1 rounded-full border border-accent/20" aria-hidden="true"></div>
+            </div>
+            <div>
+              <div class="font-heading font-semibold text-primary text-sm">{t.name}</div>
+              <div class="text-text-muted text-xs">{t.role}</div>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- JSON-LD: Reviews -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "MIM Sistemas",
+  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "3" },
+  "review": testimonials.map(t => ({
+    "@type": "Review",
+    "author": { "@type": "Person", "name": t.name },
+    "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+    "reviewBody": t.quote
+  }))
+})} />

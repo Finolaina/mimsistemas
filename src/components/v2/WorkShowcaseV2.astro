@@ -1,0 +1,120 @@
+---
+/**
+ * WorkShowcaseV2.astro — "Nuestro Trabajo en Acción" section
+ * Split layout: image with floating stats + content with checkpoints
+ * Follows SolarHighlightV2 pattern for design consistency
+ */
+import { Image } from 'astro:assets';
+
+interface StatBadge {
+  value: string;
+  label: string;
+}
+
+interface Props {
+  sectionLabel: string;
+  title: string;
+  titleHighlight: string;
+  description: string;
+  image: ImageMetadata;
+  imageAlt: string;
+  stats: StatBadge[];
+  checkpoints: string[];
+  ctaText: string;
+  ctaHref: string;
+  ctaIcon?: string;
+  topBadgeIcon?: string;
+  topBadgeText?: string;
+  reversed?: boolean;
+}
+
+const {
+  sectionLabel,
+  title,
+  titleHighlight,
+  description,
+  image,
+  imageAlt,
+  stats,
+  checkpoints,
+  ctaText,
+  ctaHref,
+  ctaIcon = "visibility",
+  topBadgeIcon = "verified",
+  topBadgeText = "Trabajo Real",
+  reversed = false,
+} = Astro.props;
+
+const titleParts = title.split(titleHighlight);
+---
+
+<section class="relative py-20 md:py-28 bg-white overflow-hidden">
+  <div class="v2-blob w-[400px] h-[400px] bg-accent/8 -top-[10%] -left-[8%]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class={`grid lg:grid-cols-2 gap-12 lg:gap-20 items-center ${reversed ? 'direction-rtl' : ''}`}>
+      <!-- Image with floating stats -->
+      <div class={`relative ${reversed ? 'lg:order-2 v2-reveal-right' : 'v2-reveal-left'}`}>
+        <div class="rounded-2xl overflow-hidden shadow-xl relative group">
+          <Image
+            src={image}
+            alt={imageAlt}
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+            widths={[400, 640, 800]}
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+
+        <!-- Floating stat badges -->
+        {stats[0] && (
+          <div class="v2-float-badge absolute -bottom-4 -right-4 sm:bottom-6 sm:right-6 bg-gradient-to-br from-cta to-cta-hover text-primary rounded-2xl px-5 py-3 shadow-xl">
+            <div class="font-heading font-bold text-2xl">{stats[0].value}</div>
+            <div class="text-xs font-semibold opacity-80">{stats[0].label}</div>
+          </div>
+        )}
+
+        {stats[1] && (
+          <div class="hidden sm:flex absolute -top-3 -right-3 lg:top-4 lg:-right-4 bg-white rounded-xl px-4 py-2.5 shadow-lg items-center gap-2 border border-border">
+            <span class="font-heading font-bold text-accent text-lg">{stats[1].value}</span>
+            <span class="text-xs font-heading font-semibold text-primary">{stats[1].label}</span>
+          </div>
+        )}
+
+        <!-- Top-left decorative badge -->
+        <div class="hidden lg:flex absolute -top-3 -left-3 bg-white rounded-xl px-4 py-2.5 shadow-lg items-center gap-2 border border-border">
+          <span class="material-symbols-outlined text-success" aria-hidden="true">{topBadgeIcon}</span>
+          <span class="text-xs font-heading font-semibold text-primary">{topBadgeText}</span>
+        </div>
+      </div>
+
+      <!-- Content -->
+      <div class={`${reversed ? 'lg:order-1 v2-reveal-left' : 'v2-reveal-right'}`}>
+        <span class="v2-section-label">{sectionLabel}</span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-primary mt-3 mb-6 leading-tight">
+          {titleParts[0]}<span class="v2-gradient-text-blue">{titleHighlight}</span>{titleParts[1] || ''}
+        </h2>
+        <p class="text-lg text-text-muted leading-relaxed mb-8">
+          {description}
+        </p>
+
+        <ul class="flex flex-col gap-4 mb-8">
+          {checkpoints.map(item => (
+            <li class="flex items-start gap-3 group/item cursor-default">
+              <div class="w-6 h-6 bg-success/10 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5 group-hover/item:bg-success/20 transition-colors">
+                <span class="material-symbols-outlined text-success text-sm" aria-hidden="true">check</span>
+              </div>
+              <span class="text-text group-hover/item:text-primary transition-colors">{item}</span>
+            </li>
+          ))}
+        </ul>
+
+        <a href={ctaHref} class="v2-btn-cta text-base">
+          <span class="material-symbols-outlined text-xl" aria-hidden="true">{ctaIcon}</span>
+          {ctaText}
+        </a>
+      </div>
+    </div>
+  </div>
+</section>

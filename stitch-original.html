@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="es"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>MIM SISTEMAS | Soluciones Integrales para tu Comunidad y Empresa</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .hero-gradient {
+            background: linear-gradient(to bottom right, rgba(0, 36, 68, 0.95), rgba(27, 58, 92, 0.85));
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              colors: {
+                "surface-bright": "#f7f9ff",
+                "tertiary": "#351e00",
+                "on-tertiary": "#ffffff",
+                "error-container": "#ffdad6",
+                "secondary-fixed-dim": "#adc6ff",
+                "secondary-fixed": "#d8e2ff",
+                "surface-container-highest": "#d5e4f5",
+                "outline": "#73777f",
+                "on-primary-container": "#87a4cc",
+                "surface-dim": "#cddced",
+                "surface-tint": "#436084",
+                "tertiary-fixed-dim": "#ffb95f",
+                "on-tertiary-fixed": "#2a1700",
+                "background": "#f7f9ff",
+                "on-primary-fixed": "#001c38",
+                "on-surface": "#0e1d29",
+                "tertiary-fixed": "#ffddb8",
+                "secondary": "#0058be",
+                "primary": "#002444",
+                "on-secondary-fixed-variant": "#004395",
+                "surface-variant": "#d5e4f5",
+                "surface": "#f7f9ff",
+                "error": "#ba1a1a",
+                "on-primary": "#ffffff",
+                "primary-fixed-dim": "#abc9f2",
+                "on-secondary-fixed": "#001a42",
+                "secondary-container": "#2170e4",
+                "outline-variant": "#c3c6cf",
+                "on-secondary-container": "#fefcff",
+                "inverse-primary": "#abc9f2",
+                "surface-container-low": "#edf4ff",
+                "on-tertiary-fixed-variant": "#653e00",
+                "on-surface-variant": "#43474e",
+                "tertiary-container": "#523200",
+                "surface-container-lowest": "#ffffff",
+                "on-secondary": "#ffffff",
+                "primary-fixed": "#d2e4ff",
+                "on-background": "#0e1d29",
+                "primary-container": "#1b3a5c",
+                "inverse-on-surface": "#e7f2ff",
+                "on-primary-fixed-variant": "#2b486b",
+                "inverse-surface": "#24323f",
+                "on-tertiary-container": "#e29100",
+                "on-error": "#ffffff",
+                "on-error-container": "#93000a",
+                "surface-container-high": "#dbeafb",
+                "surface-container": "#e2efff"
+              },
+              fontFamily: {
+                "headline": ["Inter"],
+                "body": ["Inter"],
+                "label": ["Inter"]
+              },
+              borderRadius: {"DEFAULT": "0.125rem", "lg": "0.25rem", "xl": "0.5rem", "full": "0.75rem"},
+            },
+          },
+        }
+    </script>
+</head>
+<body class="bg-surface font-body text-on-surface selection:bg-tertiary-fixed selection:text-on-tertiary-fixed">
+<!-- Top Navigation -->
+<header class="fixed top-0 w-full z-50 bg-white/70 backdrop-blur-xl shadow-sm">
+<nav class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20">
+<div class="text-xl font-bold tracking-tighter text-blue-900 flex items-center gap-2">
+<span class="material-symbols-outlined text-secondary" style="font-variation-settings: 'FILL' 1;">architecture</span>
+                MIM SISTEMAS
+            </div>
+<div class="hidden md:flex items-center gap-8 font-inter antialiased text-sm font-medium tracking-tight">
+<a class="text-blue-700 font-semibold border-b-2 border-blue-700 pb-1" href="#inicio">Inicio</a>
+<a class="text-slate-600 hover:text-blue-900 transition-colors" href="#servicios">Servicios</a>
+<a class="text-slate-600 hover:text-blue-900 transition-colors" href="#nosotros">Nosotros</a>
+<a class="text-slate-600 hover:text-blue-900 transition-colors" href="#contacto">Contacto</a>
+</div>
+<div class="flex items-center gap-4">
+<span class="hidden lg:block text-primary font-bold">912 000 002</span>
+<button class="bg-primary text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:opacity-90 active:scale-95 transition-all">
+                    Pedir Presupuesto
+                </button>
+</div>
+</nav>
+</header>
+<!-- Hero Section -->
+<section class="relative min-h-screen pt-20 flex items-center overflow-hidden" id="inicio">
+<div class="absolute inset-0 z-0">
+<img alt="Edificio moderno residencial" class="w-full h-full object-cover" data-alt="Modern high-rise residential building facade at dusk" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAtZ_PptnRuvyZJ3wGxjZTl9ITNdFEL6W5asDuWGSCeW8NeNchszVudF5Eqd0yqOi-H53fVoIljvgYXeewzmKrhfpdRS2k3Cr15oPdVusIqbJ9PIvWqYwnk3Fl3NqK-B0MTHO45_wwYpnzvEOWVuCQg2a19w1KggW7BMA7p5yVHWPIyZjhWRYiwYLOTWaG1SuKtdQADO6hPPXApBA9DG_FMDKvm2BpwqbhrAYZTeXtwsHSjp_j_ltx5nS1aQ_hmOiwGZlqPGwkx-hM"/>
+<div class="absolute inset-0 hero-gradient"></div>
+</div>
+<div class="relative z-10 max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-12 items-center w-full py-20">
+<!-- Hero Left -->
+<div class="text-white space-y-8">
+<div class="inline-flex items-center px-4 py-1 rounded-full bg-white/10 border border-white/20 backdrop-blur-md text-sm font-medium">
+<span class="w-2 h-2 rounded-full bg-tertiary-fixed mr-2"></span>
+                    Profesionales homologados · Desde 2003
+                </div>
+<h1 class="text-5xl lg:text-7xl font-bold tracking-tighter leading-[1.1]">
+                    Soluciones Integrales para tu <span class="text-tertiary-fixed">Comunidad</span> y Empresa
+                </h1>
+<p class="text-xl text-blue-100 max-w-xl leading-relaxed">
+                    Instalación, reparación y mantenimiento multitécnico con la garantía de más de 20 años de experiencia en el sector.
+                </p>
+<div class="flex flex-col sm:flex-row gap-4">
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-8 py-4 rounded-xl font-bold text-lg hover:brightness-110 transition-all shadow-lg shadow-black/20">
+                        Solicitar Presupuesto Gratis
+                    </button>
+<a class="flex items-center justify-center gap-2 border-2 border-white/30 px-8 py-4 rounded-xl font-bold text-lg hover:bg-white/10 transition-all backdrop-blur-sm" href="tel:912000002">
+<span class="material-symbols-outlined">call</span>
+                        912 000 002
+                    </a>
+</div>
+<div class="grid grid-cols-2 gap-4 pt-4">
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Técnicos Propios
+                    </div>
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Atención Urgente 24h
+                    </div>
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Presupuesto Cerrado
+                    </div>
+<div class="flex items-center gap-2 text-sm">
+<span class="material-symbols-outlined text-tertiary-fixed text-lg" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+                        Garantía por Escrito
+                    </div>
+</div>
+</div>
+<!-- Hero Right: Contact Form -->
+<div class="lg:justify-self-end w-full max-w-md">
+<div class="bg-white rounded-2xl p-8 shadow-2xl">
+<h3 class="text-2xl font-bold text-primary mb-2">Te llamamos gratis</h3>
+<p class="text-on-surface-variant text-sm mb-6 font-medium">Déjanos tus datos y un técnico te contactará en menos de 1 hora.</p>
+<form class="space-y-4">
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1 ml-1">Nombre</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-secondary focus:bg-white transition-all" placeholder="Ej: Juan García" type="text"/>
+</div>
+<div class="grid grid-cols-2 gap-4">
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1 ml-1">Teléfono</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-secondary focus:bg-white transition-all" placeholder="600 000 000" type="tel"/>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1 ml-1">Email</label>
+<input class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-secondary focus:bg-white transition-all" placeholder="email@ejemplo.com" type="email"/>
+</div>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1 ml-1">¿Qué necesitas?</label>
+<select class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-secondary focus:bg-white transition-all">
+<option>Seguridad / Accesos</option>
+<option>Automatismos</option>
+<option>Energía Solar</option>
+<option>Electricidad</option>
+<option>Otros Servicios</option>
+</select>
+</div>
+<div>
+<label class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1 ml-1">Mensaje (opcional)</label>
+<textarea class="w-full bg-surface-container-low border-none rounded-xl py-3 px-4 focus:ring-2 focus:ring-secondary focus:bg-white transition-all" rows="2"></textarea>
+</div>
+<button class="w-full bg-tertiary-fixed text-on-tertiary-fixed font-bold py-4 rounded-xl hover:brightness-105 transition-all shadow-md">
+                            Enviar Solicitud
+                        </button>
+</form>
+</div>
+</div>
+</div>
+</section>
+<!-- Trust Bar -->
+<section class="bg-secondary py-12 text-white relative z-20">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-2 md:grid-cols-4 gap-8">
+<div class="text-center">
+<div class="text-4xl font-black mb-1">20+</div>
+<div class="text-xs font-bold uppercase tracking-widest opacity-80">Años de experiencia</div>
+</div>
+<div class="text-center border-l border-white/20">
+<div class="text-4xl font-black mb-1">+2.000</div>
+<div class="text-xs font-bold uppercase tracking-widest opacity-80">Comunidades</div>
+</div>
+<div class="text-center md:border-l border-white/20">
+<div class="text-4xl font-black mb-1">100%</div>
+<div class="text-xs font-bold uppercase tracking-widest opacity-80">Homologados</div>
+</div>
+<div class="text-center border-l border-white/20">
+<div class="text-4xl font-black mb-1">24h</div>
+<div class="text-xs font-bold uppercase tracking-widest opacity-80">Servicio Urgente</div>
+</div>
+</div>
+</section>
+<!-- Services Section -->
+<section class="py-24 bg-surface-bright" id="servicios">
+<div class="max-w-7xl mx-auto px-6">
+<div class="mb-16 text-left max-w-3xl">
+<h2 class="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-6">Todo lo que tu Comunidad Necesita, en un Solo Proveedor</h2>
+<p class="text-on-surface-variant text-xl leading-relaxed">
+                    Evita gestionar decenas de proveedores. Centralizamos todos los servicios técnicos con personal propio y especializado.
+                </p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Service Cards -->
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="lock_open">lock_open</span>
+<h3 class="text-lg font-bold text-primary mb-2">Control de Accesos</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Sistemas inteligentes de entrada y gestión de llaves digitales.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="videocam">videocam</span>
+<h3 class="text-lg font-bold text-primary mb-2">CCTV</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Cámaras de seguridad 4K con grabación y visión remota.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="dialpad">dialpad</span>
+<h3 class="text-lg font-bold text-primary mb-2">Porteros Automáticos</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Instalación y mantenimiento de video-porteros modernos.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="sensor_door">sensor_door</span>
+<h3 class="text-lg font-bold text-primary mb-2">Automatismos</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Puertas de garaje automáticas y mantenimiento preventivo.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="solar_power">solar_power</span>
+<h3 class="text-lg font-bold text-primary mb-2">Placas Solares</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Ahorro energético con autoconsumo para comunidades.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="ev_station">ev_station</span>
+<h3 class="text-lg font-bold text-primary mb-2">Puntos de Carga</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Instalación legalizada de cargadores de coche eléctrico.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="electrical_services">electrical_services</span>
+<h3 class="text-lg font-bold text-primary mb-2">Electricidad</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Boletines, iluminación LED y reformas eléctricas integrales.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="settings_input_antenna">settings_input_antenna</span>
+<h3 class="text-lg font-bold text-primary mb-2">Antenización</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Sintonización TDT, Satélite y fibra óptica comunitaria.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="vpn_key">vpn_key</span>
+<h3 class="text-lg font-bold text-primary mb-2">Cerrajería</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Amaestramiento de bombillos y aperturas urgentes.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="campaign">campaign</span>
+<h3 class="text-lg font-bold text-primary mb-2">Megafonía</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Sistemas de sonido para garajes y centros comerciales.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="foundation">foundation</span>
+<h3 class="text-lg font-bold text-primary mb-2">Albañilería</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Pequeñas reparaciones y reformas de portales.</p>
+</div>
+<div class="group bg-white p-8 rounded-2xl shadow-sm border border-outline-variant/15 hover:shadow-xl transition-all duration-300">
+<span class="material-symbols-outlined text-secondary text-4xl mb-4 block" data-icon="format_paint">format_paint</span>
+<h3 class="text-lg font-bold text-primary mb-2">Pintura</h3>
+<p class="text-sm text-on-surface-variant leading-relaxed">Pintado de escaleras, garajes y zonas comunes.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Highlight - Solar Panels -->
+<section class="py-24 bg-surface-container-low overflow-hidden">
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+<div class="relative">
+<div class="absolute -top-6 -left-6 w-32 h-32 bg-tertiary-fixed/30 rounded-full blur-3xl"></div>
+<img alt="Paneles Solares en tejado" class="rounded-3xl shadow-2xl relative z-10" data-alt="Close up of high quality solar panels on a modern rooftop" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAnHkDq4iXFxDPxLi3o5i50tfBc-uIws93kQr-Kg_MtoJw7q5Favs1yFBMnccO3aE_aOGM03l3sFf7BBD_4B5ixg3RZRsmT5_86cw01iahG40wr9cnQkwUbhUY5GFYNkJMfMWotLWBpTsR34A-r-_Yo-Wbgr-e9yKVUe-zhQyKn1L50ZS8KFO6pdl5TKlK8pFUVAHe8Fl0fUrpqMKONJyfurStzXI_fofMNKWhYlSzIH8N-YSWIDSrLXp6zCDIts3fbvNc08fpPgsI"/>
+</div>
+<div>
+<span class="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block">Especialistas en Energía</span>
+<h2 class="text-4xl font-bold text-primary mb-6">Instalación y Mantenimiento de Placas Solares</h2>
+<p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+                    Convertimos tu comunidad en un ecosistema eficiente. Reducimos la factura eléctrica comunitaria hasta en un 70% mediante tecnología de autoconsumo fotovoltaico.
+                </p>
+<ul class="space-y-4 mb-10">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+<span>Estudio de viabilidad gratuito y personalizado.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+<span>Tramitación íntegra de subvenciones y ayudas.</span>
+</li>
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary mt-1">check_circle</span>
+<span>Mantenimiento preventivo incluido durante el primer año.</span>
+</li>
+</ul>
+<button class="bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:brightness-105 transition-all shadow-lg">
+                    Calcular Ahorro Gratis
+                </button>
+</div>
+</div>
+</section>
+<!-- Why Us Section -->
+<section class="py-24 bg-surface" id="nosotros">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-4xl font-bold text-center text-primary mb-16">¿Por qué elegir MIM SISTEMAS?</h2>
+<div class="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">history</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Experiencia</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Más de dos décadas liderando el sector de servicios técnicos integrales.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">hub</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Proveedor Único</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Centralizamos todas las necesidades técnicas bajo una sola gestión profesional.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">verified_user</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Homologación</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Empresa registrada y habilitada para todas nuestras especialidades.</p>
+</div>
+<div class="text-center">
+<div class="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto mb-6">
+<span class="material-symbols-outlined text-secondary text-3xl">bolt</span>
+</div>
+<h3 class="text-xl font-bold mb-3">Rapidez</h3>
+<p class="text-on-surface-variant text-sm leading-relaxed">Respuesta inmediata para avisos urgentes y plazos de ejecución cortos.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- How It Works -->
+<section class="py-24 bg-surface-container-highest/30">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-primary mb-16 text-center">Nuestro Proceso en 4 Pasos</h2>
+<div class="relative flex flex-col md:flex-row justify-between gap-8">
+<!-- Step 1 -->
+<div class="flex-1 relative z-10 text-center md:text-left">
+<div class="text-6xl font-black text-blue-100 mb-4">01</div>
+<h4 class="text-lg font-bold mb-2">Contacto</h4>
+<p class="text-on-surface-variant text-sm">Llámanos o escríbenos. Analizamos tu necesidad de inmediato.</p>
+</div>
+<!-- Step 2 -->
+<div class="flex-1 relative z-10 text-center md:text-left">
+<div class="text-6xl font-black text-blue-100 mb-4">02</div>
+<h4 class="text-lg font-bold mb-2">Visita y Presupuesto</h4>
+<p class="text-on-surface-variant text-sm">Un técnico visita la comunidad y emite un presupuesto sin compromiso.</p>
+</div>
+<!-- Step 3 -->
+<div class="flex-1 relative z-10 text-center md:text-left">
+<div class="text-6xl font-black text-blue-100 mb-4">03</div>
+<h4 class="text-lg font-bold mb-2">Ejecución</h4>
+<p class="text-on-surface-variant text-sm">Realizamos el trabajo con materiales de primera calidad y orden.</p>
+</div>
+<!-- Step 4 -->
+<div class="flex-1 relative z-10 text-center md:text-left">
+<div class="text-6xl font-black text-blue-100 mb-4">04</div>
+<h4 class="text-lg font-bold mb-2">Garantía</h4>
+<p class="text-on-surface-variant text-sm">Entrega de certificados y seguimiento post-venta asegurado.</p>
+</div>
+</div>
+</div>
+</section>
+<!-- Testimonials -->
+<section class="py-24 bg-surface">
+<div class="max-w-7xl mx-auto px-6">
+<h2 class="text-3xl font-bold text-center text-primary mb-16">Lo que dicen nuestros clientes</h2>
+<div class="grid md:grid-cols-3 gap-8">
+<div class="bg-surface-container-low p-8 rounded-2xl italic relative">
+<div class="flex text-amber-500 mb-4">
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-on-surface mb-6">"Como administrador, valoro la tranquilidad de tener un solo teléfono para todo. Siempre responden y son muy profesionales."</p>
+<div class="not-italic font-bold text-primary">Fede Alonso</div>
+<div class="not-italic text-xs text-on-surface-variant uppercase tracking-widest">Administrador de Fincas</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-2xl italic relative">
+<div class="flex text-amber-500 mb-4">
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-on-surface mb-6">"Instalamos las placas solares con ellos y el ahorro ha sido increíble desde el primer mes. Gran equipo de instaladores."</p>
+<div class="not-italic font-bold text-primary">María Galán</div>
+<div class="not-italic text-xs text-on-surface-variant uppercase tracking-widest">Presidenta Comunidad</div>
+</div>
+<div class="bg-surface-container-low p-8 rounded-2xl italic relative">
+<div class="flex text-amber-500 mb-4">
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+<span class="material-symbols-outlined">star</span>
+</div>
+<p class="text-on-surface mb-6">"Llevamos 10 años trabajando con ellos en más de 20 comunidades. No fallan nunca, especialmente en urgencias."</p>
+<div class="not-italic font-bold text-primary">Carlos Ruiz</div>
+<div class="not-italic text-xs text-on-surface-variant uppercase tracking-widest">Administrador de Fincas</div>
+</div>
+</div>
+</div>
+</section>
+<!-- For Property Managers Section -->
+<section class="bg-primary-container text-white py-24">
+<div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+<div>
+<h2 class="text-4xl font-bold mb-6">¿Eres Administrador de Fincas?</h2>
+<p class="text-xl text-blue-100 mb-8 leading-relaxed">
+                    Sabemos que tu tiempo es oro. Hemos diseñado un servicio exclusivo para despachos de administración para facilitaros la vida.
+                </p>
+<div class="space-y-6">
+<div class="flex gap-4">
+<div class="bg-secondary p-3 rounded-lg h-fit">
+<span class="material-symbols-outlined">rocket_launch</span>
+</div>
+<div>
+<h4 class="text-lg font-bold">Gestión de Avisos 24/7</h4>
+<p class="text-blue-200 text-sm">Canal directo por WhatsApp y email para urgencias en tus comunidades.</p>
+</div>
+</div>
+<div class="flex gap-4">
+<div class="bg-secondary p-3 rounded-lg h-fit">
+<span class="material-symbols-outlined">history_edu</span>
+</div>
+<div>
+<h4 class="text-lg font-bold">Informes Técnicos Detallados</h4>
+<p class="text-blue-200 text-sm">Reportes fotográficos de cada intervención para tus juntas.</p>
+</div>
+</div>
+</div>
+<button class="mt-12 bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:brightness-105 transition-all">
+                    Solicitar Dossier Especial
+                </button>
+</div>
+<div class="relative rounded-3xl overflow-hidden shadow-2xl h-[400px]">
+<img alt="Oficina moderna" class="w-full h-full object-cover" data-alt="Modern professional office space with clean lines and lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBFsI1NuQK1CAftF06luYyonr5cVvJ_EiCsqKb2LGH5aH-Tffm6pFYdXb5yT4DSpIlZc98Htn-wMm6vjJ4J1Tz0-Tv9DADsHwvHij_bMgKr4anjsLlfXgYb1dvckiwofikvNQvpih88n3liqFbnGhmhvkydggKKqPQqsd8ixzb2iBplAC7q5TM0ba8x2Mj1yGgXaLf9HWAXUChBR5N0EKyh0M6IYIsaJ75NOt68E22DjkhHvhBoQFHubbekmi3_Fa4jAPOF2VI5Dx4"/>
+</div>
+</div>
+</section>
+<!-- CTA Banner -->
+<section class="bg-tertiary-fixed py-16">
+<div class="max-w-7xl mx-auto px-6 text-center">
+<h2 class="text-4xl font-black text-on-tertiary-fixed mb-8 tracking-tighter">¿Necesitas un Presupuesto Cerrado?</h2>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="bg-primary text-white px-10 py-5 rounded-full font-bold text-xl flex items-center gap-3 hover:scale-105 transition-transform" href="tel:912000002">
+<span class="material-symbols-outlined">call</span>
+                    912 000 002
+                </a>
+<button class="bg-[#25D366] text-white px-10 py-5 rounded-full font-bold text-xl flex items-center gap-3 hover:scale-105 transition-transform">
+<img alt="WhatsApp Icon" class="w-6 h-6 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAREv-IfqY8kuclpRsEnts7QV7sWSS867YgufWV7Smjqt9AGSkdLNJ6aXCRuoA_SjA593wtenU_a6vjHo11_Ce8WRQn09PF8lUA2whxhZxjLbVZlc7aFbiW3FqqaaF7RDKLSoFSAy1T-U_K9duYYeKG3PFUPDPufXXXcgoqP5NdA-mIUHtNkJpp9FuYXpfV7Y55bBgUpvZfCw5BSAGakQk5hefjeb7cNg3KOHOVBf7C-7qAxZwpM5n9GIzsHfPek0M6wALYv5ouFw4"/>
+                    Enviar WhatsApp
+                </button>
+</div>
+</div>
+</section>
+<!-- Footer -->
+<footer class="bg-slate-900 text-slate-300 pt-20 pb-10" id="contacto">
+<div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 border-b border-slate-800 pb-20">
+<div>
+<span class="text-lg font-bold text-white mb-4 block">MIM SISTEMAS</span>
+<p class="text-sm leading-relaxed mb-6">
+                    Especialistas en la gestión técnica integral de edificios y comunidades en Madrid desde 2003. Calidad y compromiso en cada servicio.
+                </p>
+<div class="flex gap-4">
+<div class="w-10 h-10 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors cursor-pointer">
+<span class="material-symbols-outlined text-white text-xl">language</span>
+</div>
+</div>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Servicios</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Seguridad y CCTV</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Energía Solar</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Electricidad y Carga EV</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Automatismos</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Empresa</h4>
+<ul class="space-y-4 text-sm">
+<li><a class="hover:text-white transition-colors" href="#">Sobre Nosotros</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Blog Técnico</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Trabaja con nosotros</a></li>
+<li><a class="hover:text-white transition-colors" href="#">Aviso Legal</a></li>
+</ul>
+</div>
+<div>
+<h4 class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Contacto Directo</h4>
+<ul class="space-y-4 text-sm">
+<li class="flex items-start gap-3">
+<span class="material-symbols-outlined text-secondary">location_on</span>
+<span>Calle Porto Lagos, 9-11 posterior.<br/>28924 Alcorcón (Madrid)</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">call</span>
+<span>912 000 002</span>
+</li>
+<li class="flex items-center gap-3">
+<span class="material-symbols-outlined text-secondary">mail</span>
+<span>info@mimsistemas.com</span>
+</li>
+</ul>
+</div>
+</div>
+<div class="max-w-7xl mx-auto px-6 pt-10 text-center md:text-left text-xs opacity-60">
+            © 2024 MIM SISTEMAS. Todos los derechos reservados.
+        </div>
+</footer>
+<!-- Floating WhatsApp -->
+<a class="fixed bottom-24 right-6 w-16 h-16 bg-[#25D366] rounded-full shadow-2xl flex items-center justify-center text-white z-50 hover:scale-110 transition-transform" href="#">
+<img alt="WhatsApp" class="w-8 h-8 invert" src="https://lh3.googleusercontent.com/aida-public/AB6AXuD8nGGjjfOUOvTYlpBtxQzXOCcd2RNJTVfuNhMYezjt_SdXG8gkGNr27ipKUXMegwepQCn5Bx_nQ3CKEPw55GPAd4d7QSxAX5YtLe6vcddLwWzPqmabaXgS7TZycD4x6Qs3b7nRT-I8IlqMsbs3_bcHzdanmUQJs29AbIPEIIzUx4C6xNW9GLOT0LV8n_01nAwogJakFEvASXWhJbm1HyfhsGsDWJ1Og9EpIAiURUDhxaoG2PywXouevHviPXC01A1QjNqgdRvszeg"/>
+</a>
+<!-- Sticky Mobile Call Bar -->
+<div class="fixed bottom-0 left-0 w-full h-16 bg-blue-900 md:hidden z-50 flex items-center justify-center">
+<a class="flex flex-col items-center justify-center text-white py-3 w-full" href="tel:912000002">
+<span class="material-symbols-outlined text-white">call</span>
+<span class="text-[10px] font-medium uppercase tracking-widest mt-1">Llamar Ahora</span>
+</a>
+</div>
+</body></html>

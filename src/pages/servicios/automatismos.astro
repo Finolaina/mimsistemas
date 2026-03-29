@@ -1,0 +1,726 @@
+---
+/**
+ * Service Landing Page: Automatismos y Puertas de Garaje
+ * Design System: V2 "Trust Shield Deluxe"
+ * SEO: Service + BreadcrumbList + FAQPage + HowTo schemas
+ */
+import LayoutV2 from '../../layouts/LayoutV2.astro';
+import HeaderV2 from '../../components/v2/HeaderV2.astro';
+import FooterV2 from '../../components/v2/FooterV2.astro';
+import FloatingV2 from '../../components/v2/FloatingV2.astro';
+import WorkShowcaseV2 from '../../components/v2/WorkShowcaseV2.astro';
+import { Image } from 'astro:assets';
+import whatsappIcon from '../../assets/images/whatsapp-cta-icon.png';
+import heroImg from '../../assets/images/automatismo-puerta-garaje-comunidad.png';
+import showcaseImg from '../../assets/images/trabajo-automatismo-garaje.png';
+import '../../styles/v2.css';
+
+/* ── Service Data (easy to replicate for other services) ── */
+
+const service = {
+  title: "Automatismos y Puertas de Garaje en Madrid",
+  metaTitle: "Automatismos y Puertas de Garaje en Madrid | MIM Sistemas",
+  metaDescription: "Instalación y reparación de automatismos para puertas de garaje, barreras y cancelas en comunidades de Madrid. Motores de calidad, mandos y control remoto. Presupuesto gratis. 912 000 002",
+  slug: "automatismos",
+  icon: "sensor_door",
+  badge: "Automatismos · Puertas de Garaje",
+};
+
+const painPoints = [
+  { icon: "warning", title: "Puerta de garaje averiada", desc: "La puerta del garaje se atasca, hace ruidos extraños o directamente no abre. Los vecinos quedan atrapados o no pueden acceder a sus plazas." },
+  { icon: "hourglass_top", title: "Barreras lentas o averiadas", desc: "La barrera del parking tarda demasiado en subir, se queda a medio camino o no responde, generando colas y frustración a la entrada." },
+  { icon: "signal_wifi_off", title: "Mandos que no funcionan", desc: "Los mandos a distancia pierden alcance, se desconfiguran solos o simplemente dejan de funcionar. Los vecinos no pueden abrir desde el coche." },
+  { icon: "health_and_safety", title: "Riesgo de atrapamiento", desc: "Las puertas sin sistemas de seguridad actualizados suponen un riesgo real de atrapamiento para personas y vehículos, especialmente niños." },
+];
+
+const solutions = [
+  { icon: "garage", title: "Motores para puertas seccionales", desc: "Motores de alto rendimiento para puertas seccionales de garaje comunitario. Silenciosos, potentes y con sistema de desbloqueo manual de emergencia. Marcas líderes con garantía.", featured: true },
+  { icon: "door_sliding", title: "Automatización de cancelas", desc: "Motorización de cancelas correderas y batientes para accesos peatonales y vehiculares. Incluye finales de carrera, electrocerradura y sistema antiaplastamiento.", featured: true },
+  { icon: "traffic", title: "Barreras vehiculares", desc: "Barreras automáticas de brazo articulado para control de acceso vehicular. Rápidas, fiables y con detector de presencia integrado.", featured: false },
+  { icon: "settings_remote", title: "Mandos y receptores", desc: "Mandos a distancia de última generación con código variable antirrobo. Receptores multifrecuencia compatibles con cualquier motor.", featured: false },
+  { icon: "sensors", title: "Fotocélulas y seguridad", desc: "Sensores de seguridad, fotocélulas y bandas de detección para evitar atrapamientos. Cumplimiento normativo UNE-EN 12453.", featured: false },
+  { icon: "engineering", title: "Mantenimiento preventivo", desc: "Contratos de mantenimiento que incluyen revisiones periódicas, engrase, ajustes y sustitución de piezas desgastadas antes de que fallen.", featured: false },
+];
+
+const benefits = [
+  { icon: "touch_app", title: "Comodidad total", desc: "Abre y cierra puertas, cancelas y barreras sin bajar del coche. Acceso rápido y cómodo para todos los vecinos.", color: "accent" },
+  { icon: "health_and_safety", title: "Seguridad anti-atrapamiento", desc: "Sistemas de detección de obstáculos y parada de emergencia que protegen a personas y vehículos.", color: "cta" },
+  { icon: "smartphone", title: "Acceso con mando/móvil", desc: "Controla los automatismos con mando a distancia o directamente desde tu smartphone.", color: "success" },
+  { icon: "timer", title: "Mayor durabilidad", desc: "Motores y mecanismos de primeras marcas que garantizan años de funcionamiento sin averías.", color: "accent-light" },
+  { icon: "directions_car", title: "Control de acceso vehicular", desc: "Gestiona quién accede al garaje con mandos codificados y registro de entradas y salidas.", color: "accent" },
+  { icon: "bolt", title: "Ahorro energético", desc: "Motores de bajo consumo con standby inteligente que minimizan el gasto eléctrico de la comunidad.", color: "cta" },
+];
+
+const steps = [
+  { num: "01", title: "Consulta gratuita", desc: "Nos cuentas el problema con tu puerta, barrera o cancela. Evaluamos el tipo de automatismo necesario y las opciones disponibles.", icon: "call" },
+  { num: "02", title: "Proyecto y presupuesto", desc: "Un técnico visita la comunidad, mide, evalúa el estado del mecanismo y entrega un presupuesto cerrado con la solución óptima.", icon: "assignment" },
+  { num: "03", title: "Instalación profesional", desc: "Técnicos especializados instalan el motor, la centralita, los mandos y todos los elementos de seguridad. Pruebas exhaustivas incluidas.", icon: "construction" },
+  { num: "04", title: "Soporte y mantenimiento", desc: "Entregamos mandos a los vecinos, explicamos el funcionamiento y ofrecemos mantenimiento preventivo para evitar averías.", icon: "support_agent" },
+];
+
+const testimonials = [
+  {
+    quote: "La puerta del garaje se averiaba cada dos meses. MIM cambió todo el motor y el mecanismo, y llevamos más de un año sin una sola incidencia. Además los mandos nuevos funcionan a la primera.",
+    name: "Pedro Navarro",
+    role: "Presidente Comunidad, Parla",
+    initials: "PN"
+  },
+  {
+    quote: "Nos automatizaron la cancela de entrada y la barrera del parking. El trabajo fue impecable y muy rápido. Los vecinos están encantados de no tener que bajar del coche para abrir.",
+    name: "Marta García",
+    role: "Administradora de Fincas",
+    initials: "MG"
+  },
+  {
+    quote: "Tenemos contrato de mantenimiento con MIM para las puertas del garaje y la barrera. Siempre vienen cuando toca, revisan todo a fondo y previenen problemas antes de que aparezcan.",
+    name: "Francisco Díaz",
+    role: "Presidente Comunidad, Majadahonda",
+    initials: "FD"
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Cuánto cuesta automatizar una puerta de garaje comunitario?",
+    a: "El precio depende del tipo de puerta (seccional, enrollable, corredera), su tamaño y peso. Automatizar una puerta seccional comunitaria puede empezar desde 1.200 € incluyendo motor, centralita, mandos y elementos de seguridad. Realizamos un estudio gratuito y entregamos presupuesto cerrado."
+  },
+  {
+    q: "¿Se puede reparar el motor en vez de cambiarlo?",
+    a: "En muchos casos sí. Nuestros técnicos diagnostican primero la avería y, si es viable y económicamente rentable, reparan el motor existente. Si la reparación no compensa, te recomendamos el cambio con total transparencia y siempre con presupuesto previo aprobado."
+  },
+  {
+    q: "¿Cuánto tiempo dura un motor de puerta de garaje?",
+    a: "Un motor de buena calidad correctamente mantenido puede durar entre 10 y 15 años. La clave es el mantenimiento preventivo: engrase periódico, ajuste de tensiones y revisión de elementos de seguridad. Con nuestro contrato de mantenimiento, maximizamos la vida útil del equipo."
+  },
+  {
+    q: "¿Qué hago si el mando del garaje deja de funcionar?",
+    a: "Lo primero es cambiar la pila del mando, ya que es la causa más habitual. Si el problema persiste, puede ser un desajuste de frecuencia o un problema en el receptor. Contacta con nosotros y lo solucionamos rápidamente, ya sea reprogramando el mando o sustituyéndolo por uno nuevo."
+  },
+  {
+    q: "¿Es obligatorio el mantenimiento de las puertas de garaje?",
+    a: "Sí, según la normativa UNE-EN 12453, las puertas automáticas de uso comunitario deben someterse a revisiones de mantenimiento periódicas. Además, es responsabilidad de la comunidad garantizar que los elementos de seguridad (fotocélulas, bandas) funcionen correctamente para prevenir accidentes."
+  },
+  {
+    q: "¿Podéis instalar un sistema para abrir la puerta desde el móvil?",
+    a: "Sí, ofrecemos módulos de control remoto que permiten abrir y cerrar la puerta del garaje o la cancela desde tu smartphone. Funciona con una app y conexión a internet, y es compatible con la mayoría de automatismos existentes. Ideal para dar acceso temporal a visitas o servicios."
+  },
+];
+
+const relatedServices = [
+  { icon: "lock_open", title: "Control de Accesos", slug: "/servicios/control-de-accesos", desc: "Complementa los automatismos con control de quién entra y sale." },
+  { icon: "key", title: "Cerrajería", slug: "/servicios/cerrajeria", desc: "Cerraduras y elementos de seguridad para puertas y accesos." },
+  { icon: "bolt", title: "Electricidad", slug: "/servicios/electricidad", desc: "Instalación eléctrica para alimentar motores y automatismos." },
+];
+
+/* ── Color mapping for benefits ── */
+const colorMap: Record<string, { iconBg: string; border: string }> = {
+  accent: { iconBg: "bg-accent/10 group-hover:bg-accent/20", border: "border-accent/20 group-hover:border-accent/40" },
+  cta: { iconBg: "bg-cta/10 group-hover:bg-cta/20", border: "border-cta/20 group-hover:border-cta/40" },
+  success: { iconBg: "bg-success/10 group-hover:bg-success/20", border: "border-success/20 group-hover:border-success/40" },
+  "accent-light": { iconBg: "bg-accent-light/10 group-hover:bg-accent-light/20", border: "border-accent-light/20 group-hover:border-accent-light/40" },
+};
+
+/* ── JSON-LD Schemas ── */
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://mimsistemas.com" },
+    { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://mimsistemas.com/#servicios" },
+    { "@type": "ListItem", "position": 3, "name": "Automatismos", "item": `https://mimsistemas.com/servicios/${service.slug}` },
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Automatismos y Puertas de Garaje para Comunidades",
+  "description": service.metaDescription,
+  "url": `https://mimsistemas.com/servicios/${service.slug}`,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "MIM Sistemas",
+    "telephone": "+34912000002",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Porto Lagos 9-11 posterior",
+      "addressLocality": "Alcorcón",
+      "addressRegion": "Madrid",
+      "postalCode": "28924",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": "40.3456", "longitude": "-3.8259" }
+  },
+  "areaServed": { "@type": "State", "name": "Comunidad de Madrid" },
+  "serviceType": "Automatismos y Puertas de Garaje",
+  "category": "Automatismos",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Automatismos y Puertas de Garaje",
+    "itemListElement": solutions.map(s => ({
+      "@type": "Offer",
+      "itemOffered": { "@type": "Service", "name": s.title, "description": s.desc }
+    }))
+  }
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Cómo automatizar las puertas de tu comunidad",
+  "step": steps.map(s => ({
+    "@type": "HowToStep",
+    "position": parseInt(s.num),
+    "name": s.title,
+    "text": s.desc
+  }))
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<LayoutV2
+  title={service.metaTitle}
+  description={service.metaDescription}
+  robots="index, follow"
+  canonicalUrl={`https://mimsistemas.com/servicios/${service.slug}`}
+>
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <HeaderV2 />
+
+  <main id="main-content">
+    {/* ═══════════════════════════════════════════
+        HERO — Service-specific with breadcrumbs
+    ═══════════════════════════════════════════ */}
+    <section class="relative min-h-[85vh] flex items-center overflow-hidden">
+      <!-- Background Image with gradient overlay -->
+      <div class="absolute inset-0">
+        <Image
+          src={heroImg}
+          alt="Puerta de garaje automatizada en comunidad de propietarios en Madrid"
+          class="w-full h-full object-cover"
+          widths={[640, 1024, 1440, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary-light/90 to-primary/70"></div>
+      </div>
+
+      <!-- Floating shapes -->
+      <div class="v2-float-shape v2-float-1 top-[15%] right-[10%] w-20 h-20 border border-white/10 rounded-2xl rotate-12" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-2 top-[60%] right-[5%] w-16 h-16 border border-cta/20 rounded-full" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-3 top-[30%] left-[5%] w-12 h-12 bg-accent/10 rounded-xl rotate-45" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-1 bottom-[20%] left-[8%] w-24 h-24 border border-accent/10 rounded-full" aria-hidden="true"></div>
+
+      <!-- Blobs -->
+      <div class="v2-blob w-[400px] h-[400px] bg-accent/15 top-[-10%] right-[-5%]" aria-hidden="true"></div>
+      <div class="v2-blob w-[300px] h-[300px] bg-cta/10 bottom-[-5%] left-[-5%]" style="animation-delay: -4s;" aria-hidden="true"></div>
+
+      <!-- Dot grid -->
+      <div class="absolute inset-0 v2-dot-pattern-light opacity-25" aria-hidden="true"></div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-16 lg:pt-32 lg:pb-20">
+        <!-- Breadcrumbs -->
+        <nav class="mb-8 v2-hero-entrance" aria-label="Migas de pan">
+          <ol class="flex items-center gap-2 text-sm text-white/50">
+            <li><a href="/mimsistemas/" class="hover:text-white/80 transition-colors">Inicio</a></li>
+            <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+            <li><a href="/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
+            <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+            <li class="text-white/80 font-medium">Automatismos</li>
+          </ol>
+        </nav>
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-7 text-white v2-hero-entrance">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8">
+              <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{service.icon}</span>
+              <span class="text-sm font-medium text-white/90 tracking-wide">{service.badge}</span>
+            </div>
+
+            <!-- H1 -->
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.1] mb-6">
+              <span class="v2-gradient-text">Automatismos</span> y Puertas de Garaje en Madrid
+            </h1>
+
+            <!-- SEO paragraph (keyword in first 100 words) -->
+            <p class="text-lg lg:text-xl text-white/75 leading-relaxed max-w-xl mb-10">
+              Instalación y reparación de automatismos para puertas de garaje, barreras vehiculares y cancelas en comunidades de propietarios en Madrid. Motores de primeras marcas, mandos de última generación y mantenimiento preventivo. Más de 20 años automatizando comunidades en Madrid.
+            </p>
+
+            <!-- Trust badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+              {[
+                { icon: "engineering", text: "Técnicos Propios" },
+                { icon: "schedule", text: "Urgencias 24h" },
+                { icon: "request_quote", text: "Presupuesto Cerrado" },
+                { icon: "workspace_premium", text: "Garantía Escrita" }
+              ].map(badge => (
+                <div class="flex items-center gap-2.5 bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5">
+                  <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{badge.icon}</span>
+                  <span class="text-xs font-medium text-white/85 leading-tight">{badge.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap gap-4">
+              <a href="#presupuesto" class="v2-btn-cta text-base">
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">description</span>
+                Solicitar Presupuesto Gratis
+              </a>
+              <a href="tel:912000002" class="v2-btn-outline !border-white/30 !text-white hover:!bg-white/15 hover:!text-white text-base backdrop-blur-sm">
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
+                912 000 002
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Lead Form -->
+          <div class="lg:col-span-5" id="presupuesto">
+            <div class="v2-form-card p-6 sm:p-8">
+              <h2 class="font-heading text-xl font-bold text-primary mb-1">Presupuesto gratuito</h2>
+              <p class="text-sm text-text-muted mb-6">Te contactamos en menos de 1 hora con un presupuesto a medida.</p>
+
+              <form class="flex flex-col gap-4 opnform" data-opnform-slug="contacto-mim-sistemas-qxnrgn" method="POST">
+                <input type="hidden" name="servicio" value="automatismos" />
+                <input type="hidden" name="origen" value="servicio-automatismos" />
+                <!-- Honeypot anti-spam -->
+                <div class="!absolute !w-px !h-px !overflow-hidden !whitespace-nowrap" style="clip: rect(0,0,0,0); border: 0;" aria-hidden="true">
+                  <input type="text" name="botcheck" tabindex="-1" autocomplete="off" />
+                </div>
+                <div>
+                  <label for="svc-name" class="block text-sm font-medium text-text mb-1.5">Nombre</label>
+                  <input type="text" id="svc-name" name="nombre" placeholder="Ej: Juan García" autocomplete="name"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+                </div>
+                <div>
+                  <label for="svc-phone" class="block text-sm font-medium text-text mb-1.5">Teléfono</label>
+                  <input type="tel" id="svc-phone" name="telefono" placeholder="600 000 000" autocomplete="tel"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+                </div>
+                <div>
+                  <label for="svc-email" class="block text-sm font-medium text-text mb-1.5">Email <span class="text-text-muted font-normal">(opcional)</span></label>
+                  <input type="email" id="svc-email" name="email" placeholder="email@ejemplo.com" autocomplete="email"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" />
+                </div>
+                <div>
+                  <label for="svc-message" class="block text-sm font-medium text-text mb-1.5">¿Qué necesitas?</label>
+                  <textarea id="svc-message" name="mensaje" rows="3" placeholder="Ej: La puerta del garaje no abre bien, necesitamos cambiar el motor..."
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all resize-none"></textarea>
+                </div>
+                <!-- RGPD consent -->
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="checkbox" name="rgpd" required
+                    class="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/30 cursor-pointer" />
+                  <span class="text-xs text-text-muted leading-relaxed">
+                    Acepto la <a href="/mimsistemas/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
+                  </span>
+                </label>
+                <button type="submit" class="v2-btn-cta w-full justify-center text-base mt-1">
+                  <span class="material-symbols-outlined text-xl btn-icon" aria-hidden="true">send</span>
+                  <span class="btn-text">Solicitar Presupuesto</span>
+                </button>
+                <!-- Success/error messages -->
+                <div class="form-success hidden rounded-xl bg-green-50 border border-green-200 p-4 text-center">
+                  <span class="material-symbols-outlined text-green-600 text-2xl mb-1" aria-hidden="true">check_circle</span>
+                  <p class="text-sm font-medium text-green-800">¡Solicitud enviada! Te contactaremos en menos de 1 hora.</p>
+                </div>
+                <div class="form-error hidden rounded-xl bg-red-50 border border-red-200 p-4 text-center">
+                  <span class="material-symbols-outlined text-red-600 text-2xl mb-1" aria-hidden="true">error</span>
+                  <p class="text-sm font-medium text-red-800">Error al enviar. Llámanos al <a href="tel:912000002" class="underline">912 000 002</a>.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        PAIN POINTS — Why you need automation
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-30" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">El Problema</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            ¿Tu comunidad tiene
+            <span class="v2-gradient-text">estos problemas</span>?
+          </h2>
+          <p class="text-text-muted max-w-2xl mx-auto text-lg">
+            Las averías en puertas de garaje y barreras son uno de los problemas más frecuentes y molestos en las comunidades de Madrid.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 v2-stagger">
+          {painPoints.map(p => (
+            <div class="v2-card-glow p-7 group cursor-default border border-red-200/30 group-hover:border-red-300/50 transition-all">
+              <div class="w-14 h-14 bg-red-50 group-hover:bg-red-100 rounded-2xl flex items-center justify-center mb-5 transition-all">
+                <span class="material-symbols-outlined text-2xl text-red-500 group-hover:scale-110 transition-transform" aria-hidden="true">{p.icon}</span>
+              </div>
+              <h3 class="font-heading font-semibold text-primary text-lg mb-2">{p.title}</h3>
+              <p class="text-text-muted text-sm leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        SOLUTIONS — Types of automation
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-40" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Nuestras Soluciones</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            Automatismos y Motores
+            <span class="v2-gradient-text-blue">a Medida</span>
+          </h2>
+          <p class="text-text-muted max-w-2xl mx-auto text-lg">
+            Desde la motorización de puertas seccionales hasta barreras vehiculares. Siempre con motores de primeras marcas y garantía.
+          </p>
+        </div>
+
+        <div class="v2-bento v2-stagger">
+          {solutions.map((s, i) => (
+            <div class={`v2-card-glow p-6 flex flex-col cursor-pointer group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
+              <div class={`v2-icon-box rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${i < 2 ? 'w-16 h-16 bg-accent/10 group-hover:bg-accent/20' : 'w-12 h-12 bg-surface-alt group-hover:bg-accent/10'}`}>
+                <span class={`material-symbols-outlined ${i < 2 ? 'text-3xl' : 'text-2xl'} text-accent transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">{s.icon}</span>
+              </div>
+              <h3 class={`font-heading font-semibold text-primary mb-2 transition-colors group-hover:text-accent ${i < 2 ? 'text-xl' : 'text-base'}`}>{s.title}</h3>
+              <p class={`text-text-muted leading-relaxed ${i < 2 ? 'text-base' : 'text-sm'}`}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        BENEFITS — Why choose our automation
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0V40C360 60 720 20 1080 40C1260 50 1380 45 1440 40V0H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+      <div class="v2-float-shape v2-float-2 top-[10%] right-[5%] w-16 h-16 border border-accent/10 rounded-2xl rotate-12 hidden lg:block" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-3 bottom-[15%] left-[3%] w-12 h-12 bg-cta/8 rounded-full hidden lg:block" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Beneficios</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            ¿Por qué instalar
+            <span class="v2-gradient-text">automatismos</span>?
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 v2-stagger">
+          {benefits.map(b => {
+            const c = colorMap[b.color];
+            return (
+              <div class={`v2-card-glow p-7 cursor-default group border ${c.border} transition-all`}>
+                <div class={`v2-icon-box w-14 h-14 ${c.iconBg} rounded-2xl flex items-center justify-center mb-5 transition-all duration-300`}>
+                  <span class="material-symbols-outlined text-2xl text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" aria-hidden="true">{b.icon}</span>
+                </div>
+                <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{b.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed">{b.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        WORK SHOWCASE — Real project example
+    ═══════════════════════════════════════════ */}
+    <WorkShowcaseV2
+      sectionLabel="Nuestro Trabajo en Acción"
+      title="Automatización de Puerta de Garaje Comunitario"
+      titleHighlight="Puerta de Garaje"
+      description="Motorización de puerta seccional de garaje comunitario para 85 plazas en Getafe. Motor de alta resistencia, mandos individuales y sistema de seguridad anti-aplastamiento."
+      image={showcaseImg}
+      imageAlt="Puerta de garaje automatizada por MIM Sistemas en comunidad de vecinos en Getafe"
+      stats={[
+        { value: "85", label: "Plazas" },
+        { value: "10.000+", label: "Ciclos/año" },
+      ]}
+      checkpoints={[
+        "Motor industrial de alta resistencia",
+        "Mandos individuales codificados para cada vecino",
+        "Fotocélulas y sistema anti-aplastamiento",
+        "Apertura de emergencia manual integrada",
+      ]}
+      ctaText="Solicitar Presupuesto"
+      ctaHref="#contacto-servicio"
+    />
+
+
+    {/* ═══════════════════════════════════════════
+        PROCESS — How it works (4 steps)
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-40" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Cómo Trabajamos</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+            Instalación en
+            <span class="v2-gradient-text">4 Pasos</span>
+          </h2>
+        </div>
+
+        <!-- Desktop timeline -->
+        <div class="hidden md:block v2-reveal">
+          <div class="relative">
+            <svg class="absolute top-7 left-[12%] right-[12%] h-2 w-[76%]" viewBox="0 0 800 2" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="0" y1="1" x2="800" y2="1" stroke="url(#tl-grad)" stroke-width="2" class="v2-dashed-line"/>
+              <defs><linearGradient id="tl-grad" x1="0" y1="0" x2="800" y2="0">
+                <stop offset="0%" stop-color="#0369A1"/><stop offset="50%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#0EA5E9"/>
+              </linearGradient></defs>
+            </svg>
+            <div class="grid grid-cols-4 gap-6">
+              {steps.map(step => (
+                <div class="flex flex-col items-center text-center group cursor-default">
+                  <div class="relative mb-8">
+                    <div class="v2-timeline-dot group-hover:scale-110 transition-transform duration-300">
+                      <span class="material-symbols-outlined text-xl text-white" aria-hidden="true">{step.icon}</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-full border-2 border-accent opacity-0 group-hover:animate-ping pointer-events-none" aria-hidden="true"></div>
+                  </div>
+                  <div class="bg-white rounded-2xl p-5 shadow-sm border border-border group-hover:shadow-lg group-hover:border-accent/20 transition-all duration-300">
+                    <div class="text-xs font-heading font-bold text-accent/50 mb-1">PASO {step.num}</div>
+                    <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
+                    <p class="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile timeline -->
+        <div class="md:hidden flex flex-col gap-0 v2-stagger">
+          {steps.map((step, i) => (
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="v2-timeline-dot flex-shrink-0">
+                  <span class="material-symbols-outlined text-lg text-white" aria-hidden="true">{step.icon}</span>
+                </div>
+                {i < 3 && <div class="w-0.5 flex-1 mt-2 bg-gradient-to-b from-accent/30 to-accent/10"></div>}
+              </div>
+              <div class="pb-8">
+                <div class="text-xs font-heading font-bold text-accent/50 mb-0.5">PASO {step.num}</div>
+                <h3 class="font-heading font-semibold text-primary text-lg mb-1">{step.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        TESTIMONIALS — Social proof
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60V20C360 45 720 5 1080 25C1260 35 1380 30 1440 25V60H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+      <div class="v2-blob w-[350px] h-[350px] bg-accent/8 top-[5%] left-[-8%]" aria-hidden="true"></div>
+      <div class="v2-blob w-[250px] h-[250px] bg-cta/6 bottom-[10%] right-[-5%]" style="animation-delay: -6s;" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Testimonios</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            Comunidades que ya
+            <span class="v2-gradient-text">automatizaron sus accesos</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8 v2-stagger">
+          {testimonials.map((t, i) => (
+            <div class={`v2-card-glow p-8 flex flex-col group cursor-default ${i === 1 ? 'md:-translate-y-4' : ''}`}>
+              <div class="flex gap-1 mb-6">
+                {[1,2,3,4,5].map(() => (
+                  <span class="material-symbols-outlined text-cta text-xl drop-shadow-[0_0_4px_rgba(245,158,11,0.3)]" aria-hidden="true" style="font-variation-settings: 'FILL' 1">star</span>
+                ))}
+              </div>
+              <blockquote class="relative flex-1">
+                <div class="v2-quote relative pl-0">
+                  <p class="text-text leading-relaxed text-[15px] pt-8 group-hover:text-primary transition-colors">{t.quote}</p>
+                </div>
+              </blockquote>
+              <div class="flex items-center gap-4 mt-8 pt-6 border-t border-border/60">
+                <div class="relative">
+                  <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent-light rounded-full flex items-center justify-center">
+                    <span class="font-heading font-bold text-white text-sm">{t.initials}</span>
+                  </div>
+                  <div class="absolute -inset-1 rounded-full border border-accent/20" aria-hidden="true"></div>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-primary text-sm">{t.name}</div>
+                  <div class="text-text-muted text-xs">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MIM Sistemas",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "3" },
+      "review": testimonials.map(t => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": t.name },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": t.quote
+      }))
+    })} />
+
+
+    {/* ═══════════════════════════════════════════
+        FAQ — Service-specific questions
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern" aria-hidden="true"></div>
+      <div class="v2-blob w-[300px] h-[300px] bg-accent/5 bottom-[0%] right-[-5%]" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 v2-reveal">
+          <span class="v2-section-label">FAQ</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+            Preguntas sobre
+            <span class="v2-gradient-text-blue">Automatismos</span>
+          </h2>
+        </div>
+
+        <div class="v2-faq flex flex-col gap-3 v2-stagger">
+          {faqs.map(faq => (
+            <details>
+              <summary>{faq.q}</summary>
+              <div class="faq-answer">{faq.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        CTA BANNER — Final conversion push
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-24 bg-gradient-to-br from-cta via-[#FBBF24] to-cta-hover overflow-hidden" aria-label="Contacto directo">
+      <div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -translate-y-1/3 translate-x-1/3 v2-float-1" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-56 h-56 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/3 v2-float-2" aria-hidden="true"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/10 rounded-full v2-float-3" aria-hidden="true"></div>
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(15,23,42,0.15) 1px, transparent 1px); background-size: 20px 20px;" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center v2-reveal">
+        <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-5 py-2 mb-6">
+          <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">sensor_door</span>
+          <span class="text-sm font-heading font-semibold text-primary/80">Sin compromiso</span>
+        </div>
+
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
+          Automatiza tu comunidad hoy
+        </h2>
+        <p class="text-primary/60 text-lg mb-10 max-w-xl mx-auto">
+          Solicita un presupuesto gratuito para la automatización de puertas, barreras y cancelas. Respuesta en 48 horas.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="tel:912000002" class="v2-btn-outline !border-primary/80 !text-primary hover:!bg-primary hover:!text-white text-lg w-full sm:w-auto justify-center !py-4 !px-8">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
+            912 000 002
+          </a>
+          <a href="https://wa.me/34912000002?text=Hola%2C%20me%20interesa%20un%20presupuesto%20de%20automatismos" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 bg-primary text-white font-heading font-semibold px-8 py-4 rounded-xl text-lg hover:bg-primary-light transition-all cursor-pointer w-full sm:w-auto justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            <Image src={whatsappIcon} alt="" width={24} height={24} class="w-6 h-6" aria-hidden="true" />
+            Enviar WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        RELATED SERVICES — Internal linking
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 v2-reveal">
+          <span class="v2-section-label">Servicios Relacionados</span>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mt-3">
+            Complementa tus
+            <span class="v2-gradient-text-blue">automatismos</span>
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6 v2-stagger">
+          {relatedServices.map(rs => (
+            <a href={rs.slug} class="v2-card-glow p-7 group cursor-pointer block transition-all hover:-translate-y-1">
+              <div class="w-14 h-14 bg-accent/10 group-hover:bg-accent/20 rounded-2xl flex items-center justify-center mb-5 transition-all">
+                <span class="material-symbols-outlined text-2xl text-accent group-hover:scale-110 transition-transform" aria-hidden="true">{rs.icon}</span>
+              </div>
+              <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{rs.title}</h3>
+              <p class="text-text-muted text-sm leading-relaxed mb-4">{rs.desc}</p>
+              <span class="inline-flex items-center gap-1 text-accent text-sm font-medium">
+                Ver servicio
+                <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <FooterV2 />
+  <FloatingV2 />
+</LayoutV2>

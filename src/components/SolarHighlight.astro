@@ -1,0 +1,77 @@
+---
+/**
+ * SolarHighlight.astro
+ * "The Digital Monolith" — Solar energy highlight section
+ * bg-surface-container-low shifts from surface-bright above
+ */
+
+import { Image } from "astro:assets";
+import solarImg from "../assets/images/solar-panels.png";
+---
+
+<section class="py-24 bg-surface-container-low overflow-hidden">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    <!-- Left column — image with decorative blur -->
+    <div class="relative" data-animate="left">
+      <div
+        class="absolute -top-6 -left-6 w-32 h-32 bg-tertiary-fixed/30 rounded-full blur-3xl"
+        aria-hidden="true"
+      >
+      </div>
+      <Image
+        src={solarImg}
+        alt="Paneles solares de alta calidad instalados en el tejado de un edificio residencial moderno"
+        class="rounded-3xl shadow-[0_8px_20px_rgba(14,29,41,0.06),0_16px_40px_rgba(14,29,41,0.06)] relative z-10 w-full"
+        widths={[400, 600, 800]}
+        sizes="(max-width: 1024px) 100vw, 50vw"
+      />
+    </div>
+
+    <!-- Right column — copy + CTA -->
+    <div data-animate="right">
+      <span
+        class="text-secondary font-bold tracking-widest uppercase text-sm mb-4 block"
+      >
+        Especialistas en Energia
+      </span>
+      <h2 class="text-4xl font-bold text-primary mb-6">
+        Instalacion y Mantenimiento de Placas Solares
+      </h2>
+      <p class="text-lg text-on-surface-variant mb-8 leading-relaxed">
+        Reducimos la factura electrica comunitaria hasta en un 70% mediante
+        tecnologia de autoconsumo fotovoltaico.
+      </p>
+
+      <ul class="space-y-4 mb-10">
+        <li class="flex items-start gap-3">
+          <span
+            class="material-symbols-outlined text-secondary mt-0.5"
+            aria-hidden="true">check_circle</span
+          >
+          <span>Estudio de viabilidad gratuito y personalizado.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span
+            class="material-symbols-outlined text-secondary mt-0.5"
+            aria-hidden="true">check_circle</span
+          >
+          <span>Tramitacion integra de subvenciones y ayudas.</span>
+        </li>
+        <li class="flex items-start gap-3">
+          <span
+            class="material-symbols-outlined text-secondary mt-0.5"
+            aria-hidden="true">check_circle</span
+          >
+          <span>Mantenimiento preventivo incluido durante el primer ano.</span>
+        </li>
+      </ul>
+
+      <a
+        href="#contacto"
+        class="inline-block bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:brightness-105 transition-all shadow-[0_8px_20px_rgba(14,29,41,0.06),0_16px_40px_rgba(14,29,41,0.06)]"
+      >
+        Calcular Ahorro Gratis
+      </a>
+    </div>
+  </div>
+</section>

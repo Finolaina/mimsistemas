@@ -1,0 +1,53 @@
+---
+/**
+ * CtaBanner.astro — Call-to-action banner with phone and WhatsApp buttons
+ * Design System: "The Digital Monolith"
+ *
+ * - bg-tertiary-fixed warm amber banner
+ * - Two CTA buttons: phone (bg-primary) and WhatsApp (bg-[#25D366])
+ * - WhatsApp icon from local assets
+ * - NO 1px borders
+ */
+
+import { Image } from "astro:assets";
+import whatsappCta from "../assets/images/whatsapp-cta-icon.png";
+---
+
+<section class="bg-tertiary-fixed py-16">
+  <div class="max-w-7xl mx-auto px-6 text-center" data-animate>
+    <h2 class="text-4xl font-black text-on-tertiary-fixed mb-8 tracking-tighter">
+      ¿Necesitas un Presupuesto Cerrado?
+    </h2>
+
+    <div class="flex flex-wrap justify-center gap-6">
+      {/* Phone CTA */}
+      <a
+        href="tel:912000002"
+        class="bg-primary text-white px-10 py-5 rounded-full font-bold text-xl flex items-center gap-3 hover:scale-105 transition-transform"
+        aria-label="Llamar al 912 000 002"
+      >
+        <span class="material-symbols-outlined" aria-hidden="true">call</span>
+        912 000 002
+      </a>
+
+      {/* WhatsApp CTA */}
+      <a
+        href="https://wa.me/34912000002"
+        target="_blank"
+        rel="noopener noreferrer"
+        class="bg-[#1a8d3f] text-white px-10 py-5 rounded-full font-bold text-xl flex items-center gap-3 hover:scale-105 transition-transform"
+        aria-label="Enviar WhatsApp a MIM Sistemas"
+      >
+        <Image
+          src={whatsappCta}
+          alt=""
+          class="w-6 h-6 invert"
+          width={24}
+          height={24}
+          loading="lazy"
+        />
+        Enviar WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

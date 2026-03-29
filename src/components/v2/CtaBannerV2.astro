@@ -1,0 +1,40 @@
+---
+import { Image } from 'astro:assets';
+import whatsappIcon from '../../assets/images/whatsapp-cta-icon.png';
+---
+<!-- CTA Banner: Amber gradient with animated shapes & shimmer -->
+<section class="relative py-20 md:py-24 bg-gradient-to-br from-cta via-[#FBBF24] to-cta-hover overflow-hidden" aria-label="Contacto directo">
+  <!-- Decorative animated circles -->
+  <div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -translate-y-1/3 translate-x-1/3 v2-float-1" aria-hidden="true"></div>
+  <div class="absolute bottom-0 left-0 w-56 h-56 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/3 v2-float-2" aria-hidden="true"></div>
+  <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/10 rounded-full v2-float-3" aria-hidden="true"></div>
+
+  <!-- Dot pattern -->
+  <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(15,23,42,0.15) 1px, transparent 1px); background-size: 20px 20px;" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center v2-reveal">
+    <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-5 py-2 mb-6">
+      <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">handshake</span>
+      <span class="text-sm font-heading font-semibold text-primary/80">Sin compromiso</span>
+    </div>
+
+    <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
+      ¿Necesitas un Presupuesto Cerrado?
+    </h2>
+    <p class="text-primary/60 text-lg mb-10 max-w-xl mx-auto">
+      Contáctanos sin compromiso. Respondemos en menos de 1 hora.
+    </p>
+
+    <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+      <a href="tel:912000002" class="v2-btn-outline !border-primary/80 !text-primary hover:!bg-primary hover:!text-white text-lg w-full sm:w-auto justify-center !py-4 !px-8">
+        <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
+        912 000 002
+      </a>
+      <a href="https://wa.me/34912000002" target="_blank" rel="noopener noreferrer"
+        class="inline-flex items-center gap-3 bg-primary text-white font-heading font-semibold px-8 py-4 rounded-xl text-lg hover:bg-primary-light transition-all cursor-pointer w-full sm:w-auto justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+        <Image src={whatsappIcon} alt="" width={24} height={24} class="w-6 h-6" aria-hidden="true" />
+        Enviar WhatsApp
+      </a>
+    </div>
+  </div>
+</section>

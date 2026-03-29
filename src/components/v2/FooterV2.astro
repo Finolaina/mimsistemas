@@ -1,0 +1,109 @@
+---
+import { Image } from 'astro:assets';
+import logoWhite from '../../assets/images/logo-mim-horizontal-white.png';
+---
+<!-- Footer: Dark with animated gradient accent line + mesh bg -->
+<footer class="relative bg-primary text-white/70 pt-16 pb-8 overflow-hidden">
+  <!-- Animated gradient accent line -->
+  <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-accent via-cta to-accent-light bg-[length:200%_100%]" style="animation: gradient-shift 6s ease infinite;" aria-hidden="true"></div>
+
+  <!-- Subtle dot pattern -->
+  <div class="absolute inset-0 v2-dot-pattern-light opacity-8" aria-hidden="true"></div>
+
+  <!-- Gradient orb -->
+  <div class="v2-blob w-[300px] h-[300px] bg-accent/5 top-[-20%] right-[5%]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-10 mb-12">
+      <!-- Brand -->
+      <div>
+        <div class="mb-5">
+          <Image src={logoWhite} alt="MIM Sistemas" width={160} height={40} class="h-9 w-auto" />
+        </div>
+        <p class="text-sm leading-relaxed mb-4">
+          Especialistas en la gestión técnica integral de edificios y comunidades en Madrid desde 2003. Calidad y compromiso en cada servicio.
+        </p>
+        <a href="https://mimsistemas.com" class="inline-flex items-center gap-1.5 text-accent text-sm hover:text-accent-light transition-colors group">
+          mimsistemas.com
+          <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-0.5" aria-hidden="true">arrow_forward</span>
+        </a>
+      </div>
+
+      <!-- Servicios -->
+      <div>
+        <h4 class="font-heading font-semibold text-white text-sm mb-5">Servicios</h4>
+        <ul class="flex flex-col gap-3">
+          {[
+            { text: "Control de Accesos", href: "/servicios/control-de-accesos" },
+            { text: "Videovigilancia CCTV", href: "/servicios/videovigilancia" },
+            { text: "Porteros Automáticos", href: "/servicios/porteros-automaticos" },
+            { text: "Automatismos", href: "/servicios/automatismos" },
+            { text: "Energía Solar", href: "/servicios/energia-solar" },
+            { text: "Electricidad y LED", href: "/servicios/electricidad" },
+          ].map(s => (
+            <li>
+              <a href={s.href} class="text-sm hover:text-white transition-colors flex items-center gap-2 group">
+                <span class="w-1 h-1 bg-accent/50 rounded-full group-hover:bg-cta transition-colors" aria-hidden="true"></span>
+                {s.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Empresa -->
+      <div>
+        <h4 class="font-heading font-semibold text-white text-sm mb-5">Empresa</h4>
+        <ul class="flex flex-col gap-3">
+          {[
+            { text: "Sobre Nosotros", href: "#nosotros" },
+            { text: "Contacto", href: "/contacto" },
+            { text: "Aviso Legal", href: "/aviso-legal" },
+            { text: "Política de Privacidad", href: "/politica-privacidad" }
+          ].map(link => (
+            <li>
+              <a href={link.href} class="text-sm hover:text-white transition-colors flex items-center gap-2 group">
+                <span class="w-1 h-1 bg-accent/50 rounded-full group-hover:bg-cta transition-colors" aria-hidden="true"></span>
+                {link.text}
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- Contacto -->
+      <div>
+        <h4 class="font-heading font-semibold text-white text-sm mb-5">Contacto Directo</h4>
+        <ul class="flex flex-col gap-4">
+          <li class="flex items-start gap-3">
+            <div class="w-8 h-8 bg-white/8 rounded-lg flex items-center justify-center flex-shrink-0 mt-0.5">
+              <span class="material-symbols-outlined text-sm text-accent" aria-hidden="true">location_on</span>
+            </div>
+            <span class="text-sm leading-relaxed">Calle Porto Lagos, 9-11 posterior.<br/>28924 Alcorcón (Madrid)</span>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-white/8 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-sm text-accent" aria-hidden="true">call</span>
+            </div>
+            <a href="tel:912000002" class="text-sm hover:text-white transition-colors">912 000 002</a>
+          </li>
+          <li class="flex items-center gap-3">
+            <div class="w-8 h-8 bg-white/8 rounded-lg flex items-center justify-center flex-shrink-0">
+              <span class="material-symbols-outlined text-sm text-accent" aria-hidden="true">mail</span>
+            </div>
+            <a href="mailto:info@mimsistemas.com" class="text-sm hover:text-white transition-colors">info@mimsistemas.com</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Bottom bar -->
+    <div class="border-t border-white/8 pt-6 flex flex-col sm:flex-row justify-between items-center gap-3">
+      <p class="text-xs text-white/35">&copy; {new Date().getFullYear()} MIM SISTEMAS — Mimtel Soluciones Globales S.L. (CIF: B87897302). Todos los derechos reservados.</p>
+      <div class="flex items-center gap-1.5 text-xs text-white/25">
+        <span class="w-2 h-2 bg-success rounded-full animate-pulse" aria-hidden="true"></span>
+        Todos los sistemas operativos
+      </div>
+    </div>
+  </div>
+</footer>

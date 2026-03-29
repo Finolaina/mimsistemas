@@ -1,0 +1,59 @@
+---
+/**
+ * Process.astro
+ * "The Digital Monolith" — 4-step process timeline
+ * bg-surface-container-high/30 shifts from surface above
+ */
+
+const steps = [
+  {
+    number: "01",
+    title: "Contacto",
+    description:
+      "Llamanos o escribenos. Analizamos tu necesidad de inmediato.",
+  },
+  {
+    number: "02",
+    title: "Visita y Presupuesto",
+    description:
+      "Un tecnico visita la comunidad y emite un presupuesto sin compromiso.",
+  },
+  {
+    number: "03",
+    title: "Ejecucion",
+    description:
+      "Realizamos el trabajo con materiales de primera calidad y orden.",
+  },
+  {
+    number: "04",
+    title: "Garantia",
+    description:
+      "Entrega de certificados y seguimiento post-venta asegurado.",
+  },
+];
+---
+
+<section class="py-24 bg-surface-container-high/30">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl font-bold text-primary mb-16 text-center" data-animate>
+      Nuestro Proceso en 4 Pasos
+    </h2>
+
+    <div class="relative flex flex-col md:flex-row justify-between gap-8" data-animate data-delay="1">
+      {
+        steps.map((step) => (
+          <div class="flex-1 relative z-10 text-center md:text-left">
+            <div
+              class="text-6xl font-black text-primary/50 mb-4"
+              aria-hidden="true"
+            >
+              {step.number}
+            </div>
+            <h3 class="text-lg font-bold mb-2">{step.title}</h3>
+            <p class="text-on-surface-variant text-sm">{step.description}</p>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</section>

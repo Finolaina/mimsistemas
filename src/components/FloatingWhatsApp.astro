@@ -1,0 +1,34 @@
+---
+/**
+ * FloatingWhatsApp.astro — Fixed floating WhatsApp button
+ * Design System: "The Digital Monolith"
+ *
+ * - Fixed bottom-24 right-6 z-50
+ * - Green circle bg-[#25D366]
+ * - WhatsApp icon from local assets
+ * - Hover scale-110 with smooth transition
+ * - Accessible aria-label
+ */
+
+import { Image } from "astro:assets";
+import whatsappIcon from "../assets/images/whatsapp-icon.png";
+---
+
+<aside aria-label="WhatsApp">
+  <a
+    href="https://wa.me/34912000002"
+    target="_blank"
+    rel="noopener noreferrer"
+    class="fixed bottom-24 right-6 w-16 h-16 bg-[#25D366] rounded-full shadow-2xl flex items-center justify-center z-50 hover:scale-110 transition-transform"
+    aria-label="Contactar por WhatsApp"
+  >
+    <Image
+      src={whatsappIcon}
+      alt=""
+      class="w-8 h-8 invert"
+      width={32}
+      height={32}
+      loading="lazy"
+    />
+  </a>
+</aside>

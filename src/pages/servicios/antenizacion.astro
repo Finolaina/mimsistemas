@@ -1,0 +1,726 @@
+---
+/**
+ * Service Landing Page: Antenización TDT y Telecomunicaciones
+ * Design System: V2 "Trust Shield Deluxe"
+ * SEO: Service + BreadcrumbList + FAQPage + HowTo schemas
+ */
+import LayoutV2 from '../../layouts/LayoutV2.astro';
+import HeaderV2 from '../../components/v2/HeaderV2.astro';
+import FooterV2 from '../../components/v2/FooterV2.astro';
+import FloatingV2 from '../../components/v2/FloatingV2.astro';
+import { Image } from 'astro:assets';
+import whatsappIcon from '../../assets/images/whatsapp-cta-icon.png';
+import heroImg from '../../assets/images/antena-tdt-azotea-madrid.png';
+import WorkShowcaseV2 from '../../components/v2/WorkShowcaseV2.astro';
+import showcaseImg from '../../assets/images/trabajo-antenizacion.png';
+import '../../styles/v2.css';
+
+/* ── Service Data (easy to replicate for other services) ── */
+
+const service = {
+  title: "Antenización TDT y Telecomunicaciones en Madrid",
+  metaTitle: "Antenización TDT y Telecomunicaciones en Madrid | MIM Sistemas",
+  metaDescription: "Instalación y reparación de antenas TDT para comunidades en Madrid. Distribución de señal, amplificadores, ICT y adaptación al segundo dividendo digital. Presupuesto gratis. 912 000 002",
+  slug: "antenizacion",
+  icon: "settings_input_antenna",
+  badge: "Telecomunicaciones · Antenización TDT",
+};
+
+const painPoints = [
+  { icon: "tv_off", title: "Señal de TV pixelada o sin canales", desc: "Los vecinos se quejan de imagen pixelada, cortes de señal o canales que han dejado de verse por una antena deteriorada o mal orientada." },
+  { icon: "warning", title: "Antena antigua deteriorada", desc: "La antena comunitaria tiene años de exposición a la intemperie, con elementos oxidados y cables dañados que degradan la señal." },
+  { icon: "wifi_tethering_error", title: "Interferencias entre vecinos", desc: "Distribución de señal deficiente que provoca que unos pisos reciban bien y otros mal, generando constantes quejas y reclamaciones." },
+  { icon: "update_disabled", title: "Sin adaptación al dividendo digital", desc: "La instalación no se ha adaptado al segundo dividendo digital y la comunidad no recibe todos los canales de la TDT correctamente." },
+];
+
+const solutions = [
+  { icon: "settings_input_antenna", title: "Antenas TDT de Última Generación", desc: "Instalación de antenas de alta ganancia preparadas para el segundo dividendo digital. Orientación profesional con medidores de campo para garantizar la máxima calidad de señal en todas las viviendas.", featured: true },
+  { icon: "tune", title: "Amplificadores y Distribuidores", desc: "Centralitas de amplificación y distribución de señal de última generación que garantizan niveles óptimos en todos los pisos del edificio, desde el bajo hasta el ático.", featured: true },
+  { icon: "cell_tower", title: "Adaptación Dividendo Digital", desc: "Actualización completa de la instalación para cumplir con el segundo dividendo digital y recibir todos los canales TDT sin interferencias.", featured: false },
+  { icon: "lan", title: "ICT para Edificios", desc: "Proyectos de Infraestructura Común de Telecomunicaciones para edificios de nueva construcción o rehabilitación integral.", featured: false },
+  { icon: "build", title: "Reparación de Averías", desc: "Diagnóstico y reparación rápida de averías en la instalación de antena: cables rotos, conectores en mal estado, amplificadores averiados.", featured: false },
+  { icon: "satellite_alt", title: "Instalaciones Satélite", desc: "Antenas parabólicas individuales o comunitarias para recepción de canales internacionales vía satélite compatibles con la instalación TDT.", featured: false },
+];
+
+const benefits = [
+  { icon: "hd", title: "Señal perfecta en todos los pisos", desc: "Cada vivienda recibe la misma calidad de señal, sin importar la planta ni la orientación. Imagen nítida y sin cortes.", color: "accent" },
+  { icon: "wifi_tethering", title: "Sin interferencias", desc: "Eliminamos las interferencias entre vecinos y con servicios 4G/5G para una recepción limpia y estable.", color: "cta" },
+  { icon: "gavel", title: "Cumplimiento ICT", desc: "Instalación que cumple con la normativa ICT vigente, imprescindible para superar la ITE del edificio.", color: "success" },
+  { icon: "tv", title: "Todos los canales TDT", desc: "Adaptación completa al segundo dividendo digital para recibir todos los canales de la TDT en HD.", color: "accent-light" },
+  { icon: "handyman", title: "Mantenimiento incluido", desc: "Contratos de mantenimiento con revisiones periódicas y reparación de averías para mantener la señal siempre perfecta.", color: "accent" },
+  { icon: "rocket_launch", title: "Preparado para el futuro", desc: "Infraestructura moderna compatible con las próximas tecnologías de difusión y telecomunicaciones.", color: "cta" },
+];
+
+const steps = [
+  { num: "01", title: "Consulta gratuita", desc: "Nos cuentas los problemas de señal de tu comunidad. Evaluamos la situación y planificamos la visita técnica.", icon: "call" },
+  { num: "02", title: "Medición y proyecto", desc: "Un técnico antenista mide la señal en varias viviendas con medidor de campo profesional y diseña la solución óptima.", icon: "assignment" },
+  { num: "03", title: "Instalación profesional", desc: "Antenistas cualificados realizan la instalación o renovación con materiales de primera calidad y mínima molestia.", icon: "construction" },
+  { num: "04", title: "Verificación y soporte", desc: "Medimos la señal en todos los pisos para garantizar la cobertura. Soporte técnico y mantenimiento incluido.", icon: "support_agent" },
+];
+
+const testimonials = [
+  {
+    quote: "Llevábamos meses sin ver varios canales TDT. MIM vino, midió la señal, cambió la antena y el amplificador y ahora se ve perfecto en todos los pisos. Rapidísimos y muy profesionales.",
+    name: "Javier Hernández",
+    role: "Presidente Comunidad, Las Rozas",
+    initials: "JH"
+  },
+  {
+    quote: "Administro varias fincas y siempre llamo a MIM para temas de antenas. Son los únicos que miden la señal en cada vivienda después de instalar y dejan todo perfectamente equilibrado.",
+    name: "Elena Domínguez",
+    role: "Administradora de Fincas, Torrejón",
+    initials: "ED"
+  },
+  {
+    quote: "Nos adaptaron la instalación al dividendo digital y aprovecharon para poner antena nueva y cableado. Ahora vemos todos los canales en HD sin ningún corte. Muy satisfechos.",
+    name: "Antonio López",
+    role: "Presidente Comunidad, Parla",
+    initials: "AL"
+  },
+];
+
+const faqs = [
+  {
+    q: "¿Qué es el segundo dividendo digital y cómo afecta a mi comunidad?",
+    a: "El segundo dividendo digital es la reordenación de frecuencias de la TDT para liberar espectro para el 5G. Si tu comunidad no ha adaptado la instalación, es posible que no recibas todos los canales o sufras interferencias. Nosotros realizamos la adaptación completa con garantía."
+  },
+  {
+    q: "¿Cuánto cuesta cambiar la antena comunitaria?",
+    a: "El coste depende del tamaño del edificio y el estado de la instalación existente. Una renovación completa de antena y amplificador para un edificio de 20 viviendas puede partir desde 800 €. Realizamos medición gratuita y presentamos presupuesto cerrado."
+  },
+  {
+    q: "¿Qué es la ICT y necesita mi edificio tenerla?",
+    a: "La ICT (Infraestructura Común de Telecomunicaciones) es la normativa que regula las instalaciones de telecomunicaciones en edificios. Es obligatoria en edificios de nueva construcción y en rehabilitaciones integrales. En edificios existentes, contar con una ICT actualizada facilita la ITE y revaloriza el inmueble."
+  },
+  {
+    q: "¿Se pueden instalar antenas de satélite junto con la TDT?",
+    a: "Sí, ambas instalaciones son totalmente compatibles. Podemos integrar la recepción de satélite en la misma infraestructura comunitaria, permitiendo a cada vecino acceder tanto a los canales TDT como a los canales internacionales por satélite."
+  },
+  {
+    q: "¿Incluís mantenimiento de la instalación?",
+    a: "Sí, ofrecemos contratos de mantenimiento preventivo y correctivo que incluyen revisiones anuales, reorientación de antena si es necesario, reparación de averías y atención prioritaria. Más del 85% de nuestras comunidades contratan el mantenimiento."
+  },
+  {
+    q: "¿Cuánto tiempo tarda la instalación de una antena nueva?",
+    a: "La instalación de una antena nueva con amplificador y verificación de señal en todas las viviendas se realiza habitualmente en un solo día. Si hay que renovar el cableado vertical, puede extenderse a 2-3 días dependiendo del número de plantas."
+  },
+];
+
+const relatedServices = [
+  { icon: "electrical_services", title: "Electricidad", slug: "/servicios/electricidad", desc: "Instalaciones eléctricas y LED para complementar tu infraestructura." },
+  { icon: "campaign", title: "Megafonía", slug: "/servicios/megafonia", desc: "Sistemas de megafonía y comunicación para zonas comunes." },
+  { icon: "videocam", title: "Videovigilancia", slug: "/servicios/videovigilancia", desc: "Cámaras de seguridad para proteger tu comunidad." },
+];
+
+/* ── Color mapping for benefits ── */
+const colorMap: Record<string, { iconBg: string; border: string }> = {
+  accent: { iconBg: "bg-accent/10 group-hover:bg-accent/20", border: "border-accent/20 group-hover:border-accent/40" },
+  cta: { iconBg: "bg-cta/10 group-hover:bg-cta/20", border: "border-cta/20 group-hover:border-cta/40" },
+  success: { iconBg: "bg-success/10 group-hover:bg-success/20", border: "border-success/20 group-hover:border-success/40" },
+  "accent-light": { iconBg: "bg-accent-light/10 group-hover:bg-accent-light/20", border: "border-accent-light/20 group-hover:border-accent-light/40" },
+};
+
+/* ── JSON-LD Schemas ── */
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://mimsistemas.com" },
+    { "@type": "ListItem", "position": 2, "name": "Servicios", "item": "https://mimsistemas.com/#servicios" },
+    { "@type": "ListItem", "position": 3, "name": "Antenización", "item": `https://mimsistemas.com/servicios/${service.slug}` },
+  ]
+};
+
+const serviceSchema = {
+  "@context": "https://schema.org",
+  "@type": "Service",
+  "name": "Antenización TDT y Telecomunicaciones para Comunidades",
+  "description": service.metaDescription,
+  "url": `https://mimsistemas.com/servicios/${service.slug}`,
+  "provider": {
+    "@type": "LocalBusiness",
+    "name": "MIM Sistemas",
+    "telephone": "+34912000002",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Calle Porto Lagos 9-11 posterior",
+      "addressLocality": "Alcorcón",
+      "addressRegion": "Madrid",
+      "postalCode": "28924",
+      "addressCountry": "ES"
+    },
+    "geo": { "@type": "GeoCoordinates", "latitude": "40.3456", "longitude": "-3.8259" }
+  },
+  "areaServed": { "@type": "State", "name": "Comunidad de Madrid" },
+  "serviceType": "Antenización TDT y Telecomunicaciones",
+  "category": "Telecomunicaciones",
+  "hasOfferCatalog": {
+    "@type": "OfferCatalog",
+    "name": "Servicios de Antenización y Telecomunicaciones",
+    "itemListElement": solutions.map(s => ({
+      "@type": "Offer",
+      "itemOffered": { "@type": "Service", "name": s.title, "description": s.desc }
+    }))
+  }
+};
+
+const howToSchema = {
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Cómo instalar una antena TDT en tu comunidad",
+  "step": steps.map(s => ({
+    "@type": "HowToStep",
+    "position": parseInt(s.num),
+    "name": s.title,
+    "text": s.desc
+  }))
+};
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+};
+---
+
+<LayoutV2
+  title={service.metaTitle}
+  description={service.metaDescription}
+  robots="index, follow"
+  canonicalUrl={`https://mimsistemas.com/servicios/${service.slug}`}
+>
+  <!-- JSON-LD Schemas -->
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(serviceSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(howToSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+
+  <HeaderV2 />
+
+  <main id="main-content">
+    {/* ═══════════════════════════════════════════
+        HERO — Service-specific with breadcrumbs
+    ═══════════════════════════════════════════ */}
+    <section class="relative min-h-[85vh] flex items-center overflow-hidden">
+      <!-- Background Image with gradient overlay -->
+      <div class="absolute inset-0">
+        <Image
+          src={heroImg}
+          alt="Instalación profesional de antena TDT en azotea de edificio residencial en Madrid"
+          class="w-full h-full object-cover"
+          widths={[640, 1024, 1440, 1920]}
+          sizes="100vw"
+          loading="eager"
+          fetchpriority="high"
+        />
+        <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary-light/90 to-primary/70"></div>
+      </div>
+
+      <!-- Floating shapes -->
+      <div class="v2-float-shape v2-float-1 top-[15%] right-[10%] w-20 h-20 border border-white/10 rounded-2xl rotate-12" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-2 top-[60%] right-[5%] w-16 h-16 border border-cta/20 rounded-full" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-3 top-[30%] left-[5%] w-12 h-12 bg-accent/10 rounded-xl rotate-45" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-1 bottom-[20%] left-[8%] w-24 h-24 border border-accent/10 rounded-full" aria-hidden="true"></div>
+
+      <!-- Blobs -->
+      <div class="v2-blob w-[400px] h-[400px] bg-accent/15 top-[-10%] right-[-5%]" aria-hidden="true"></div>
+      <div class="v2-blob w-[300px] h-[300px] bg-cta/10 bottom-[-5%] left-[-5%]" style="animation-delay: -4s;" aria-hidden="true"></div>
+
+      <!-- Dot grid -->
+      <div class="absolute inset-0 v2-dot-pattern-light opacity-25" aria-hidden="true"></div>
+
+      <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-16 lg:pt-32 lg:pb-20">
+        <!-- Breadcrumbs -->
+        <nav class="mb-8 v2-hero-entrance" aria-label="Migas de pan">
+          <ol class="flex items-center gap-2 text-sm text-white/50">
+            <li><a href="/mimsistemas/" class="hover:text-white/80 transition-colors">Inicio</a></li>
+            <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+            <li><a href="/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
+            <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
+            <li class="text-white/80 font-medium">Antenización</li>
+          </ol>
+        </nav>
+
+        <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+          <div class="lg:col-span-7 text-white v2-hero-entrance">
+            <!-- Badge -->
+            <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8">
+              <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{service.icon}</span>
+              <span class="text-sm font-medium text-white/90 tracking-wide">{service.badge}</span>
+            </div>
+
+            <!-- H1 -->
+            <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.1] mb-6">
+              <span class="v2-gradient-text">Antenización TDT</span> y Telecomunicaciones en Madrid
+            </h1>
+
+            <!-- SEO paragraph (keyword in first 100 words) -->
+            <p class="text-lg lg:text-xl text-white/75 leading-relaxed max-w-xl mb-10">
+              Instalación y reparación profesional de antenas TDT para comunidades de propietarios en Madrid. Adaptación al segundo dividendo digital, amplificadores, ICT y mantenimiento. Más de 20 años garantizando la mejor señal de televisión en la Comunidad de Madrid.
+            </p>
+
+            <!-- Trust badges -->
+            <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+              {[
+                { icon: "engineering", text: "Técnicos Propios" },
+                { icon: "schedule", text: "Urgencias 24h" },
+                { icon: "request_quote", text: "Presupuesto Cerrado" },
+                { icon: "workspace_premium", text: "Garantía Escrita" }
+              ].map(badge => (
+                <div class="flex items-center gap-2.5 bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5">
+                  <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{badge.icon}</span>
+                  <span class="text-xs font-medium text-white/85 leading-tight">{badge.text}</span>
+                </div>
+              ))}
+            </div>
+
+            <!-- CTAs -->
+            <div class="flex flex-wrap gap-4">
+              <a href="#presupuesto" class="v2-btn-cta text-base">
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">description</span>
+                Solicitar Presupuesto Gratis
+              </a>
+              <a href="tel:912000002" class="v2-btn-outline !border-white/30 !text-white hover:!bg-white/15 hover:!text-white text-base backdrop-blur-sm">
+                <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
+                912 000 002
+              </a>
+            </div>
+          </div>
+
+          <!-- Right: Lead Form -->
+          <div class="lg:col-span-5" id="presupuesto">
+            <div class="v2-form-card p-6 sm:p-8">
+              <h2 class="font-heading text-xl font-bold text-primary mb-1">Presupuesto gratuito</h2>
+              <p class="text-sm text-text-muted mb-6">Te contactamos en menos de 1 hora con un presupuesto a medida.</p>
+
+              <form class="flex flex-col gap-4 opnform" data-opnform-slug="contacto-mim-sistemas-qxnrgn" method="POST">
+                <input type="hidden" name="servicio" value="antenizacion" />
+                <input type="hidden" name="origen" value="servicio-antenizacion" />
+                <!-- Honeypot anti-spam -->
+                <div class="!absolute !w-px !h-px !overflow-hidden !whitespace-nowrap" style="clip: rect(0,0,0,0); border: 0;" aria-hidden="true">
+                  <input type="text" name="botcheck" tabindex="-1" autocomplete="off" />
+                </div>
+                <div>
+                  <label for="svc-name" class="block text-sm font-medium text-text mb-1.5">Nombre</label>
+                  <input type="text" id="svc-name" name="nombre" placeholder="Ej: Juan García" autocomplete="name"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+                </div>
+                <div>
+                  <label for="svc-phone" class="block text-sm font-medium text-text mb-1.5">Teléfono</label>
+                  <input type="tel" id="svc-phone" name="telefono" placeholder="600 000 000" autocomplete="tel"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+                </div>
+                <div>
+                  <label for="svc-email" class="block text-sm font-medium text-text mb-1.5">Email <span class="text-text-muted font-normal">(opcional)</span></label>
+                  <input type="email" id="svc-email" name="email" placeholder="email@ejemplo.com" autocomplete="email"
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" />
+                </div>
+                <div>
+                  <label for="svc-message" class="block text-sm font-medium text-text mb-1.5">¿Qué necesitas?</label>
+                  <textarea id="svc-message" name="mensaje" rows="3" placeholder="Ej: No se ven bien los canales TDT en algunos pisos de la comunidad..."
+                    class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all resize-none"></textarea>
+                </div>
+                <!-- RGPD consent -->
+                <label class="flex items-start gap-2.5 cursor-pointer">
+                  <input type="checkbox" name="rgpd" required
+                    class="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/30 cursor-pointer" />
+                  <span class="text-xs text-text-muted leading-relaxed">
+                    Acepto la <a href="/mimsistemas/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
+                  </span>
+                </label>
+                <button type="submit" class="v2-btn-cta w-full justify-center text-base mt-1">
+                  <span class="material-symbols-outlined text-xl btn-icon" aria-hidden="true">send</span>
+                  <span class="btn-text">Solicitar Presupuesto</span>
+                </button>
+                <!-- Success/error messages -->
+                <div class="form-success hidden rounded-xl bg-green-50 border border-green-200 p-4 text-center">
+                  <span class="material-symbols-outlined text-green-600 text-2xl mb-1" aria-hidden="true">check_circle</span>
+                  <p class="text-sm font-medium text-green-800">¡Solicitud enviada! Te contactaremos en menos de 1 hora.</p>
+                </div>
+                <div class="form-error hidden rounded-xl bg-red-50 border border-red-200 p-4 text-center">
+                  <span class="material-symbols-outlined text-red-600 text-2xl mb-1" aria-hidden="true">error</span>
+                  <p class="text-sm font-medium text-red-800">Error al enviar. Llámanos al <a href="tel:912000002" class="underline">912 000 002</a>.</p>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        PAIN POINTS — Why you need this service
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-30" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">El Problema</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            ¿Tu comunidad tiene
+            <span class="v2-gradient-text">estos problemas</span>?
+          </h2>
+          <p class="text-text-muted max-w-2xl mx-auto text-lg">
+            La mayoría de comunidades en Madrid tienen antenas obsoletas que no se han adaptado al dividendo digital, causando problemas de señal constantes.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 v2-stagger">
+          {painPoints.map(p => (
+            <div class="v2-card-glow p-7 group cursor-default border border-red-200/30 group-hover:border-red-300/50 transition-all">
+              <div class="w-14 h-14 bg-red-50 group-hover:bg-red-100 rounded-2xl flex items-center justify-center mb-5 transition-all">
+                <span class="material-symbols-outlined text-2xl text-red-500 group-hover:scale-110 transition-transform" aria-hidden="true">{p.icon}</span>
+              </div>
+              <h3 class="font-heading font-semibold text-primary text-lg mb-2">{p.title}</h3>
+              <p class="text-text-muted text-sm leading-relaxed">{p.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        SOLUTIONS — Types of services
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-40" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Nuestras Soluciones</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            Servicios de Antenización
+            <span class="v2-gradient-text-blue">a Medida</span>
+          </h2>
+          <p class="text-text-muted max-w-2xl mx-auto text-lg">
+            Desde la instalación de una antena nueva hasta la adaptación al dividendo digital. Cada proyecto se diseña a medida para tu edificio.
+          </p>
+        </div>
+
+        <div class="v2-bento v2-stagger">
+          {solutions.map((s, i) => (
+            <div class={`v2-card-glow p-6 flex flex-col cursor-pointer group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
+              <div class={`v2-icon-box rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${i < 2 ? 'w-16 h-16 bg-accent/10 group-hover:bg-accent/20' : 'w-12 h-12 bg-surface-alt group-hover:bg-accent/10'}`}>
+                <span class={`material-symbols-outlined ${i < 2 ? 'text-3xl' : 'text-2xl'} text-accent transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">{s.icon}</span>
+              </div>
+              <h3 class={`font-heading font-semibold text-primary mb-2 transition-colors group-hover:text-accent ${i < 2 ? 'text-xl' : 'text-base'}`}>{s.title}</h3>
+              <p class={`text-text-muted leading-relaxed ${i < 2 ? 'text-base' : 'text-sm'}`}>{s.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        BENEFITS — Why choose our service
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 0V40C360 60 720 20 1080 40C1260 50 1380 45 1440 40V0H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+      <div class="v2-float-shape v2-float-2 top-[10%] right-[5%] w-16 h-16 border border-accent/10 rounded-2xl rotate-12 hidden lg:block" aria-hidden="true"></div>
+      <div class="v2-float-shape v2-float-3 bottom-[15%] left-[3%] w-12 h-12 bg-cta/8 rounded-full hidden lg:block" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Beneficios</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            ¿Por qué renovar
+            <span class="v2-gradient-text">tu antena comunitaria</span>?
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 v2-stagger">
+          {benefits.map(b => {
+            const c = colorMap[b.color];
+            return (
+              <div class={`v2-card-glow p-7 cursor-default group border ${c.border} transition-all`}>
+                <div class={`v2-icon-box w-14 h-14 ${c.iconBg} rounded-2xl flex items-center justify-center mb-5 transition-all duration-300`}>
+                  <span class="material-symbols-outlined text-2xl text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" aria-hidden="true">{b.icon}</span>
+                </div>
+                <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{b.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed">{b.desc}</p>
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        WORK SHOWCASE — Real project example
+    ═══════════════════════════════════════════ */}
+    <WorkShowcaseV2
+      sectionLabel="Nuestro Trabajo en Acción"
+      title="Renovación de Antena TDT Comunitaria"
+      titleHighlight="Antena TDT"
+      description="Sustitución completa del sistema de antena comunitaria en un edificio de 50 viviendas en Alcorcón. Nueva antena TDT, amplificadores y distribución a todas las tomas."
+      image={showcaseImg}
+      imageAlt="Antena TDT comunitaria instalada por MIM Sistemas en azotea de edificio en Alcorcón"
+      stats={[
+        { value: "50", label: "Viviendas" },
+        { value: "100%", label: "Señal" },
+      ]}
+      checkpoints={[
+        "Antena TDT de última generación",
+        "Amplificadores y distribuidores nuevos",
+        "Cableado coaxial de baja pérdida",
+        "Medición y certificación de señal en cada toma",
+      ]}
+      ctaText="Solicitar Presupuesto"
+      ctaHref="#contacto-servicio"
+    />
+
+
+    {/* ═══════════════════════════════════════════
+        PROCESS — How it works (4 steps)
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern opacity-40" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Cómo Trabajamos</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+            Instalación en
+            <span class="v2-gradient-text">4 Pasos</span>
+          </h2>
+        </div>
+
+        <!-- Desktop timeline -->
+        <div class="hidden md:block v2-reveal">
+          <div class="relative">
+            <svg class="absolute top-7 left-[12%] right-[12%] h-2 w-[76%]" viewBox="0 0 800 2" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <line x1="0" y1="1" x2="800" y2="1" stroke="url(#tl-grad)" stroke-width="2" class="v2-dashed-line"/>
+              <defs><linearGradient id="tl-grad" x1="0" y1="0" x2="800" y2="0">
+                <stop offset="0%" stop-color="#0369A1"/><stop offset="50%" stop-color="#F59E0B"/><stop offset="100%" stop-color="#0EA5E9"/>
+              </linearGradient></defs>
+            </svg>
+            <div class="grid grid-cols-4 gap-6">
+              {steps.map(step => (
+                <div class="flex flex-col items-center text-center group cursor-default">
+                  <div class="relative mb-8">
+                    <div class="v2-timeline-dot group-hover:scale-110 transition-transform duration-300">
+                      <span class="material-symbols-outlined text-xl text-white" aria-hidden="true">{step.icon}</span>
+                    </div>
+                    <div class="absolute inset-0 rounded-full border-2 border-accent opacity-0 group-hover:animate-ping pointer-events-none" aria-hidden="true"></div>
+                  </div>
+                  <div class="bg-white rounded-2xl p-5 shadow-sm border border-border group-hover:shadow-lg group-hover:border-accent/20 transition-all duration-300">
+                    <div class="text-xs font-heading font-bold text-accent/50 mb-1">PASO {step.num}</div>
+                    <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{step.title}</h3>
+                    <p class="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <!-- Mobile timeline -->
+        <div class="md:hidden flex flex-col gap-0 v2-stagger">
+          {steps.map((step, i) => (
+            <div class="flex gap-5">
+              <div class="flex flex-col items-center">
+                <div class="v2-timeline-dot flex-shrink-0">
+                  <span class="material-symbols-outlined text-lg text-white" aria-hidden="true">{step.icon}</span>
+                </div>
+                {i < 3 && <div class="w-0.5 flex-1 mt-2 bg-gradient-to-b from-accent/30 to-accent/10"></div>}
+              </div>
+              <div class="pb-8">
+                <div class="text-xs font-heading font-bold text-accent/50 mb-0.5">PASO {step.num}</div>
+                <h3 class="font-heading font-semibold text-primary text-lg mb-1">{step.title}</h3>
+                <p class="text-text-muted text-sm leading-relaxed">{step.desc}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        TESTIMONIALS — Social proof
+    ═══════════════════════════════════════════ */}
+    <div class="relative -mb-1">
+      <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+        <path d="M0 60V20C360 45 720 5 1080 25C1260 35 1380 30 1440 25V60H0Z" fill="white"/>
+      </svg>
+    </div>
+
+    <section class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+      <div class="v2-blob w-[350px] h-[350px] bg-accent/8 top-[5%] left-[-8%]" aria-hidden="true"></div>
+      <div class="v2-blob w-[250px] h-[250px] bg-cta/6 bottom-[10%] right-[-5%]" style="animation-delay: -6s;" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-16 v2-reveal">
+          <span class="v2-section-label">Testimonios</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+            Comunidades que ya
+            <span class="v2-gradient-text">disfrutan de señal perfecta</span>
+          </h2>
+        </div>
+
+        <div class="grid md:grid-cols-3 gap-6 lg:gap-8 v2-stagger">
+          {testimonials.map((t, i) => (
+            <div class={`v2-card-glow p-8 flex flex-col group cursor-default ${i === 1 ? 'md:-translate-y-4' : ''}`}>
+              <div class="flex gap-1 mb-6">
+                {[1,2,3,4,5].map(() => (
+                  <span class="material-symbols-outlined text-cta text-xl drop-shadow-[0_0_4px_rgba(245,158,11,0.3)]" aria-hidden="true" style="font-variation-settings: 'FILL' 1">star</span>
+                ))}
+              </div>
+              <blockquote class="relative flex-1">
+                <div class="v2-quote relative pl-0">
+                  <p class="text-text leading-relaxed text-[15px] pt-8 group-hover:text-primary transition-colors">{t.quote}</p>
+                </div>
+              </blockquote>
+              <div class="flex items-center gap-4 mt-8 pt-6 border-t border-border/60">
+                <div class="relative">
+                  <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent-light rounded-full flex items-center justify-center">
+                    <span class="font-heading font-bold text-white text-sm">{t.initials}</span>
+                  </div>
+                  <div class="absolute -inset-1 rounded-full border border-accent/20" aria-hidden="true"></div>
+                </div>
+                <div>
+                  <div class="font-heading font-semibold text-primary text-sm">{t.name}</div>
+                  <div class="text-text-muted text-xs">{t.role}</div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- Reviews schema -->
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "MIM Sistemas",
+      "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "3" },
+      "review": testimonials.map(t => ({
+        "@type": "Review",
+        "author": { "@type": "Person", "name": t.name },
+        "reviewRating": { "@type": "Rating", "ratingValue": "5" },
+        "reviewBody": t.quote
+      }))
+    })} />
+
+
+    {/* ═══════════════════════════════════════════
+        FAQ — Service-specific questions
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+      <div class="absolute inset-0 v2-dot-pattern" aria-hidden="true"></div>
+      <div class="v2-blob w-[300px] h-[300px] bg-accent/5 bottom-[0%] right-[-5%]" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 v2-reveal">
+          <span class="v2-section-label">FAQ</span>
+          <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+            Preguntas sobre
+            <span class="v2-gradient-text-blue">Antenización TDT</span>
+          </h2>
+        </div>
+
+        <div class="v2-faq flex flex-col gap-3 v2-stagger">
+          {faqs.map(faq => (
+            <details>
+              <summary>{faq.q}</summary>
+              <div class="faq-answer">{faq.a}</div>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        CTA BANNER — Final conversion push
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-24 bg-gradient-to-br from-cta via-[#FBBF24] to-cta-hover overflow-hidden" aria-label="Contacto directo">
+      <div class="absolute top-0 right-0 w-80 h-80 bg-white/10 rounded-full -translate-y-1/3 translate-x-1/3 v2-float-1" aria-hidden="true"></div>
+      <div class="absolute bottom-0 left-0 w-56 h-56 bg-white/10 rounded-full translate-y-1/3 -translate-x-1/3 v2-float-2" aria-hidden="true"></div>
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] border border-white/10 rounded-full v2-float-3" aria-hidden="true"></div>
+      <div class="absolute inset-0 opacity-10" style="background-image: radial-gradient(circle, rgba(15,23,42,0.15) 1px, transparent 1px); background-size: 20px 20px;" aria-hidden="true"></div>
+
+      <div class="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 text-center v2-reveal">
+        <div class="inline-flex items-center gap-2 bg-primary/10 rounded-full px-5 py-2 mb-6">
+          <span class="material-symbols-outlined text-primary text-lg" aria-hidden="true">settings_input_antenna</span>
+          <span class="text-sm font-heading font-semibold text-primary/80">Sin compromiso</span>
+        </div>
+
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mb-4">
+          Recupera la señal de TV perfecta
+        </h2>
+        <p class="text-primary/60 text-lg mb-10 max-w-xl mx-auto">
+          Solicita una medición gratuita de señal. Te presentamos una solución a medida con presupuesto cerrado en 48 horas.
+        </p>
+
+        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <a href="tel:912000002" class="v2-btn-outline !border-primary/80 !text-primary hover:!bg-primary hover:!text-white text-lg w-full sm:w-auto justify-center !py-4 !px-8">
+            <span class="material-symbols-outlined text-2xl" aria-hidden="true">call</span>
+            912 000 002
+          </a>
+          <a href="https://wa.me/34912000002?text=Hola%2C%20me%20interesa%20un%20presupuesto%20de%20antenizaci%C3%B3n%20TDT" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-3 bg-primary text-white font-heading font-semibold px-8 py-4 rounded-xl text-lg hover:bg-primary-light transition-all cursor-pointer w-full sm:w-auto justify-center shadow-lg hover:shadow-xl hover:-translate-y-0.5">
+            <Image src={whatsappIcon} alt="" width={24} height={24} class="w-6 h-6" aria-hidden="true" />
+            Enviar WhatsApp
+          </a>
+        </div>
+      </div>
+    </section>
+
+
+    {/* ═══════════════════════════════════════════
+        RELATED SERVICES — Internal linking
+    ═══════════════════════════════════════════ */}
+    <section class="relative py-20 md:py-28 bg-white overflow-hidden">
+      <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="text-center mb-14 v2-reveal">
+          <span class="v2-section-label">Servicios Relacionados</span>
+          <h2 class="font-heading text-3xl md:text-4xl font-bold text-primary mt-3">
+            Complementa tu sistema de
+            <span class="v2-gradient-text-blue">telecomunicaciones</span>
+          </h2>
+        </div>
+
+        <div class="grid sm:grid-cols-3 gap-6 v2-stagger">
+          {relatedServices.map(rs => (
+            <a href={rs.slug} class="v2-card-glow p-7 group cursor-pointer block transition-all hover:-translate-y-1">
+              <div class="w-14 h-14 bg-accent/10 group-hover:bg-accent/20 rounded-2xl flex items-center justify-center mb-5 transition-all">
+                <span class="material-symbols-outlined text-2xl text-accent group-hover:scale-110 transition-transform" aria-hidden="true">{rs.icon}</span>
+              </div>
+              <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{rs.title}</h3>
+              <p class="text-text-muted text-sm leading-relaxed mb-4">{rs.desc}</p>
+              <span class="inline-flex items-center gap-1 text-accent text-sm font-medium">
+                Ver servicio
+                <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
+              </span>
+            </a>
+          ))}
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <FooterV2 />
+  <FloatingV2 />
+</LayoutV2>

@@ -1,0 +1,29 @@
+# Search engines
+User-agent: *
+Allow: /
+Disallow: /v2
+
+# Block AI training crawlers (protect content)
+User-agent: GPTBot
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: Bytespider
+Disallow: /
+
+User-agent: ClaudeBot
+Disallow: /
+
+# Allow AI search crawlers (visibility in AI search results)
+User-agent: ChatGPT-User
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+Sitemap: https://mimsistemas.com/sitemap-index.xml

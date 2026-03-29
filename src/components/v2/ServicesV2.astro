@@ -1,0 +1,58 @@
+---
+const services = [
+  { icon: "lock_open", title: "Control de Accesos", desc: "Sistemas inteligentes de entrada y gestión de llaves digitales.", featured: true, href: "/servicios/control-de-accesos" },
+  { icon: "videocam", title: "CCTV", desc: "Cámaras de seguridad 4K con grabación y visión remota.", featured: true, href: "/servicios/videovigilancia" },
+  { icon: "dialpad", title: "Porteros Automáticos", desc: "Instalación y mantenimiento de video-porteros modernos.", featured: false, href: "/servicios/porteros-automaticos" },
+  { icon: "sensor_door", title: "Automatismos", desc: "Puertas de garaje automáticas y mantenimiento preventivo.", featured: false, href: "/servicios/automatismos" },
+  { icon: "solar_power", title: "Placas Solares", desc: "Ahorro energético con autoconsumo para comunidades.", featured: false, href: "/servicios/energia-solar" },
+  { icon: "ev_station", title: "Puntos de Carga", desc: "Instalación legalizada de cargadores de coche eléctrico.", featured: false, href: "/servicios/puntos-de-carga" },
+  { icon: "electrical_services", title: "Electricidad", desc: "Boletines, iluminación LED y reformas eléctricas integrales.", featured: false, href: "/servicios/electricidad" },
+  { icon: "settings_input_antenna", title: "Antenización", desc: "Sintonización TDT, Satélite y fibra óptica comunitaria.", featured: false, href: "/servicios/antenizacion" },
+  { icon: "lock", title: "Cerrajería", desc: "Amaestramiento de bombillos y aperturas urgentes.", featured: false, href: "/servicios/cerrajeria" },
+  { icon: "campaign", title: "Megafonía", desc: "Sistemas de sonido para garajes y centros comerciales.", featured: false, href: "/servicios/megafonia" },
+  { icon: "format_paint", title: "Albañilería y Pintura", desc: "Rehabilitación de fachadas, pintura de portales y reformas.", featured: false, href: "/servicios/albanileria-pintura" },
+];
+---
+<!-- Services: Bento Grid with gradient-border glow cards + dot pattern bg -->
+<section id="servicios" class="relative py-20 md:py-28 bg-surface overflow-hidden">
+  <!-- Dot pattern background -->
+  <div class="absolute inset-0 v2-dot-pattern" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-16 v2-reveal">
+      <span class="v2-section-label">Nuestros Servicios</span>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+        Todo lo que tu Comunidad Necesita,
+        <span class="v2-gradient-text-blue">en un Solo Proveedor</span>
+      </h2>
+      <p class="text-text-muted max-w-2xl mx-auto text-lg">
+        Evita gestionar decenas de proveedores. Centralizamos todos los servicios técnicos con personal propio y especializado.
+      </p>
+    </div>
+
+    <div class="v2-bento v2-stagger">
+      {services.map((s, i) => (
+        <div class={`v2-card-glow p-6 flex flex-col cursor-pointer group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
+          <div class={`v2-icon-box w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${i < 2 ? 'bg-accent/10 group-hover:bg-accent/20 w-16 h-16' : 'bg-surface-alt group-hover:bg-accent/10'}`}>
+            <span class={`material-symbols-outlined ${i < 2 ? 'text-3xl' : 'text-2xl'} text-accent transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">{s.icon}</span>
+          </div>
+          <h3 class={`font-heading font-semibold text-primary mb-2 transition-colors group-hover:text-accent ${i < 2 ? 'text-xl' : 'text-base'}`}>{s.title}</h3>
+          <p class={`text-text-muted leading-relaxed ${i < 2 ? 'text-base' : 'text-sm'}`}>{s.desc}</p>
+          {s.href && (
+            <a href={s.href} class="mt-4 flex items-center gap-1 text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+              <span>Saber más</span>
+              <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
+            </a>
+          )}
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- Wave divider -->
+<div class="relative -mb-1">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 60V20C240 0 480 40 720 30C960 20 1200 0 1440 20V60H0Z" fill="white"/>
+  </svg>
+</div>

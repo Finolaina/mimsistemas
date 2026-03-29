@@ -1,0 +1,155 @@
+---
+import { Image } from 'astro:assets';
+import heroBg from '../../assets/images/hero-tecnico-seguridad-madrid.png';
+---
+<!-- Hero: Full viewport, image + gradient overlay, floating shapes, dramatic entrance -->
+<section id="inicio" class="relative min-h-screen flex items-center overflow-hidden">
+  <!-- Background Image with rich overlay -->
+  <div class="absolute inset-0">
+    <Image
+      src={heroBg}
+      alt="Técnico de seguridad instalando videoportero en portal de comunidad de propietarios en Madrid"
+      class="w-full h-full object-cover"
+      widths={[640, 1024, 1440, 1920]}
+      sizes="100vw"
+      loading="eager"
+      fetchpriority="high"
+    />
+    <div class="absolute inset-0 bg-gradient-to-br from-primary/95 via-primary-light/90 to-primary/70"></div>
+  </div>
+
+  <!-- Floating geometric shapes -->
+  <div class="v2-float-shape v2-float-1 top-[15%] right-[10%] w-20 h-20 border border-white/10 rounded-2xl rotate-12" aria-hidden="true"></div>
+  <div class="v2-float-shape v2-float-2 top-[60%] right-[5%] w-16 h-16 border border-cta/20 rounded-full" aria-hidden="true"></div>
+  <div class="v2-float-shape v2-float-3 top-[30%] left-[5%] w-12 h-12 bg-accent/10 rounded-xl rotate-45" aria-hidden="true"></div>
+  <div class="v2-float-shape v2-float-1 bottom-[20%] left-[8%] w-24 h-24 border border-accent/10 rounded-full" aria-hidden="true"></div>
+
+  <!-- Morphing blobs -->
+  <div class="v2-blob w-[400px] h-[400px] bg-accent/20 top-[-10%] right-[-5%]" aria-hidden="true"></div>
+  <div class="v2-blob w-[300px] h-[300px] bg-cta/15 bottom-[-5%] left-[-5%]" style="animation-delay: -4s;" aria-hidden="true"></div>
+
+  <!-- Dot grid overlay -->
+  <div class="absolute inset-0 v2-dot-pattern-light opacity-30" aria-hidden="true"></div>
+
+  <div class="relative z-10 w-full max-w-7xl mx-auto px-4 sm:px-6 pt-28 pb-16 lg:pt-32 lg:pb-20">
+    <div class="grid lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      <!-- Left: Content -->
+      <div class="lg:col-span-7 text-white v2-hero-entrance">
+        <!-- Badge -->
+        <div class="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-5 py-2 mb-8">
+          <span class="w-2.5 h-2.5 bg-cta rounded-full animate-pulse"></span>
+          <span class="text-sm font-medium text-white/90 tracking-wide">Profesionales homologados · Desde 2003</span>
+        </div>
+
+        <!-- Headline with gradient text -->
+        <h1 class="font-heading text-4xl sm:text-5xl lg:text-[3.5rem] xl:text-6xl font-bold leading-[1.1] mb-6">
+          Soluciones Integrales para tu
+          <span class="v2-gradient-text">Comunidad</span>
+          y Empresa
+        </h1>
+
+        <!-- Description -->
+        <p class="text-lg lg:text-xl text-white/75 leading-relaxed max-w-xl mb-10">
+          Instalación, reparación y mantenimiento multitécnico con la garantía de más de 20 años de experiencia en el sector. MIM Sistemas es la empresa líder en servicios técnicos integrales para comunidades de propietarios y empresas en Madrid.
+        </p>
+
+        <!-- Trust Badges with glass cards -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-10">
+          {[
+            { icon: "engineering", text: "Técnicos Propios" },
+            { icon: "schedule", text: "Urgencias 24h" },
+            { icon: "request_quote", text: "Presupuesto Cerrado" },
+            { icon: "workspace_premium", text: "Garantía Escrita" }
+          ].map(badge => (
+            <div class="flex items-center gap-2.5 bg-white/8 backdrop-blur-sm border border-white/10 rounded-xl px-3 py-2.5">
+              <span class="material-symbols-outlined text-cta text-lg" aria-hidden="true">{badge.icon}</span>
+              <span class="text-xs font-medium text-white/85 leading-tight">{badge.text}</span>
+            </div>
+          ))}
+        </div>
+
+        <!-- CTA Buttons -->
+        <div class="flex flex-wrap gap-4">
+          <a href="#contacto" class="v2-btn-cta text-base">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">description</span>
+            Solicitar Presupuesto Gratis
+          </a>
+          <a href="tel:912000002" class="v2-btn-outline !border-white/30 !text-white hover:!bg-white/15 hover:!text-white text-base backdrop-blur-sm">
+            <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
+            912 000 002
+          </a>
+        </div>
+      </div>
+
+      <!-- Right: Lead Form with enhanced card -->
+      <div class="lg:col-span-5" id="contacto">
+        <div class="v2-form-card p-6 sm:p-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-1">Te llamamos gratis</h2>
+          <p class="text-sm text-text-muted mb-6">Déjanos tus datos y un técnico te contactará en menos de 1 hora.</p>
+
+          <form class="flex flex-col gap-4 opnform" data-opnform-slug="contacto-mim-sistemas-qxnrgn" method="POST">
+            <input type="hidden" name="origen" value="hero-v2" />
+            <!-- Honeypot anti-spam -->
+            <div class="!absolute !w-px !h-px !overflow-hidden !whitespace-nowrap" style="clip: rect(0,0,0,0); border: 0;" aria-hidden="true">
+              <input type="text" name="botcheck" tabindex="-1" autocomplete="off" />
+            </div>
+            <div>
+              <label for="v2-name" class="block text-sm font-medium text-text mb-1.5">Nombre</label>
+              <input type="text" id="v2-name" name="nombre" placeholder="Ej: Juan García" autocomplete="name"
+                class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+            </div>
+            <div>
+              <label for="v2-phone" class="block text-sm font-medium text-text mb-1.5">Teléfono</label>
+              <input type="tel" id="v2-phone" name="telefono" placeholder="600 000 000" autocomplete="tel"
+                class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" required />
+            </div>
+            <div>
+              <label for="v2-email" class="block text-sm font-medium text-text mb-1.5">Email</label>
+              <input type="email" id="v2-email" name="email" placeholder="email@ejemplo.com" autocomplete="email"
+                class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all" />
+            </div>
+            <div>
+              <label for="v2-service" class="block text-sm font-medium text-text mb-1.5">¿Qué necesitas?</label>
+              <select id="v2-service" name="servicio"
+                class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all cursor-pointer" required>
+                <option value="">Selecciona un servicio</option>
+                <option value="seguridad">Seguridad</option>
+                <option value="accesos">Accesos</option>
+                <option value="automatismos">Automatismos</option>
+                <option value="solar">Energía Solar</option>
+                <option value="electricidad">Electricidad</option>
+                <option value="otros">Otros Servicios</option>
+              </select>
+            </div>
+            <div>
+              <label for="v2-message" class="block text-sm font-medium text-text mb-1.5">Mensaje <span class="text-text-muted font-normal">(opcional)</span></label>
+              <textarea id="v2-message" name="mensaje" rows="3" placeholder="Describe brevemente lo que necesitas..."
+                class="w-full px-4 py-3 bg-surface-alt border border-border rounded-xl text-sm focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-all resize-none"></textarea>
+            </div>
+            <!-- RGPD consent -->
+            <label class="flex items-start gap-2.5 cursor-pointer">
+              <input type="checkbox" name="rgpd" required
+                class="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/30 cursor-pointer" />
+              <span class="text-xs text-text-muted leading-relaxed">
+                Acepto la <a href="/mimsistemas/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
+              </span>
+            </label>
+            <button type="submit" class="v2-btn-cta w-full justify-center text-base mt-1">
+              <span class="material-symbols-outlined text-xl btn-icon" aria-hidden="true">send</span>
+              <span class="btn-text">Enviar Solicitud</span>
+            </button>
+            <!-- Success/error messages -->
+            <div class="form-success hidden rounded-xl bg-green-50 border border-green-200 p-4 text-center">
+              <span class="material-symbols-outlined text-green-600 text-2xl mb-1" aria-hidden="true">check_circle</span>
+              <p class="text-sm font-medium text-green-800">¡Solicitud enviada! Te contactaremos en menos de 1 hora.</p>
+            </div>
+            <div class="form-error hidden rounded-xl bg-red-50 border border-red-200 p-4 text-center">
+              <span class="material-symbols-outlined text-red-600 text-2xl mb-1" aria-hidden="true">error</span>
+              <p class="text-sm font-medium text-red-800">Error al enviar. Llámanos al <a href="tel:912000002" class="underline">912 000 002</a>.</p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

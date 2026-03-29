@@ -1,0 +1,51 @@
+---
+const reasons = [
+  { icon: "history", title: "Experiencia", desc: "Más de dos décadas liderando el sector de servicios técnicos integrales.", color: "accent" },
+  { icon: "hub", title: "Proveedor Único", desc: "Centralizamos todas las necesidades técnicas bajo una sola gestión profesional.", color: "cta" },
+  { icon: "verified_user", title: "Homologación", desc: "Empresa registrada y habilitada para todas nuestras especialidades.", color: "success" },
+  { icon: "bolt", title: "Rapidez", desc: "Respuesta inmediata para avisos urgentes y plazos de ejecución cortos.", color: "accent-light" }
+];
+const colorMap: Record<string, { bg: string; iconBg: string; border: string }> = {
+  accent: { bg: "bg-accent/5", iconBg: "bg-accent/10 group-hover:bg-accent/20", border: "border-accent/20 group-hover:border-accent/40" },
+  cta: { bg: "bg-cta/5", iconBg: "bg-cta/10 group-hover:bg-cta/20", border: "border-cta/20 group-hover:border-cta/40" },
+  success: { bg: "bg-success/5", iconBg: "bg-success/10 group-hover:bg-success/20", border: "border-success/20 group-hover:border-success/40" },
+  "accent-light": { bg: "bg-accent-light/5", iconBg: "bg-accent-light/10 group-hover:bg-accent-light/20", border: "border-accent-light/20 group-hover:border-accent-light/40" }
+};
+---
+<!-- Why Us: Cards with gradient accent + wave divider -->
+<div class="relative -mb-1">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0V40C360 60 720 20 1080 40C1260 50 1380 45 1440 40V0H0Z" fill="white"/>
+  </svg>
+</div>
+
+<section id="nosotros" class="relative py-20 md:py-28 bg-surface-alt overflow-hidden">
+  <!-- Decorative floating shapes -->
+  <div class="v2-float-shape v2-float-2 top-[10%] right-[5%] w-16 h-16 border border-accent/10 rounded-2xl rotate-12 hidden lg:block" aria-hidden="true"></div>
+  <div class="v2-float-shape v2-float-3 bottom-[15%] left-[3%] w-12 h-12 bg-cta/8 rounded-full hidden lg:block" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-16 v2-reveal">
+      <span class="v2-section-label">Por qué elegirnos</span>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3 mb-4">
+        ¿Por qué elegir
+        <span class="v2-gradient-text-blue">MIM SISTEMAS</span>?
+      </h2>
+    </div>
+
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6 v2-stagger">
+      {reasons.map((r) => {
+        const c = colorMap[r.color];
+        return (
+          <div class={`v2-card-glow p-7 cursor-pointer group border ${c.border} transition-all`}>
+            <div class={`v2-icon-box w-14 h-14 ${c.iconBg} rounded-2xl flex items-center justify-center mb-5 transition-all duration-300`}>
+              <span class="material-symbols-outlined text-2xl text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" aria-hidden="true">{r.icon}</span>
+            </div>
+            <h3 class="font-heading font-semibold text-primary text-lg mb-2 group-hover:text-accent transition-colors">{r.title}</h3>
+            <p class="text-text-muted text-sm leading-relaxed">{r.desc}</p>
+          </div>
+        );
+      })}
+    </div>
+  </div>
+</section>

@@ -1,0 +1,110 @@
+---
+/**
+ * Footer.astro — Site footer with 4-column grid
+ * Design System: "The Digital Monolith"
+ *
+ * - bg-[#0e1d29] (on-background) — darkest navy, NOT pure black
+ * - text-inverse-on-surface for readable text on dark bg
+ * - 4 columns: Brand, Servicios, Empresa, Contacto
+ * - nav landmark with aria-label for accessibility
+ * - LocalBusiness JSON-LD included
+ */
+import { Image } from 'astro:assets';
+import logoWhite from '../assets/images/logo-mim-horizontal-white.png';
+
+const localBusinessSchema = {
+  "@context": "https://schema.org",
+  "@type": "ElectricalContractor",
+  "name": "MIM Sistemas",
+  "url": "https://mimsistemas.com",
+  "telephone": "+34912000002",
+  "email": "info@mimsistemas.com",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Porto Lagos 9-11",
+    "addressLocality": "Alcorcón",
+    "addressRegion": "Madrid",
+    "postalCode": "28924",
+    "addressCountry": "ES",
+  },
+  "openingHours": "Mo-Fr 08:00-18:00",
+  "priceRange": "$$",
+  "areaServed": {
+    "@type": "State",
+    "name": "Comunidad de Madrid",
+  },
+};
+---
+
+<footer id="contacto" class="bg-[#0e1d29] text-inverse-on-surface pt-20 pb-10">
+  <div class="max-w-7xl mx-auto px-6 grid grid-cols-1 md:grid-cols-4 gap-12 pb-20">
+    {/* Brand */}
+    <div>
+      <div class="mb-4">
+        <Image src={logoWhite} alt="MIM Sistemas" width={150} height={38} class="h-8 w-auto" />
+      </div>
+      <p class="text-sm leading-relaxed mb-6 opacity-80">
+        Especialistas en la gestión técnica integral de edificios y comunidades
+        en Madrid desde 2003. Calidad y compromiso en cada servicio.
+      </p>
+      <div class="flex gap-4">
+        <a
+          href="https://mimsistemas.com"
+          class="w-10 h-10 bg-white/10 rounded-lg flex items-center justify-center hover:bg-secondary transition-colors"
+          aria-label="Sitio web de MIM Sistemas"
+        >
+          <span class="material-symbols-outlined text-white text-xl" aria-hidden="true">language</span>
+        </a>
+      </div>
+    </div>
+
+    {/* Servicios */}
+    <nav aria-label="Enlaces de servicios">
+      <p class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Servicios</p>
+      <ul class="space-y-4 text-sm">
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="#servicios">Seguridad y CCTV</a></li>
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="#servicios">Energía Solar</a></li>
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="#servicios">Electricidad y Carga EV</a></li>
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="#servicios">Automatismos</a></li>
+      </ul>
+    </nav>
+
+    {/* Empresa */}
+    <nav aria-label="Enlaces de empresa">
+      <p class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Empresa</p>
+      <ul class="space-y-4 text-sm">
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="#nosotros">Sobre Nosotros</a></li>
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="#faq">Preguntas Frecuentes</a></li>
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="/mimsistemas/aviso-legal">Aviso Legal</a></li>
+        <li><a class="hover:text-white transition-colors opacity-80 hover:opacity-100" href="/mimsistemas/politica-privacidad">Política de Privacidad</a></li>
+      </ul>
+    </nav>
+
+    {/* Contacto Directo */}
+    <div>
+      <p class="font-bold text-white mb-6 uppercase text-xs tracking-widest">Contacto Directo</p>
+      <ul class="space-y-4 text-sm">
+        <li class="flex items-start gap-3">
+          <span class="material-symbols-outlined text-inverse-primary" aria-hidden="true">location_on</span>
+          <span>Calle Porto Lagos, 9-11 posterior.<br />28924 Alcorcón (Madrid)</span>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-inverse-primary" aria-hidden="true">call</span>
+          <a href="tel:912000002" class="hover:text-white transition-colors">912 000 002</a>
+        </li>
+        <li class="flex items-center gap-3">
+          <span class="material-symbols-outlined text-inverse-primary" aria-hidden="true">mail</span>
+          <a href="mailto:info@mimsistemas.com" class="hover:text-white transition-colors">info@mimsistemas.com</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  {/* Copyright */}
+  <div class="max-w-7xl mx-auto px-6 pt-10 text-center md:text-left text-xs opacity-60">
+    &copy; {new Date().getFullYear()} MIM SISTEMAS — Mimtel Soluciones Globales S.L. (CIF: B87897302). Todos los derechos reservados.
+  </div>
+
+  {/* LocalBusiness JSON-LD */}
+  <script type="application/ld+json" set:html={JSON.stringify(localBusinessSchema)} />
+</footer>

@@ -1,0 +1,93 @@
+---
+/**
+ * Testimonials.astro — Client testimonials with star ratings
+ * Design System: "The Digital Monolith"
+ *
+ * - bg-surface section, tonal stacking on cards (bg-surface-container-low)
+ * - NO 1px borders — background color shifts only
+ * - Ambient shadow via tonal layering
+ * - Labels: uppercase, tracking-widest
+ * - Includes AggregateRating JSON-LD for SEO
+ */
+
+const testimonials = [
+  {
+    quote:
+      "Como administrador, valoro la tranquilidad de tener un solo teléfono para todo. Siempre responden y son muy profesionales.",
+    name: "Fede Alonso",
+    role: "Administrador de Fincas",
+  },
+  {
+    quote:
+      "Instalamos las placas solares con ellos y el ahorro ha sido increíble desde el primer mes. Gran equipo de instaladores.",
+    name: "María Galán",
+    role: "Presidenta Comunidad",
+  },
+  {
+    quote:
+      "Llevamos 10 años trabajando con ellos en más de 20 comunidades. No fallan nunca, especialmente en urgencias.",
+    name: "Carlos Ruiz",
+    role: "Administrador de Fincas",
+  },
+];
+
+const reviewSchema = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  "name": "MIM Sistemas",
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": "5",
+    "bestRating": "5",
+    "worstRating": "1",
+    "ratingCount": "3",
+    "reviewCount": "3",
+  },
+  "review": testimonials.map((t) => ({
+    "@type": "Review",
+    "author": {
+      "@type": "Person",
+      "name": t.name,
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": "5",
+      "bestRating": "5",
+    },
+    "reviewBody": t.quote,
+  })),
+};
+---
+
+<section class="bg-surface py-24">
+  <div class="max-w-7xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-16 tracking-tight" data-animate>
+      Lo que dicen nuestros clientes
+    </h2>
+
+    <div class="grid md:grid-cols-3 gap-8" data-animate data-delay="1">
+      {testimonials.map((t) => (
+        <div class="bg-surface-container-low p-8 rounded-2xl ambient-shadow relative">
+          {/* 5 amber stars */}
+          <div class="flex text-amber-700 mb-4" role="img" aria-label="5 de 5 estrellas">
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+            <span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">star</span>
+          </div>
+
+          <blockquote>
+            <p class="text-on-surface italic mb-6 leading-relaxed">"{t.quote}"</p>
+          </blockquote>
+
+          <div class="font-bold text-primary">{t.name}</div>
+          <div class="text-xs text-on-surface-variant uppercase tracking-widest">{t.role}</div>
+        </div>
+      ))}
+    </div>
+  </div>
+
+  {/* Aggregate Rating JSON-LD */}
+  <script type="application/ld+json" set:html={JSON.stringify(reviewSchema)} />
+</section>

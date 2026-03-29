@@ -1,0 +1,23 @@
+---
+/**
+ * MobileCallBar.astro — Sticky mobile call bar (visible only on mobile)
+ * Design System: "The Digital Monolith"
+ *
+ * - Fixed bottom-0, full width, h-16
+ * - bg-primary (design token #002444), NOT bg-blue-900
+ * - md:hidden — only visible on mobile
+ * - Phone link with call icon + "Llamar Ahora" text
+ * - Accessible aria-label
+ */
+---
+
+<div class="fixed bottom-0 left-0 w-full h-16 bg-primary md:hidden z-50 flex items-center justify-center">
+  <a
+    href="tel:912000002"
+    class="flex flex-col items-center justify-center text-white py-3 w-full"
+    aria-label="Llamar ahora al 912 000 002"
+  >
+    <span class="material-symbols-outlined text-white" aria-hidden="true">call</span>
+    <span class="text-[10px] font-medium uppercase tracking-widest mt-1">Llamar Ahora</span>
+  </a>
+</div>

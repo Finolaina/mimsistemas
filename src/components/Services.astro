@@ -1,0 +1,109 @@
+---
+/**
+ * Services.astro
+ * "The Digital Monolith" — 12 service cards with tonal stacking
+ * bg-surface-bright shifts from the secondary TrustBar above
+ */
+
+const services = [
+  {
+    icon: "lock_open",
+    title: "Control de Accesos",
+    description: "Sistemas inteligentes de entrada y gestion de llaves digitales.",
+  },
+  {
+    icon: "videocam",
+    title: "CCTV",
+    description: "Camaras de seguridad 4K con grabacion y vision remota.",
+  },
+  {
+    icon: "dialpad",
+    title: "Porteros Automaticos",
+    description: "Instalacion y mantenimiento de video-porteros modernos.",
+  },
+  {
+    icon: "sensor_door",
+    title: "Automatismos",
+    description: "Puertas de garaje automaticas y mantenimiento preventivo.",
+  },
+  {
+    icon: "solar_power",
+    title: "Placas Solares",
+    description: "Ahorro energetico con autoconsumo para comunidades.",
+  },
+  {
+    icon: "ev_station",
+    title: "Puntos de Carga",
+    description: "Instalacion legalizada de cargadores de coche electrico.",
+  },
+  {
+    icon: "electrical_services",
+    title: "Electricidad",
+    description: "Boletines, iluminacion LED y reformas electricas integrales.",
+  },
+  {
+    icon: "settings_input_antenna",
+    title: "Antenizacion",
+    description: "Sintonizacion TDT, Satelite y fibra optica comunitaria.",
+  },
+  {
+    icon: "vpn_key",
+    title: "Cerrajeria",
+    description: "Amaestramiento de bombillos y aperturas urgentes.",
+  },
+  {
+    icon: "campaign",
+    title: "Megafonia",
+    description: "Sistemas de sonido para garajes y centros comerciales.",
+  },
+  {
+    icon: "foundation",
+    title: "Albanileria",
+    description: "Pequenas reparaciones y reformas de portales.",
+  },
+  {
+    icon: "format_paint",
+    title: "Pintura",
+    description: "Pintado de escaleras, garajes y zonas comunes.",
+  },
+];
+---
+
+<section id="servicios" class="py-24 bg-surface-bright">
+  <div class="max-w-7xl mx-auto px-6">
+    <!-- Header — left-aligned editorial layout -->
+    <div class="mb-16 max-w-3xl" data-animate>
+      <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-primary mb-6">
+        Todo lo que tu Comunidad Necesita, en un Solo Proveedor
+      </h2>
+      <p class="text-on-surface-variant text-xl leading-relaxed">
+        Evita gestionar decenas de proveedores. Centralizamos todos los
+        servicios tecnicos con personal propio y especializado.
+      </p>
+    </div>
+
+    <!-- Service grid — tonal stacking: surface-container-lowest on surface-bright -->
+    <ul
+      class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 list-none p-0 m-0"
+    >
+      {
+        services.map((service) => (
+          <li
+            class="bg-surface-container-lowest p-8 rounded-2xl card-lift hover:shadow-[0_8px_20px_rgba(14,29,41,0.06),0_16px_40px_rgba(14,29,41,0.06)] transition-all duration-300"
+          >
+            <span
+              class="material-symbols-outlined text-secondary text-4xl mb-4 block"
+              aria-hidden="true"
+            >
+              {service.icon}
+            </span>
+            <h3 class="text-lg font-bold text-primary mb-2">{service.title}</h3>
+            <p class="text-sm text-on-surface-variant leading-relaxed">
+              {service.description}
+            </p>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>

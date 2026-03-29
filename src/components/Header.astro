@@ -1,0 +1,159 @@
+---
+/**
+ * Header.astro — Fixed glassmorphism navigation
+ * Design System: "The Digital Monolith"
+ *
+ * - glass-nav utility from global.css (bg-white/70 backdrop-blur-xl)
+ * - NO 1px borders for sectioning
+ * - Gradient CTA button: primary → primary-container
+ * - Labels: uppercase, tracking-widest, font-medium
+ */
+import { Image } from 'astro:assets';
+import logoHorizontal from '../assets/images/logo-mim-horizontal.png';
+---
+
+<header class="fixed top-0 w-full z-50 glass-nav">
+  <nav
+    class="flex justify-between items-center max-w-7xl mx-auto px-6 h-20"
+    aria-label="Navegación principal"
+  >
+    <!-- Logo -->
+    <a href="#inicio" class="flex items-center" aria-label="MIM Sistemas - Inicio">
+      <Image src={logoHorizontal} alt="MIM Sistemas" width={160} height={40} class="h-9 w-auto" loading="eager" />
+    </a>
+
+    <!-- Desktop Navigation -->
+    <div class="hidden md:flex items-center gap-8 text-sm font-medium tracking-tight">
+      <a
+        href="#inicio"
+        class="text-secondary font-semibold border-b-2 border-secondary pb-1 transition-colors"
+        aria-current="page"
+      >Inicio</a>
+      <a
+        href="#servicios"
+        class="text-on-surface-variant hover:text-primary transition-colors"
+      >Servicios</a>
+      <a
+        href="#nosotros"
+        class="text-on-surface-variant hover:text-primary transition-colors"
+      >Nosotros</a>
+      <a
+        href="#contacto"
+        class="text-on-surface-variant hover:text-primary transition-colors"
+      >Contacto</a>
+    </div>
+
+    <!-- Right side: Phone + CTA + Mobile toggle -->
+    <div class="flex items-center gap-4">
+      <a
+        href="tel:912000002"
+        class="hidden lg:block text-primary font-bold hover:text-secondary transition-colors"
+      >912 000 002</a>
+
+      <a
+        href="#contacto"
+        class="hidden sm:inline-flex bg-gradient-to-r from-primary to-primary-container text-white px-6 py-2.5 rounded-xl font-medium text-sm hover:opacity-90 active:scale-95 transition-all"
+      >Pedir Presupuesto</a>
+
+      <!-- Mobile hamburger -->
+      <button
+        id="mobile-menu-toggle"
+        class="md:hidden flex flex-col justify-center items-center w-10 h-10 rounded-xl hover:bg-surface-container transition-colors"
+        aria-expanded="false"
+        aria-controls="mobile-menu"
+        aria-label="Abrir menú de navegación"
+      >
+        <span class="block w-5 h-0.5 bg-on-surface mb-1 transition-transform" id="hamburger-top"></span>
+        <span class="block w-5 h-0.5 bg-on-surface mb-1 transition-opacity" id="hamburger-mid"></span>
+        <span class="block w-5 h-0.5 bg-on-surface transition-transform" id="hamburger-bot"></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div
+    id="mobile-menu"
+    class="hidden md:hidden bg-white/95 backdrop-blur-xl"
+    role="menu"
+  >
+    <div class="max-w-7xl mx-auto px-6 py-6 flex flex-col gap-4">
+      <a
+        href="#inicio"
+        class="text-secondary font-semibold text-base py-2"
+        role="menuitem"
+      >Inicio</a>
+      <a
+        href="#servicios"
+        class="text-on-surface-variant font-medium text-base py-2 hover:text-primary transition-colors"
+        role="menuitem"
+      >Servicios</a>
+      <a
+        href="#nosotros"
+        class="text-on-surface-variant font-medium text-base py-2 hover:text-primary transition-colors"
+        role="menuitem"
+      >Nosotros</a>
+      <a
+        href="#contacto"
+        class="text-on-surface-variant font-medium text-base py-2 hover:text-primary transition-colors"
+        role="menuitem"
+      >Contacto</a>
+
+      <div class="pt-2 flex flex-col gap-3">
+        <a
+          href="tel:912000002"
+          class="flex items-center justify-center gap-2 text-primary font-bold text-lg"
+        >
+          <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
+          912 000 002
+        </a>
+        <a
+          href="#contacto"
+          class="bg-gradient-to-r from-primary to-primary-container text-white text-center px-6 py-3 rounded-xl font-medium text-sm"
+        >Pedir Presupuesto</a>
+      </div>
+    </div>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+  const hamburgerTop = document.getElementById('hamburger-top');
+  const hamburgerMid = document.getElementById('hamburger-mid');
+  const hamburgerBot = document.getElementById('hamburger-bot');
+
+  if (toggle && menu) {
+    toggle.addEventListener('click', () => {
+      const isOpen = toggle.getAttribute('aria-expanded') === 'true';
+      toggle.setAttribute('aria-expanded', String(!isOpen));
+      toggle.setAttribute(
+        'aria-label',
+        isOpen ? 'Abrir menú de navegación' : 'Cerrar menú de navegación'
+      );
+      menu.classList.toggle('hidden');
+
+      // Animate hamburger → X
+      if (!isOpen) {
+        hamburgerTop?.classList.add('translate-y-[6px]', 'rotate-45');
+        hamburgerMid?.classList.add('opacity-0');
+        hamburgerBot?.classList.add('-translate-y-[6px]', '-rotate-45');
+      } else {
+        hamburgerTop?.classList.remove('translate-y-[6px]', 'rotate-45');
+        hamburgerMid?.classList.remove('opacity-0');
+        hamburgerBot?.classList.remove('-translate-y-[6px]', '-rotate-45');
+      }
+    });
+
+    // Close mobile menu on anchor click
+    menu.querySelectorAll('a').forEach((link) => {
+      link.addEventListener('click', () => {
+        menu.classList.add('hidden');
+        toggle.setAttribute('aria-expanded', 'false');
+        toggle.setAttribute('aria-label', 'Abrir menú de navegación');
+        hamburgerTop?.classList.remove('translate-y-[6px]', 'rotate-45');
+        hamburgerMid?.classList.remove('opacity-0');
+        hamburgerBot?.classList.remove('-translate-y-[6px]', '-rotate-45');
+      });
+    });
+  }
+</script>

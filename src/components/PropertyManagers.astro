@@ -1,0 +1,77 @@
+---
+/**
+ * PropertyManagers.astro — Section targeting property managers
+ * Design System: "The Digital Monolith"
+ *
+ * - bg-primary-container dark section
+ * - 2-col grid: content left, image right
+ * - Feature icons in bg-secondary pill
+ * - CTA: bg-tertiary-fixed
+ * - NO 1px borders
+ */
+
+import { Image } from "astro:assets";
+import officeImg from "../assets/images/office-modern.png";
+---
+
+<section class="bg-primary-container text-white py-24">
+  <div class="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+    {/* Left — Content */}
+    <div data-animate="left">
+      <h2 class="text-4xl font-bold mb-6 tracking-tight">
+        ¿Eres Administrador de Fincas?
+      </h2>
+      <p class="text-xl text-blue-100 mb-8 leading-relaxed">
+        Sabemos que tu tiempo es oro. Hemos diseñado un servicio exclusivo para
+        despachos de administración para facilitaros la vida.
+      </p>
+
+      <div class="space-y-6">
+        {/* Feature 1 */}
+        <div class="flex gap-4">
+          <div class="bg-secondary p-3 rounded-lg h-fit flex items-center justify-center" aria-hidden="true">
+            <span class="material-symbols-outlined text-white">rocket_launch</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold">Gestión de Avisos 24/7</h3>
+            <p class="text-blue-200 text-sm leading-relaxed">
+              Canal directo por WhatsApp y email para urgencias en tus comunidades.
+            </p>
+          </div>
+        </div>
+
+        {/* Feature 2 */}
+        <div class="flex gap-4">
+          <div class="bg-secondary p-3 rounded-lg h-fit flex items-center justify-center" aria-hidden="true">
+            <span class="material-symbols-outlined text-white">history_edu</span>
+          </div>
+          <div>
+            <h3 class="text-lg font-bold">Informes Técnicos Detallados</h3>
+            <p class="text-blue-200 text-sm leading-relaxed">
+              Reportes fotográficos de cada intervención para tus juntas.
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <a
+        href="#contacto"
+        class="mt-12 inline-block bg-tertiary-fixed text-on-tertiary-fixed px-10 py-4 rounded-xl font-bold text-lg hover:brightness-105 transition-all"
+      >
+        Solicitar Dossier Especial
+      </a>
+    </div>
+
+    {/* Right — Image */}
+    <div class="relative rounded-3xl overflow-hidden shadow-2xl" data-animate="right">
+      <Image
+        src={officeImg}
+        alt="Oficina moderna de administración de fincas con iluminación profesional"
+        class="w-full h-full object-cover"
+        widths={[400, 800]}
+        sizes="(max-width: 1024px) 100vw, 50vw"
+        loading="lazy"
+      />
+    </div>
+  </div>
+</section>

@@ -1,0 +1,61 @@
+---
+const faqs = [
+  {
+    q: "¿Qué servicios ofrece MIM Sistemas?",
+    a: "MIM Sistemas ofrece servicios integrales para comunidades de propietarios y empresas: control de accesos, videovigilancia CCTV, porteros automáticos, automatismos y puertas de garaje, instalación de placas solares, puntos de carga para vehículos eléctricos, electricidad e iluminación LED, antenización TDT y satélite, cerrajería, megafonía, albañilería y pintura de zonas comunes."
+  },
+  {
+    q: "¿En qué zonas de Madrid trabajáis?",
+    a: "Trabajamos en toda la Comunidad de Madrid. Nuestra sede se encuentra en Alcorcón (Calle Porto Lagos 9-11, 28924) y damos cobertura a todos los municipios de la región, incluyendo Madrid capital, zona sur, zona oeste y corredor del Henares."
+  },
+  {
+    q: "¿Ofrecéis servicio de urgencias 24 horas?",
+    a: "Sí, ofrecemos un servicio de atención de urgencias 24 horas para comunidades con contrato de mantenimiento. Nuestros técnicos propios están disponibles para resolver incidencias críticas en el menor tiempo posible, garantizando una respuesta inmediata."
+  },
+  {
+    q: "¿Cuánto cuesta instalar placas solares en una comunidad?",
+    a: "Cada instalación es única, por lo que realizamos un estudio de viabilidad completamente gratuito y sin compromiso. En función de la superficie disponible, orientación y consumo de la comunidad, diseñamos la solución óptima. Nuestros clientes consiguen un ahorro de hasta el 70% en la factura eléctrica comunitaria. Además, gestionamos íntegramente las subvenciones y ayudas disponibles."
+  },
+  {
+    q: "¿Trabajáis con administradores de fincas?",
+    a: "Sí, contamos con un servicio exclusivo diseñado para despachos de administración de fincas. Incluye gestión de avisos 24/7, canal directo por WhatsApp y email, informes técnicos detallados con reportes fotográficos para juntas, y un interlocutor único para todas las necesidades técnicas de sus comunidades."
+  }
+];
+---
+<!-- FAQ Section: Clean accordion with dot pattern bg -->
+<section class="relative py-20 md:py-28 bg-surface overflow-hidden">
+  <div class="absolute inset-0 v2-dot-pattern" aria-hidden="true"></div>
+
+  <!-- Decorative blob -->
+  <div class="v2-blob w-[300px] h-[300px] bg-accent/5 bottom-[0%] right-[-5%]" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-3xl mx-auto px-4 sm:px-6">
+    <div class="text-center mb-14 v2-reveal">
+      <span class="v2-section-label">FAQ</span>
+      <h2 class="font-heading text-3xl md:text-4xl lg:text-5xl font-bold text-primary mt-3">
+        Preguntas
+        <span class="v2-gradient-text-blue">Frecuentes</span>
+      </h2>
+    </div>
+
+    <div class="v2-faq flex flex-col gap-3 v2-stagger">
+      {faqs.map((faq) => (
+        <details>
+          <summary>{faq.q}</summary>
+          <div class="faq-answer">{faq.a}</div>
+        </details>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- JSON-LD: FAQPage -->
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map(f => ({
+    "@type": "Question",
+    "name": f.q,
+    "acceptedAnswer": { "@type": "Answer", "text": f.a }
+  }))
+})} />

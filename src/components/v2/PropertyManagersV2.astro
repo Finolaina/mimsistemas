@@ -1,0 +1,92 @@
+---
+import { Image } from 'astro:assets';
+import officeImg from '../../assets/images/oficina-administrador-fincas.png';
+---
+<!-- Property Managers: Dark section with mesh gradient, floating shapes, wave dividers -->
+<div class="relative">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full -mb-1 relative z-10" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 60V30C240 10 480 50 720 40C960 30 1200 10 1440 30V60H0Z" fill="#0F172A"/>
+  </svg>
+</div>
+
+<section class="v2-dark relative py-20 md:py-28 overflow-hidden">
+  <!-- Floating shapes -->
+  <div class="v2-float-shape v2-float-1 top-[10%] right-[8%] w-24 h-24 border border-white/5 rounded-3xl rotate-12 hidden lg:block" aria-hidden="true"></div>
+  <div class="v2-float-shape v2-float-3 bottom-[15%] left-[5%] w-16 h-16 border border-cta/10 rounded-full hidden lg:block" aria-hidden="true"></div>
+
+  <!-- Dot pattern -->
+  <div class="absolute inset-0 v2-dot-pattern-light opacity-15" aria-hidden="true"></div>
+
+  <!-- Gradient orbs -->
+  <div class="v2-blob w-[400px] h-[400px] bg-accent/10 -top-[15%] right-[10%]" aria-hidden="true"></div>
+  <div class="v2-blob w-[300px] h-[300px] bg-cta/8 bottom-[-10%] -left-[5%]" style="animation-delay: -5s;" aria-hidden="true"></div>
+
+  <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6">
+    <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+      <!-- Content -->
+      <div class="v2-reveal-left">
+        <span class="text-cta font-heading text-xs font-semibold tracking-[0.2em] uppercase flex items-center gap-2">
+          <span class="w-6 h-0.5 bg-gradient-to-r from-cta to-cta/30 rounded" aria-hidden="true"></span>
+          Servicio Exclusivo
+        </span>
+        <h2 class="font-heading text-3xl md:text-4xl lg:text-[2.75rem] font-bold text-white mt-4 mb-6 leading-tight">
+          ¿Eres Administrador de
+          <span class="v2-gradient-text">Fincas</span>?
+        </h2>
+        <p class="text-lg text-white/65 leading-relaxed mb-8">
+          Sabemos que tu tiempo es oro. Hemos diseñado un servicio exclusivo para despachos de administración para facilitaros la vida.
+        </p>
+
+        <div class="flex flex-col gap-6 mb-10">
+          <div class="flex gap-4 group/feature cursor-default">
+            <div class="w-14 h-14 bg-white/8 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0 border border-white/10 group-hover/feature:border-cta/30 group-hover/feature:bg-white/12 transition-all">
+              <span class="material-symbols-outlined text-cta text-2xl group-hover/feature:scale-110 transition-transform" aria-hidden="true">support_agent</span>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-white text-base mb-1 group-hover/feature:text-cta transition-colors">Gestión de Avisos 24/7</h3>
+              <p class="text-white/55 text-sm leading-relaxed">Canal directo por WhatsApp y email para urgencias en tus comunidades.</p>
+            </div>
+          </div>
+          <div class="flex gap-4 group/feature cursor-default">
+            <div class="w-14 h-14 bg-white/8 backdrop-blur-sm rounded-2xl flex items-center justify-center flex-shrink-0 border border-white/10 group-hover/feature:border-cta/30 group-hover/feature:bg-white/12 transition-all">
+              <span class="material-symbols-outlined text-cta text-2xl group-hover/feature:scale-110 transition-transform" aria-hidden="true">description</span>
+            </div>
+            <div>
+              <h3 class="font-heading font-semibold text-white text-base mb-1 group-hover/feature:text-cta transition-colors">Informes Técnicos Detallados</h3>
+              <p class="text-white/55 text-sm leading-relaxed">Reportes fotográficos de cada intervención para tus juntas.</p>
+            </div>
+          </div>
+        </div>
+
+        <a href="#contacto" class="v2-btn-cta text-base">
+          <span class="material-symbols-outlined text-xl" aria-hidden="true">folder_open</span>
+          Solicitar Dossier Especial
+        </a>
+      </div>
+
+      <!-- Image with decorative frame -->
+      <div class="v2-reveal-right relative">
+        <div class="rounded-2xl overflow-hidden shadow-2xl relative group">
+          <Image
+            src={officeImg}
+            alt="Administradora de fincas reunida con técnico de MIM Sistemas revisando documentación de mantenimiento"
+            class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105"
+            widths={[400, 640, 800]}
+            sizes="(max-width: 1023px) 100vw, 50vw"
+            loading="lazy"
+          />
+          <div class="absolute inset-0 bg-gradient-to-t from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+        </div>
+        <!-- Decorative corner brackets -->
+        <div class="absolute -top-3 -left-3 w-12 h-12 border-t-2 border-l-2 border-cta/40 rounded-tl-xl hidden lg:block" aria-hidden="true"></div>
+        <div class="absolute -bottom-3 -right-3 w-12 h-12 border-b-2 border-r-2 border-accent/40 rounded-br-xl hidden lg:block" aria-hidden="true"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="relative">
+  <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full -mt-1 relative z-10" preserveAspectRatio="none" aria-hidden="true">
+    <path d="M0 0V30C240 50 480 10 720 20C960 30 1200 50 1440 30V0H0Z" fill="#0F172A"/>
+  </svg>
+</div>

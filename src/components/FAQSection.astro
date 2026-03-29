@@ -1,0 +1,83 @@
+---
+/**
+ * FAQSection.astro — Frequently Asked Questions for GEO/SEO optimization
+ * Design System: "The Digital Monolith"
+ *
+ * - bg-surface-container-low section
+ * - Accessible <details> + <summary> pattern (no JS needed)
+ * - Summary styled with cursor-pointer, font-bold, text-primary
+ * - FAQPage JSON-LD schema — CRITICAL for GEO/SEO
+ * - NO 1px borders — tonal stacking only
+ */
+
+const faqs = [
+  {
+    question: "¿Qué servicios ofrece MIM Sistemas?",
+    answer:
+      "MIM Sistemas ofrece servicios integrales para comunidades de propietarios y empresas: control de accesos, videovigilancia CCTV, porteros automáticos, automatismos y puertas de garaje, instalación de placas solares, puntos de carga para vehículos eléctricos, electricidad e iluminación LED, antenización TDT y satélite, cerrajería, megafonía, albañilería y pintura de zonas comunes.",
+  },
+  {
+    question: "¿En qué zonas de Madrid trabajáis?",
+    answer:
+      "Trabajamos en toda la Comunidad de Madrid. Nuestra sede se encuentra en Alcorcón (Calle Porto Lagos 9-11, 28924) y damos cobertura a todos los municipios de la región, incluyendo Madrid capital, zona sur, zona oeste y corredor del Henares.",
+  },
+  {
+    question: "¿Ofrecéis servicio de urgencias 24 horas?",
+    answer:
+      "Sí, ofrecemos un servicio de atención de urgencias 24 horas para comunidades con contrato de mantenimiento. Nuestros técnicos propios están disponibles para resolver incidencias críticas en el menor tiempo posible, garantizando una respuesta inmediata.",
+  },
+  {
+    question: "¿Cuánto cuesta instalar placas solares en una comunidad?",
+    answer:
+      "Cada instalación es única, por lo que realizamos un estudio de viabilidad completamente gratuito y sin compromiso. En función de la superficie disponible, orientación y consumo de la comunidad, diseñamos la solución óptima. Nuestros clientes consiguen un ahorro de hasta el 70% en la factura eléctrica comunitaria. Además, gestionamos íntegramente las subvenciones y ayudas disponibles.",
+  },
+  {
+    question: "¿Trabajáis con administradores de fincas?",
+    answer:
+      "Sí, contamos con un servicio exclusivo diseñado para despachos de administración de fincas. Incluye gestión de avisos 24/7, canal directo por WhatsApp y email, informes técnicos detallados con reportes fotográficos para juntas, y un interlocutor único para todas las necesidades técnicas de sus comunidades.",
+  },
+];
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": faqs.map((faq) => ({
+    "@type": "Question",
+    "name": faq.question,
+    "acceptedAnswer": {
+      "@type": "Answer",
+      "text": faq.answer,
+    },
+  })),
+};
+---
+
+<section class="bg-surface-container-low py-24">
+  <div class="max-w-3xl mx-auto px-6">
+    <h2 class="text-3xl md:text-4xl font-bold text-center text-primary mb-16 tracking-tight" data-animate>
+      Preguntas Frecuentes
+    </h2>
+
+    <div class="space-y-4" data-animate data-delay="1">
+      {faqs.map((faq) => (
+        <details class="group bg-surface rounded-2xl ambient-shadow">
+          <summary class="cursor-pointer font-bold text-primary p-6 text-lg leading-snug flex items-center justify-between gap-4 list-none [&::-webkit-details-marker]:hidden">
+            <span>{faq.question}</span>
+            <span
+              class="material-symbols-outlined text-secondary shrink-0 transition-transform group-open:rotate-180"
+              aria-hidden="true"
+            >expand_more</span>
+          </summary>
+          <div class="px-6 pb-6">
+            <p class="text-on-surface-variant leading-relaxed">
+              {faq.answer}
+            </p>
+          </div>
+        </details>
+      ))}
+    </div>
+  </div>
+
+  {/* FAQPage JSON-LD — Critical for GEO/SEO */}
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+</section>
