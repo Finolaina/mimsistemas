@@ -20,6 +20,9 @@ pnpm-debug.log*
 # MCP config (may contain API keys)
 .mcp.json
 
+# Claude Code internals
+.claude/
+
 # macOS-specific files
 .DS_Store
 
