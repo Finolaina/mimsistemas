@@ -412,7 +412,7 @@ const faqSchema = {
 
         <div class="v2-bento v2-stagger">
           {solutions.map((s, i) => (
-            <div class={`v2-card-glow p-6 flex flex-col cursor-pointer group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
+            <div class={`v2-card-glow p-6 flex flex-col group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
               <div class={`v2-icon-box rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${i < 2 ? 'w-16 h-16 bg-accent/10 group-hover:bg-accent/20' : 'w-12 h-12 bg-surface-alt group-hover:bg-accent/10'}`}>
                 <span class={`material-symbols-outlined ${i < 2 ? 'text-3xl' : 'text-2xl'} text-accent transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">{s.icon}</span>
               </div>
@@ -486,7 +486,7 @@ const faqSchema = {
         "Impermeabilización de cubiertas y terrazas",
       ]}
       ctaText="Solicitar Presupuesto"
-      ctaHref="#contacto-servicio"
+      ctaHref="#presupuesto"
     />
 
 

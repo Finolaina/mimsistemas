@@ -37,7 +37,7 @@ const colorMap: Record<string, { bg: string; iconBg: string; border: string }> =
       {reasons.map((r) => {
         const c = colorMap[r.color];
         return (
-          <div class={`v2-card-glow p-7 cursor-pointer group border ${c.border} transition-all`}>
+          <div class={`v2-card-glow p-7 group border ${c.border} transition-all`}>
             <div class={`v2-icon-box w-14 h-14 ${c.iconBg} rounded-2xl flex items-center justify-center mb-5 transition-all duration-300`}>
               <span class="material-symbols-outlined text-2xl text-accent transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3" aria-hidden="true">{r.icon}</span>
             </div>

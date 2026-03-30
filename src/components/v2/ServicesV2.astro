@@ -32,19 +32,17 @@ const services = [
 
     <div class="v2-bento v2-stagger">
       {services.map((s, i) => (
-        <div class={`v2-card-glow p-6 flex flex-col cursor-pointer group ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
+        <a href={s.href} class={`v2-card-glow p-6 flex flex-col group no-underline ${i < 2 ? 'v2-bento-featured justify-center' : ''}`}>
           <div class={`v2-icon-box w-12 h-12 rounded-xl flex items-center justify-center mb-4 transition-all duration-300 ${i < 2 ? 'bg-accent/10 group-hover:bg-accent/20 w-16 h-16' : 'bg-surface-alt group-hover:bg-accent/10'}`}>
             <span class={`material-symbols-outlined ${i < 2 ? 'text-3xl' : 'text-2xl'} text-accent transition-transform duration-300 group-hover:scale-110`} aria-hidden="true">{s.icon}</span>
           </div>
           <h3 class={`font-heading font-semibold text-primary mb-2 transition-colors group-hover:text-accent ${i < 2 ? 'text-xl' : 'text-base'}`}>{s.title}</h3>
           <p class={`text-text-muted leading-relaxed ${i < 2 ? 'text-base' : 'text-sm'}`}>{s.desc}</p>
-          {s.href && (
-            <a href={s.href} class="mt-4 flex items-center gap-1 text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-              <span>Saber más</span>
-              <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
-            </a>
-          )}
-        </div>
+          <span class="mt-auto pt-4 flex items-center gap-1 text-accent text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <span>Saber más</span>
+            <span class="material-symbols-outlined text-sm transition-transform group-hover:translate-x-1" aria-hidden="true">arrow_forward</span>
+          </span>
+        </a>
       ))}
     </div>
   </div>
