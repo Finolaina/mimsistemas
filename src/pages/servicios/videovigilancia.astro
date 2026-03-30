@@ -107,9 +107,9 @@ const faqs = [
 ];
 
 const relatedServices = [
-  { icon: "lock_open", title: "Control de Accesos", slug: "/mimsistemas/servicios/control-de-accesos", desc: "Complementa la videovigilancia con control de quién entra y sale." },
-  { icon: "dialpad", title: "Porteros Automáticos", slug: "/mimsistemas/servicios/porteros-automaticos", desc: "Videoporteros modernos integrados con tu sistema de seguridad." },
-  { icon: "bolt", title: "Electricidad", slug: "/mimsistemas/servicios/electricidad", desc: "Instalación eléctrica profesional para alimentar tu sistema CCTV." },
+  { icon: "lock_open", title: "Control de Accesos", slug: "/servicios/control-de-accesos", desc: "Complementa la videovigilancia con control de quién entra y sale." },
+  { icon: "dialpad", title: "Porteros Automáticos", slug: "/servicios/porteros-automaticos", desc: "Videoporteros modernos integrados con tu sistema de seguridad." },
+  { icon: "bolt", title: "Electricidad", slug: "/servicios/electricidad", desc: "Instalación eléctrica profesional para alimentar tu sistema CCTV." },
 ];
 
 /* ── Color mapping for benefits ── */
@@ -237,9 +237,9 @@ const faqSchema = {
         <!-- Breadcrumbs -->
         <nav class="mb-8 v2-hero-entrance" aria-label="Migas de pan">
           <ol class="flex items-center gap-2 text-sm text-white/50">
-            <li><a href="/mimsistemas/" class="hover:text-white/80 transition-colors">Inicio</a></li>
+            <li><a href="/" class="hover:text-white/80 transition-colors">Inicio</a></li>
             <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
-            <li><a href="/mimsistemas/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
+            <li><a href="/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
             <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
             <li class="text-white/80 font-medium">Videovigilancia y CCTV</li>
           </ol>
@@ -329,7 +329,7 @@ const faqSchema = {
                   <input type="checkbox" name="rgpd" required
                     class="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/30 cursor-pointer" />
                   <span class="text-xs text-text-muted leading-relaxed">
-                    Acepto la <a href="/mimsistemas/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
+                    Acepto la <a href="/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
                   </span>
                 </label>
                 <button type="submit" class="v2-btn-cta w-full justify-center text-base mt-1">

@@ -107,9 +107,9 @@ const faqs = [
 ];
 
 const relatedServices = [
-  { icon: "solar_power", title: "Energía Solar", slug: "/mimsistemas/servicios/energia-solar", desc: "Complementa tu instalación eléctrica con paneles solares para autoconsumo comunitario." },
-  { icon: "ev_station", title: "Puntos de Carga", slug: "/mimsistemas/servicios/puntos-de-carga", desc: "Instalación de puntos de recarga para vehículos eléctricos en garajes comunitarios." },
-  { icon: "settings_input_antenna", title: "Antenización", slug: "/mimsistemas/servicios/antenizacion", desc: "Instalación y mantenimiento de antenas TDT y telecomunicaciones para tu edificio." },
+  { icon: "solar_power", title: "Energía Solar", slug: "/servicios/energia-solar", desc: "Complementa tu instalación eléctrica con paneles solares para autoconsumo comunitario." },
+  { icon: "ev_station", title: "Puntos de Carga", slug: "/servicios/puntos-de-carga", desc: "Instalación de puntos de recarga para vehículos eléctricos en garajes comunitarios." },
+  { icon: "settings_input_antenna", title: "Antenización", slug: "/servicios/antenizacion", desc: "Instalación y mantenimiento de antenas TDT y telecomunicaciones para tu edificio." },
 ];
 
 /* ── Color mapping for benefits ── */
@@ -237,9 +237,9 @@ const faqSchema = {
         <!-- Breadcrumbs -->
         <nav class="mb-8 v2-hero-entrance" aria-label="Migas de pan">
           <ol class="flex items-center gap-2 text-sm text-white/50">
-            <li><a href="/mimsistemas/" class="hover:text-white/80 transition-colors">Inicio</a></li>
+            <li><a href="/" class="hover:text-white/80 transition-colors">Inicio</a></li>
             <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
-            <li><a href="/mimsistemas/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
+            <li><a href="/#servicios" class="hover:text-white/80 transition-colors">Servicios</a></li>
             <li aria-hidden="true"><span class="material-symbols-outlined text-xs">chevron_right</span></li>
             <li class="text-white/80 font-medium">Electricidad</li>
           </ol>
@@ -329,7 +329,7 @@ const faqSchema = {
                   <input type="checkbox" name="rgpd" required
                     class="mt-0.5 w-4 h-4 rounded border-border text-accent focus:ring-accent/30 cursor-pointer" />
                   <span class="text-xs text-text-muted leading-relaxed">
-                    Acepto la <a href="/mimsistemas/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
+                    Acepto la <a href="/politica-privacidad" target="_blank" class="text-accent underline hover:text-accent-light">Política de Privacidad</a> y consiento el tratamiento de mis datos para gestionar mi solicitud.
                   </span>
                 </label>
                 <button type="submit" class="v2-btn-cta w-full justify-center text-base mt-1">
