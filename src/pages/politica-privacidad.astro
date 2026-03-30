@@ -1,89 +1,117 @@
 ---
-import Layout from '../layouts/Layout.astro';
-import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
+import LayoutV2 from '../layouts/LayoutV2.astro';
+import HeaderV2 from '../components/v2/HeaderV2.astro';
+import FooterV2 from '../components/v2/FooterV2.astro';
+import FloatingV2 from '../components/v2/FloatingV2.astro';
+import '../styles/v2.css';
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    { "@type": "ListItem", "position": 1, "name": "Inicio", "item": "https://mimsistemas.com" },
+    { "@type": "ListItem", "position": 2, "name": "Política de Privacidad", "item": "https://mimsistemas.com/politica-privacidad" },
+  ]
+};
 ---
 
-<Layout
+<LayoutV2
   title="Política de Privacidad | MIM Sistemas"
   description="Política de privacidad y protección de datos personales de mimsistemas.com. Información sobre el tratamiento de tus datos según el RGPD."
+  robots="index, follow"
   canonicalUrl="https://mimsistemas.com/politica-privacidad"
 >
-  <Header />
-  <main class="bg-surface pt-28 pb-20">
-    <article class="max-w-3xl mx-auto px-6 prose prose-slate">
-      <h1 class="text-3xl font-bold text-primary mb-8">Política de Privacidad</h1>
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">1. Responsable del tratamiento</h2>
-        <ul class="text-on-surface-variant space-y-2">
-          <li><strong class="text-on-surface">Identidad:</strong> Mimtel Soluciones Globales S.L.</li>
-          <li><strong class="text-on-surface">CIF:</strong> B87897302</li>
-          <li><strong class="text-on-surface">Dirección:</strong> Calle Porto Lagos, 9-11 posterior, 28924 Alcorcón (Madrid)</li>
-          <li><strong class="text-on-surface">Email:</strong> info@mimsistemas.com</li>
-          <li><strong class="text-on-surface">Teléfono:</strong> 912 000 002</li>
-        </ul>
-      </section>
+  <HeaderV2 />
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">2. Finalidad del tratamiento</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          Los datos personales que nos facilites a través del formulario de contacto serán tratados con las siguientes finalidades:
-        </p>
-        <ul class="text-on-surface-variant space-y-2 mt-3">
-          <li>Gestionar tu solicitud de presupuesto o consulta técnica.</li>
-          <li>Contactarte para proporcionarte la información solicitada.</li>
-          <li>Enviarte comunicaciones comerciales relacionadas con nuestros servicios, solo si nos has dado tu consentimiento expreso.</li>
-        </ul>
-      </section>
+  <main id="main-content" class="bg-surface pt-28 pb-20">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6">
+      <!-- Breadcrumb -->
+      <nav class="mb-8 v2-reveal" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2 text-sm text-text-muted">
+          <li><a href="/" class="hover:text-accent transition-colors">Inicio</a></li>
+          <li><span class="material-symbols-outlined text-xs" aria-hidden="true">chevron_right</span></li>
+          <li class="text-primary font-medium">Política de Privacidad</li>
+        </ol>
+      </nav>
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">3. Base legal</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          El tratamiento de tus datos se basa en el consentimiento que nos prestas al rellenar y enviar el formulario de contacto, así como en el interés legítimo de atender tu solicitud (artículo 6.1.a y 6.1.f del RGPD).
-        </p>
-      </section>
+      <article class="v2-reveal">
+        <h1 class="font-heading text-3xl md:text-4xl font-bold text-primary mb-10">Política de Privacidad</h1>
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">4. Destinatarios</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          Tus datos no serán cedidos a terceros, salvo obligación legal. No se realizan transferencias internacionales de datos.
-        </p>
-      </section>
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">1. Responsable del tratamiento</h2>
+          <ul class="text-text-muted space-y-2">
+            <li><strong class="text-primary">Identidad:</strong> Mimtel Soluciones Globales S.L.</li>
+            <li><strong class="text-primary">CIF:</strong> B87897302</li>
+            <li><strong class="text-primary">Dirección:</strong> Calle Porto Lagos, 9-11 posterior, 28924 Alcorcón (Madrid)</li>
+            <li><strong class="text-primary">Email:</strong> info@mimsistemas.com</li>
+            <li><strong class="text-primary">Teléfono:</strong> 912 000 002</li>
+          </ul>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">5. Conservación de datos</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          Los datos personales proporcionados se conservarán mientras exista un interés mutuo para mantener la relación y, en todo caso, durante los plazos legalmente establecidos. Una vez finalizada la relación, los datos serán suprimidos conforme a la normativa de protección de datos.
-        </p>
-      </section>
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">2. Finalidad del tratamiento</h2>
+          <p class="text-text-muted leading-relaxed">
+            Los datos personales que nos facilites a través del formulario de contacto serán tratados con las siguientes finalidades:
+          </p>
+          <ul class="text-text-muted space-y-2 mt-3 list-disc list-inside">
+            <li>Gestionar tu solicitud de presupuesto o consulta técnica.</li>
+            <li>Contactarte para proporcionarte la información solicitada.</li>
+            <li>Enviarte comunicaciones comerciales relacionadas con nuestros servicios, solo si nos has dado tu consentimiento expreso.</li>
+          </ul>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">6. Derechos del interesado</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de datos enviando un correo electrónico a <a href="mailto:info@mimsistemas.com" class="text-secondary hover:underline">info@mimsistemas.com</a>, indicando el derecho que deseas ejercer y adjuntando copia de tu DNI.
-        </p>
-        <p class="text-on-surface-variant leading-relaxed mt-3">
-          Asimismo, tienes derecho a presentar una reclamación ante la <strong class="text-on-surface">Agencia Española de Protección de Datos</strong> (www.aepd.es) si consideras que el tratamiento de tus datos no se ajusta a la normativa vigente.
-        </p>
-      </section>
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">3. Base legal</h2>
+          <p class="text-text-muted leading-relaxed">
+            El tratamiento de tus datos se basa en el consentimiento que nos prestas al rellenar y enviar el formulario de contacto, así como en el interés legítimo de atender tu solicitud (artículo 6.1.a y 6.1.f del RGPD).
+          </p>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">7. Medidas de seguridad</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          Hemos adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de tus datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, habida cuenta del estado de la tecnología, la naturaleza de los datos almacenados y los riesgos a que están expuestos.
-        </p>
-      </section>
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">4. Destinatarios</h2>
+          <p class="text-text-muted leading-relaxed">
+            Tus datos no serán cedidos a terceros, salvo obligación legal. No se realizan transferencias internacionales de datos.
+          </p>
+        </section>
 
-      <section class="mb-8">
-        <h2 class="text-xl font-bold text-primary mb-3">8. Cookies</h2>
-        <p class="text-on-surface-variant leading-relaxed">
-          Este sitio web no utiliza cookies de seguimiento ni de publicidad. Únicamente se emplean cookies técnicas estrictamente necesarias para el correcto funcionamiento de la página. Al no requerir consentimiento, no se muestra un banner de cookies.
-        </p>
-      </section>
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">5. Conservación de datos</h2>
+          <p class="text-text-muted leading-relaxed">
+            Los datos personales proporcionados se conservarán mientras exista un interés mutuo para mantener la relación y, en todo caso, durante los plazos legalmente establecidos. Una vez finalizada la relación, los datos serán suprimidos conforme a la normativa de protección de datos.
+          </p>
+        </section>
 
-      <p class="text-sm text-on-surface-variant/60 mt-12">Última actualización: marzo de 2026</p>
-    </article>
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">6. Derechos del interesado</h2>
+          <p class="text-text-muted leading-relaxed">
+            Puedes ejercer tus derechos de acceso, rectificación, supresión, oposición, limitación del tratamiento y portabilidad de datos enviando un correo electrónico a <a href="mailto:info@mimsistemas.com" class="text-accent hover:text-accent-light underline">info@mimsistemas.com</a>, indicando el derecho que deseas ejercer y adjuntando copia de tu DNI.
+          </p>
+          <p class="text-text-muted leading-relaxed mt-3">
+            Asimismo, tienes derecho a presentar una reclamación ante la <strong class="text-primary">Agencia Española de Protección de Datos</strong> (www.aepd.es) si consideras que el tratamiento de tus datos no se ajusta a la normativa vigente.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">7. Medidas de seguridad</h2>
+          <p class="text-text-muted leading-relaxed">
+            Hemos adoptado las medidas técnicas y organizativas necesarias para garantizar la seguridad de tus datos personales y evitar su alteración, pérdida, tratamiento o acceso no autorizado, habida cuenta del estado de la tecnología, la naturaleza de los datos almacenados y los riesgos a que están expuestos.
+          </p>
+        </section>
+
+        <section class="mb-8">
+          <h2 class="font-heading text-xl font-bold text-primary mb-3">8. Cookies</h2>
+          <p class="text-text-muted leading-relaxed">
+            Este sitio web no utiliza cookies de seguimiento ni de publicidad. Únicamente se emplean cookies técnicas estrictamente necesarias para el correcto funcionamiento de la página. Al no requerir consentimiento, no se muestra un banner de cookies.
+          </p>
+        </section>
+
+        <p class="text-sm text-text-muted/60 mt-12">Última actualización: marzo de 2026</p>
+      </article>
+    </div>
   </main>
-  <Footer />
-</Layout>
+
+  <FooterV2 />
+  <FloatingV2 />
+</LayoutV2>
