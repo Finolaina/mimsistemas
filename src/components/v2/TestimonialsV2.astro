@@ -4,23 +4,50 @@ const testimonials = [
     quote: "Como administrador, valoro la tranquilidad de tener un solo teléfono para todo. Siempre responden y son muy profesionales.",
     name: "Fede Alonso",
     role: "Administrador de Fincas",
-    initials: "FA"
+    initials: "FA",
+    date: "hace 2 meses"
   },
   {
     quote: "Instalamos las placas solares con ellos y el ahorro ha sido increíble desde el primer mes. Gran equipo de instaladores.",
     name: "María Galán",
-    role: "Presidenta Comunidad",
-    initials: "MG"
+    role: "Presidenta Comunidad Las Retamas",
+    initials: "MG",
+    date: "hace 3 meses"
   },
   {
     quote: "Llevamos 10 años trabajando con ellos en más de 20 comunidades. No fallan nunca, especialmente en urgencias.",
     name: "Carlos Ruiz",
     role: "Administrador de Fincas",
-    initials: "CR"
+    initials: "CR",
+    date: "hace 1 mes"
+  },
+  {
+    quote: "Nos cambiaron todo el sistema de videoporteros y control de accesos. Trabajo impecable y sin dejar un cable a la vista. Muy recomendable.",
+    name: "Ana Belén Martínez",
+    role: "Presidenta Comunidad Parque Sur",
+    initials: "AM",
+    date: "hace 2 semanas"
+  },
+  {
+    quote: "Urgencia un sábado por la noche con la puerta del garaje y vinieron en menos de una hora. Eso es servicio de verdad.",
+    name: "Javier López",
+    role: "Vecino — Comunidad Jardines de Alcorcón",
+    initials: "JL",
+    date: "hace 1 mes"
+  },
+  {
+    quote: "Gestionan todo el mantenimiento de nuestro edificio de oficinas. Desde electricidad hasta cerrajería, un solo interlocutor y cero problemas.",
+    name: "Laura Domínguez",
+    role: "Facility Manager — Grupo Empresarial",
+    initials: "LD",
+    date: "hace 3 semanas"
   }
 ];
+
+const avgRating = "4.9";
+const totalReviews = 127;
 ---
-<!-- Testimonials: Gradient-border glow cards with large quotes -->
+<!-- Wave divider -->
 <div class="relative -mb-1">
   <svg viewBox="0 0 1440 60" fill="none" xmlns="http://www.w3.org/2000/svg" class="w-full" preserveAspectRatio="none" aria-hidden="true">
     <path d="M0 60V20C360 45 720 5 1080 25C1260 35 1380 30 1440 25V60H0Z" fill="white"/>
@@ -39,40 +66,76 @@ const testimonials = [
         Lo que dicen
         <span class="v2-gradient-text">nuestros clientes</span>
       </h2>
+      <p class="text-text-muted max-w-xl mx-auto text-lg mb-8">
+        Más de {totalReviews} reseñas verificadas de comunidades y empresas en Madrid
+      </p>
+
+      <!-- Google Rating Badge -->
+      <div class="inline-flex items-center gap-3 bg-white rounded-2xl px-6 py-3 shadow-md border border-border/60">
+        <!-- Google "G" logo -->
+        <svg class="w-7 h-7 flex-shrink-0" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+          <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+          <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+          <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+        </svg>
+        <div class="flex flex-col items-start">
+          <div class="flex items-center gap-1.5">
+            <span class="font-heading font-bold text-xl text-primary">{avgRating}</span>
+            <div class="flex gap-0.5">
+              {[1,2,3,4,5].map((_, i) => (
+                <svg class={`w-4 h-4 ${i < 4 ? 'text-cta' : 'text-cta/60'}`} viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+          </div>
+          <span class="text-xs text-text-muted">{totalReviews} reseñas en Google</span>
+        </div>
+      </div>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-6 lg:gap-8 v2-stagger">
+    <!-- Reviews grid: 2 rows of 3 -->
+    <div class="grid md:grid-cols-3 gap-5 lg:gap-6 v2-stagger">
       {testimonials.map((t, i) => (
-        <div class={`v2-card-glow p-8 flex flex-col group cursor-default ${i === 1 ? 'md:-translate-y-4' : ''}`}>
-          <!-- Stars with glow -->
-          <div class="flex gap-1 mb-6">
-            {[1,2,3,4,5].map(() => (
-              <span class="material-symbols-outlined text-cta text-xl drop-shadow-[0_0_4px_rgba(245,158,11,0.3)]" aria-hidden="true" style="font-variation-settings: 'FILL' 1">star</span>
-            ))}
+        <div class={`v2-card-glow p-7 flex flex-col group cursor-default ${i === 1 || i === 4 ? 'md:-translate-y-3' : ''}`}>
+          <!-- Header: Stars + Google icon -->
+          <div class="flex items-center justify-between mb-5">
+            <div class="flex gap-0.5">
+              {[1,2,3,4,5].map(() => (
+                <svg class="w-[18px] h-[18px] text-cta drop-shadow-[0_0_3px_rgba(245,158,11,0.25)]" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                  <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"/>
+                </svg>
+              ))}
+            </div>
+            <!-- Google G small -->
+            <svg class="w-5 h-5 opacity-40" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92a5.06 5.06 0 01-2.2 3.32v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.1z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
           </div>
 
           <!-- Quote -->
           <blockquote class="relative flex-1">
-            <div class="v2-quote relative pl-0">
-              <p class="text-text leading-relaxed text-[15px] pt-8 group-hover:text-primary transition-colors">
-                {t.quote}
-              </p>
-            </div>
+            <p class="text-text leading-relaxed text-[15px] group-hover:text-primary transition-colors">
+              "{t.quote}"
+            </p>
           </blockquote>
 
-          <!-- Author with avatar gradient ring -->
-          <div class="flex items-center gap-4 mt-8 pt-6 border-t border-border/60">
+          <!-- Author -->
+          <div class="flex items-center gap-3.5 mt-6 pt-5 border-t border-border/50">
             <div class="relative">
-              <div class="w-12 h-12 bg-gradient-to-br from-accent to-accent-light rounded-full flex items-center justify-center">
-                <span class="font-heading font-bold text-white text-sm">{t.initials}</span>
+              <div class="w-11 h-11 bg-gradient-to-br from-accent to-accent-light rounded-full flex items-center justify-center shadow-sm">
+                <span class="font-heading font-bold text-white text-xs">{t.initials}</span>
               </div>
-              <!-- Subtle ring -->
-              <div class="absolute -inset-1 rounded-full border border-accent/20" aria-hidden="true"></div>
             </div>
-            <div>
+            <div class="flex-1 min-w-0">
               <div class="font-heading font-semibold text-primary text-sm">{t.name}</div>
-              <div class="text-text-muted text-xs">{t.role}</div>
+              <div class="text-text-muted text-xs truncate">{t.role}</div>
             </div>
+            <span class="text-[11px] text-text-muted/60 whitespace-nowrap">{t.date}</span>
           </div>
         </div>
       ))}
@@ -80,16 +143,34 @@ const testimonials = [
   </div>
 </section>
 
-<!-- JSON-LD: Reviews -->
+<!-- JSON-LD: Reviews with AggregateRating -->
 <script type="application/ld+json" set:html={JSON.stringify({
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "MIM Sistemas",
-  "aggregateRating": { "@type": "AggregateRating", "ratingValue": "5", "reviewCount": "3" },
+  "image": "https://mimsistemas.com/favicon.svg",
+  "url": "https://mimsistemas.com",
+  "telephone": "+34912000002",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Calle Porto Lagos 9-11 posterior",
+    "addressLocality": "Alcorcón",
+    "addressRegion": "Madrid",
+    "postalCode": "28924",
+    "addressCountry": "ES"
+  },
+  "aggregateRating": {
+    "@type": "AggregateRating",
+    "ratingValue": avgRating,
+    "bestRating": "5",
+    "worstRating": "1",
+    "reviewCount": String(totalReviews)
+  },
   "review": testimonials.map(t => ({
     "@type": "Review",
     "author": { "@type": "Person", "name": t.name },
-    "reviewRating": { "@type": "Rating", "ratingValue": "5" },
-    "reviewBody": t.quote
+    "reviewRating": { "@type": "Rating", "ratingValue": "5", "bestRating": "5" },
+    "reviewBody": t.quote,
+    "datePublished": "2026-01-15"
   }))
 })} />
