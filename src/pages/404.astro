@@ -1,32 +1,33 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import LayoutV2 from '../layouts/LayoutV2.astro';
+import HeaderV2 from '../components/v2/HeaderV2.astro';
+import FooterV2 from '../components/v2/FooterV2.astro';
+import '../styles/v2.css';
 ---
 
-<Layout title="Página no encontrada | MIM Sistemas" description="La página que buscas no existe o ha sido movida.">
-  <div class="min-h-screen flex items-center justify-center bg-surface px-6">
+<LayoutV2 title="Página no encontrada | MIM Sistemas" description="La página que buscas no existe o ha sido movida." robots="noindex, nofollow">
+  <HeaderV2 />
+  <main id="main-content" class="min-h-screen flex items-center justify-center bg-surface px-6 pt-24">
     <div class="text-center max-w-lg">
-      <span class="material-symbols-outlined text-8xl text-secondary/30 mb-6 block" aria-hidden="true">search_off</span>
-      <h1 class="text-6xl font-bold text-primary mb-4">404</h1>
-      <p class="text-xl text-on-surface-variant mb-2 font-medium">Página no encontrada</p>
-      <p class="text-on-surface-variant mb-8">
+      <div class="inline-flex items-center justify-center w-24 h-24 bg-accent/10 rounded-full mb-8">
+        <span class="material-symbols-outlined text-5xl text-accent" aria-hidden="true">search_off</span>
+      </div>
+      <h1 class="font-heading text-7xl font-bold text-primary mb-4">404</h1>
+      <p class="text-xl text-text font-heading font-medium mb-2">Página no encontrada</p>
+      <p class="text-text-muted mb-10">
         La página que buscas no existe o ha sido movida. Pero no te preocupes, podemos ayudarte.
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
-        <a
-          href="/"
-          class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-primary to-primary-container text-white px-6 py-3 rounded-xl font-medium hover:opacity-90 transition-all"
-        >
+        <a href="/" class="v2-btn-cta text-base justify-center">
           <span class="material-symbols-outlined text-xl" aria-hidden="true">home</span>
           Volver al inicio
         </a>
-        <a
-          href="tel:912000002"
-          class="inline-flex items-center justify-center gap-2 border-2 border-primary/20 text-primary px-6 py-3 rounded-xl font-medium hover:bg-primary/5 transition-all"
-        >
+        <a href="tel:912000002" class="v2-btn-outline text-base justify-center">
           <span class="material-symbols-outlined text-xl" aria-hidden="true">call</span>
           912 000 002
         </a>
       </div>
     </div>
-  </div>
-</Layout>
+  </main>
+  <FooterV2 />
+</LayoutV2>

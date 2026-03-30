@@ -1,7 +1,7 @@
 # Search engines
 User-agent: *
 Allow: /
-Disallow: /v2
+Disallow: /v1
 
 # Block AI training crawlers (protect content)
 User-agent: GPTBot
